@@ -41,20 +41,16 @@ pages = [
     ("privacy.html", "policies/privacy/index.html", "SK プライバシーポリシー | SK", "SK のサービス（サイト・MALU・Nagi・SK's Toolbox・Y-FILTER.・SK Hub Systems アカウント）での情報の取り扱い。Google アカウントでログインしたときの情報（Google のユーザーデータ）の取り扱いを含みます。", True, True),
     ("policies.html", "policies/index.html", "利用規約・プライバシーポリシー | SK", "SK 利用規約・SK プライバシーポリシーと、SK Hub Systems アカウント・Y-FILTER. の利用規約。", True, True),
     ("lang.html", "lang/index.html", "Language | SK", "Choose your language / 言語を選択", True, False),
-    ("inbox.html", "inbox/index.html", "お問い合わせの受信箱 | SK", "SK へのお問い合わせの受信箱（開発者用）。", True, False),
-    ("studio.html", "studio/index.html", "記事エディター | SK", "サポートのお知らせと記事を書くページ（開発者用）。", True, False),
     ("404.html", "404.html", "ページが見つかりません | SK", "お探しのページは見つかりませんでした。", True, False),
 ]
 # フッターを出さないページ（SK's Toolbox のホーム画面。下にドックがある）
 NO_FOOTER = {"toolbox.html"}
 # 訳さないページ（開発者だけが使う）
-NOT_TRANSLATED = {"inbox.html", "studio.html", "privacy.html"}
+NOT_TRANSLATED = {"privacy.html"}  # お問い合わせの受信箱・記事エディターは、旧ドメインの管理画面（sy9-k.github.io/admin/）に移った
 
 # ページごとに追加する <head> の中身と <body> のクラス
 EXTRA = {
     "account.html": ('  <script type="module" src="/account/account-page.js"></script>\n', None),
-    "inbox.html": ('  <script type="module" src="/inbox/inbox.js"></script>\n', None),
-    "studio.html": ('  <script type="module" src="/studio/studio.js"></script>\n', None),
     "contact.html": ('  <script src="/contact/contact.js" defer></script>\n', None),
     "support.html": ('  <script src="/support/help.js" defer></script>\n', None),
     "status.html": ('  <script src="/status/status.js" defer></script>\n', None),
@@ -110,7 +106,7 @@ EXTRA = {
 
 # t("…") などで訳す文を探すファイル（ページの外でスクリプトが作る文字）
 RUNTIME_SOURCES = [
-    "assets/site.js", "assets/domain-snack.js", "support/help.js", "support/articles.js", "account/account-page.js",
+    "assets/site.js", "assets/domain-snack.js", "assets/maintenance.js", "support/help.js", "support/articles.js", "account/account-page.js",
     "contact/contact.js", "status/status.js", "frameworks/check.js",
     "dictionary/script.js", "dictionary/account.js", "assets/hub/sync-loader.js", "assets/analytics.js", "assets/nf-secret.js", "assets/terminal.js",
     "nagi/app.js", "nagi/account.js", "brand/brand.js", "assets/hub/account-button.js",

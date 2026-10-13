@@ -33,7 +33,7 @@ URL は変えずに、`/lang/` で選んだ言語でページを訳して表示�
 
 ## サポートの記事・お知らせ
 
-記事は **記事エディター（https://sk-hub.jp/studio/）** で書きます。保存すると SK Hub Systems に入り、サポートページにすぐ出ます（build もプッシュもいりません）。
+記事は **管理画面の記事エディター（https://sy9-k.github.io/admin/articles/）** で書きます。保存すると SK Hub Systems に入り、サポートページにすぐ出ます（build もプッシュもいりません）。
 
 - `support/articles.json` は予備です（SK Hub Systems に記事が 1 件もない・届かないときだけ使われる）。記事エディターの「バックアップを書き出す」で作ったファイルと入れ替えてプッシュすると、予備も新しくなります。
 - 読み込みと本文の書き方は `support/articles.js` にまとめています。
@@ -47,10 +47,10 @@ URL は変えずに、`/lang/` で選んだ言語でページを訳して表示�
 ## SK Hub Systems の運用メモ
 
 - **2 年以上ログインのないアカウント**（アカウント規約 第五条4）: Firebase コンソールの Authentication →「ユーザー」で「ログイン日時」の古い順に並べて確認します。削除するときは、先にそのユーザーの UID で Firestore の `accounts/<UID>`（とその下の `notices`・`maluWords`・`malu`）と、持ち主の管理グループ（`teams/<UID>`・`ownerUid` が同じ `devices`・`requests`・`pairingCodes`）を消してから、Authentication のユーザーを削除します。サーバーで動く処理（Cloud Functions）は無料プランでは使えないため、自動にはしていません。
-- **お問い合わせ・アクセスチェックの記録の保存期間**: 開発者が `/inbox/` を開いたときに、期限を過ぎたものを削除します。ときどき開いてください。
+- **お問い合わせ・アクセスチェックの記録の保存期間**: 開発者が管理画面（https://sy9-k.github.io/admin/）のダッシュボードかお問い合わせを開いたときに、期限を過ぎたものを自動で削除します。ほかの期限切れは管理画面の「期限切れの掃除」で消します。
 - **Firestore のルール**: y-filter リポジトリの `systems/firestore.rules`。`systems` で `firebase deploy --only firestore:rules` で反映します。
 - **Google アナリティクス**: 測定 ID `G-LLN7RGHRTE`（アカウント「Default Account for Firebase」→ プロパティ「y-filter-system」→ データストリーム「SK」）。読み込みは `assets/analytics.js`（許可した人だけ）。プライバシーポリシー第四条の二に合わせて、データの保持は 2 か月、Google シグナルはオフ、拡張計測機能の「サイト内検索」「フォームの操作」はオフにしています。変えるときはポリシーも直します。
-- **SK Share（/view/）**: パスワードを入れると、YouTube の限定公開動画・HTML 文書・Google ドライブのファイル（PDF・ドキュメント・スライド・フォルダなど）を見られるページです。作る・直す・止めるのは `/view/editor/`（開発者だけ）。データは Firestore の `viewPages`（ID = パスワードから作った値。くわしくは `view/view-core.js` と y-filter リポジトリの `systems/firestore.rules`）。One UI 版の試作は `_mockups/view-oneui/`（配信しない）。
+- **SK Share（/view/）**: パスワードを入れると、YouTube の限定公開動画・HTML 文書・Google ドライブのファイル（PDF・ドキュメント・スライド・フォルダなど）を見られるページです。作る・直す・止めるのは管理画面の https://sy9-k.github.io/admin/share/（開発者だけ）。データは Firestore の `viewPages`（ID = パスワードから作った値。くわしくは `view/view-core.js` と y-filter リポジトリの `systems/firestore.rules`）。One UI 版の試作は `_mockups/view-oneui/`（配信しない）。
 - **`google4b04249061c7d95f.html`（サイトの一番上）**: Google Search Console で sy9-k.github.io の持ち主であることを示すファイルです。Google のログイン画面に「SK Hub Systems」と出すためのブランドの確認に使うので、消さないでください。
 
 ## build で作らないページ
@@ -62,4 +62,13 @@ URL は変えずに、`/lang/` で選んだ言語でページを訳して表示�
 - `y-filter/`（Y-FILTER. 管理コンソール。共通部分は y-filter リポジトリの `systems/sync-console.mjs` でコピー）
 - `qr-prj/`・`smart-dash/`（SK's Lab）
 - `news/`（サポートへの転送）・`usercheck/`（同意・アクセス制限の画面）
-- `view/`（SK Share。マテリアルデザイン）・`view/editor/`（SK Share の管理・開発者用）
+- `view/`（SK Share。マテリアルデザイン）
+- `inbox/`・`studio/`・`view/editor/`（旧ドメインの管理画面 https://sy9-k.github.io/admin/ へ転送するだけのページ。管理画面は sy9-k/sy9-k.github.io リポジトリの `admin/`）
+
+## メンテナンス・障害のお知らせの帯
+
+`/assets/maintenance.js` が、SK Hub Systems の `config/maintenance` を読んで、ページのいちばん上に帯を出します（変えるのは旧ドメインの管理画面の「メンテナンスの告知」 https://sy9-k.github.io/admin/maintenance/）。
+
+- build のページはトップ（`index.html`）の型から入ります。build で作らないアプリ（SK's Toolbox・Nagi・MALU・SK's Lab・SK Share）は、`/assets/domain-snack.js` の隣で読み込みます。
+- 結果は 5 分だけ覚えておくので、管理画面で変えてから出る・消えるまで最大 5 分かかります。
+- `sy9-k/sy9-k.github.io` にも同じファイルがあります（管理画面のプレビューに使う）。直すときは両方を同じにします。
