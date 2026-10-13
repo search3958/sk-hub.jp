@@ -37,6 +37,24 @@ Article 4-2 Access Analytics (Google Analytics)
 4. You can withdraw your permission at any time from "Analytics settings" at the bottom of the Site. After withdrawal, no further measurement is made, and Google Analytics cookies in the browser are deleted.
 5. For how Google handles information, see Google's Privacy Policy (https://policies.google.com/privacy) and "How Google uses information from sites or apps that use our services" (https://policies.google.com/technologies/partner-sites).
 
+Article 4-3 Google User Data (Signing In with a Google Account)
+1. When you sign in to an SK Hub Systems Account with a Google Account, the Developer receives only the following information from Google (Google Sign-In requests only the openid, email, and profile scopes):
+(a) Your Google Account identifier
+(b) Your name
+(c) Your email address
+(d) The URL of your profile picture
+2. The Developer does not access data from any other Google services, such as Gmail, Google Drive, Google Calendar, or Contacts, and does not receive your Google Account password.
+3. The information in paragraph 1 is used only for the following purposes:
+(a) Creating your SK Hub Systems Account and signing you in (verifying that it is you)
+(b) Showing your name and icon on the account page and in the site header
+(c) Linking the data you choose to save (settings sync, MALU, Nagi, SK's Toolbox, etc.) to your own account
+(d) In SK's Toolbox Timetable, matching an email address entered as a recipient with the email address of the signed-in user, so that the timetable is shown to that person
+(e) Delivering account notices (such as replies to your inquiries) to you
+4. The information in paragraph 1 is stored in Firebase by Google LLC (Firebase Authentication and Cloud Firestore; Cloud Firestore data is stored in the Tokyo region). All communication is encrypted with HTTPS.
+5. The Developer does not sell information received from Google, does not use it for advertising or marketing, and does not provide it to third parties. It is not used to develop or train artificial intelligence or machine learning models. Except for processing by Google LLC as the provider of Firebase and cases required by law (Article 8), it is not passed to anyone else. The Developer looks at the content only to respond to failures or misuse, to respond to legal requests, or at your request.
+6. The information in paragraph 1 is kept until you delete your SK Hub Systems Account. At https://sk-hub.jp/account/, you can download the stored information and delete your account at any time. When you delete your account, the account information, including the information in paragraph 1, is deleted. You can also remove the connection to SK Hub Systems in your Google Account settings (https://myaccount.google.com/connections). The Developer may delete accounts that have not been signed in to for two years or more.
+7. The Developer's use and transfer to any other app of information received from Google APIs will adhere to the Google API Services User Data Policy (https://developers.google.com/terms/api-services-user-data-policy), including the Limited Use requirements.
+
 Article 5 Purposes of Use
 1. Providing, maintaining, and improving the Services
 2. Responding to abuse and nuisance behavior (including access restrictions)
@@ -100,3 +118,4 @@ Supplementary Provisions
 12. On October 9, 2026, Article 2 was revised with the launch of joining by invite code in SK's Toolbox Timetable.
 13. On October 11, 2026, Article 2 was revised to add signing in to the SK Hub Systems account with a GitHub account.
 14. On October 11, 2026, Article 2 was revised with the launch of SK's Toolbox as a LINE MINI App.
+15. On October 13, 2026, Article 4-3 was added to clarify how Google user data is handled.

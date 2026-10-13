@@ -38,6 +38,7 @@ pages = [
     ("hub-account.html", "sk-hub-systems/account/index.html", "SK Hub Systems アカウント | SK", "SK のサービスを、いつもの Google アカウントひとつで。使えるサービス、端末のあいだの同期、保存する情報、データのダウンロードと削除について。", False, True),
     ("account.html", "account/index.html", "SK Hub Systems アカウント | SK", "SK のサービスを 1 つの Google アカウントで使える「SK Hub Systems アカウント」。ログイン・アカウントの確認・削除。", True, True),
     ("contact.html", "contact/index.html", "お問い合わせ | SK", "SK への不具合の報告・ご質問・ご要望はこちらから。", True, True),
+    ("privacy.html", "policies/privacy/index.html", "SK プライバシーポリシー | SK", "SK のサービス（サイト・MALU・Nagi・SK's Toolbox・Y-FILTER.・SK Hub Systems アカウント）での情報の取り扱い。Google アカウントでログインしたときの情報（Google のユーザーデータ）の取り扱いを含みます。", True, True),
     ("policies.html", "policies/index.html", "利用規約・プライバシーポリシー | SK", "SK 利用規約・SK プライバシーポリシーと、SK Hub Systems アカウント・Y-FILTER. の利用規約。", True, True),
     ("lang.html", "lang/index.html", "Language | SK", "Choose your language / 言語を選択", True, False),
     ("inbox.html", "inbox/index.html", "お問い合わせの受信箱 | SK", "SK へのお問い合わせの受信箱（開発者用）。", True, False),
@@ -47,7 +48,7 @@ pages = [
 # フッターを出さないページ（SK's Toolbox のホーム画面。下にドックがある）
 NO_FOOTER = {"toolbox.html"}
 # 訳さないページ（開発者だけが使う）
-NOT_TRANSLATED = {"inbox.html", "studio.html"}
+NOT_TRANSLATED = {"inbox.html", "studio.html", "privacy.html"}
 
 # ページごとに追加する <head> の中身と <body> のクラス
 EXTRA = {
@@ -133,6 +134,62 @@ STANDALONE_PAGES = [
 EN_ONLY_PAGES = ["qr-prj/index.html", "smart-dash/index.html"]
 
 
+# プライバシーポリシーのページ（/policies/privacy/）: policies/docs/sk-privacy.txt と sk-privacy.en.txt の本文を、
+# そのまま HTML にして載せる（/policies/ はスクリプトで本文を読み込むので、スクリプトを動かさない審査（Google の OAuth の
+# 確認など）では本文が見えない）。日本語と英語を 1 ページに並べ、訳は自動ではしない（NOT_TRANSLATED）。
+# 文の区切り方は assets/site.js の規約の表示（render）と同じ。_build/pages/privacy.html は作らない
+def policy_html(text, lang, anchor):
+    import html as H
+    def para(line, cls=None):
+        parts = re.split(r"(https?://[^\s）)」]+)", line)
+        inner = "".join(f'<a href="{H.escape(x)}">{H.escape(x)}</a>' if re.match(r"https?://", x) else H.escape(x) for x in parts)
+        return f'          <p class="{cls}">{inner}</p>\n' if cls else f"          <p>{inner}</p>\n"
+    out, titled = [], False
+    for raw in text.splitlines():
+        line = raw.strip()
+        if not line:
+            continue
+        if not titled:
+            out.append(f'          <h2 class="doc-title">{H.escape(line)}</h2>\n')
+            titled = True
+        elif re.match(r"^(制定日|Established)", line):
+            out.append(para(line, "meta"))
+        elif re.match(r"^(第[一二三四五六七八九十]+条|附則|Article \d+|Supplementary Provisions)", line):
+            hid = f' id="{anchor}"' if re.match(r"^(第四条の三|Article 4-3)", line) else ""
+            out.append(f"          <h3{hid}>{H.escape(line)}</h3>\n")
+        elif re.match(r"^\([a-z]\)", line):
+            out.append(para(line, "sub"))
+        else:
+            out.append(para(line))
+    return "".join(out)
+
+
+def privacy_body():
+    docs = REPO / "policies" / "docs"
+    ja = policy_html((docs / "sk-privacy.txt").read_text(encoding="utf-8"), "ja", "google-user-data")
+    en = policy_html((docs / "sk-privacy.en.txt").read_text(encoding="utf-8"), "en", "google-user-data-en")
+    return f"""    <!-- SK プライバシーポリシー（build で policies/docs/sk-privacy.txt・sk-privacy.en.txt から作る。直すのはテキストファイル） -->
+    <section class="p-hero band band--plain">
+      <div class="wrap">
+        <span class="eyebrow">Privacy Policy</span>
+        <h1>SK プライバシーポリシー</h1>
+        <p class="lead">SK のサービス（サイト・MALU・Nagi・SK's Toolbox・Y-FILTER.・SK Hub Systems アカウント）での情報の取り扱いです。Google アカウントでログインしたときの情報は、<a href="#google-user-data">第四条の三</a>にあります。</p>
+        <p class="lead" lang="en">How SK handles information in its services. For data received when you sign in with a Google Account, see <a href="#google-user-data-en">Article 4-3</a>. <a href="#en">Read in English</a></p>
+      </div>
+    </section>
+
+    <section class="section" style="padding-top:0">
+      <div class="wrap">
+        <article class="doc" id="ja" lang="ja">
+{ja}        </article>
+        <article class="doc" id="en" lang="en" style="margin-top:32px">
+{en}        </article>
+        <p style="margin-top:24px">ほかの言語（参考訳） / Other languages: <a href="/policies/docs/sk-privacy.zh-CN.txt">简体中文</a> · <a href="/policies/docs/sk-privacy.zh-TW.txt">繁體中文</a> · <a href="/policies/docs/sk-privacy.ko.txt">한국어</a> · <a href="/policies/">利用規約・プライバシーポリシーの一覧</a></p>
+      </div>
+    </section>
+"""
+
+
 def write(path, text):
     # 改行は LF で書く（Path.write_text の newline= は Python 3.10 からなので、3.9 でも動くように open で）
     with open(path, "w", encoding="utf-8", newline="\n") as f:
@@ -183,7 +240,7 @@ sitemap = [page_url("index.html")]
 checked = [index]
 
 for src, dst, title, desc, no_redirect, indexable in pages:
-    body = (PAGES / src).read_text(encoding="utf-8")
+    body = privacy_body() if src == "privacy.html" else (PAGES / src).read_text(encoding="utf-8")
     text = assemble(body, dst, title, desc, no_redirect, indexable, src)
     out = REPO / dst
     out.parent.mkdir(parents=True, exist_ok=True)

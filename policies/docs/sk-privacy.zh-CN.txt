@@ -37,6 +37,24 @@ SK 隐私政策
 4.可以随时通过本网站下方的“访问分析设置”撤回允许。撤回后将不再进行测量，并删除浏览器中 Google Analytics 的 Cookie。
 5.关于 Google 对信息的处理，请参阅 Google 隐私政策（https://policies.google.com/privacy）及“Google 如何使用来自使用其服务的网站或应用的信息”（https://policies.google.com/technologies/partner-sites）。
 
+第四条之三 Google 用户数据（使用 Google 账号登录）
+1.使用 Google 账号登录 SK Hub Systems 账号时，开发者只从 Google 接收以下信息（Google 登录只请求 openid、email、profile 范围）。
+(a) Google 账号的标识符
+(b) 姓名
+(c) 电子邮件地址
+(d) 头像图片的 URL
+2.开发者不会访问 Gmail、Google 云端硬盘、Google 日历、通讯录等其他 Google 服务的数据，也不会接收 Google 账号的密码。
+3.第1款的信息仅用于以下目的。
+(a) 创建 SK Hub Systems 账号及登录（确认本人）
+(b) 在账号页面和网站顶部显示本人的姓名和头像
+(c) 将本人选择保存的数据（设置同步、MALU、Nagi、SK's Toolbox 等）关联到本人的账号
+(d) 在 SK's Toolbox 的 Timetable 中，将作为接收者输入的电子邮件地址与已登录本人的电子邮件地址进行核对，并向本人显示课程表
+(e) 向本人发送本账号的通知（如对咨询的回复）
+4.第1款的信息保存在 Google LLC 的 Firebase（Firebase Authentication 及 Cloud Firestore。Cloud Firestore 的数据保存在东京区域），通信通过 HTTPS 加密。
+5.开发者不会出售从 Google 接收的信息，不会将其用于广告或营销，也不会提供给第三方。也不会将其用于开发或训练人工智能、机器学习模型。除提供 Firebase 的 Google LLC 进行的处理及依据法律的情况（第八条）外，不会交给其他人。开发者仅在应对故障或不正当使用、应对依法提出的要求或应本人请求时查看其内容。
+6.第1款的信息保存至本账号被删除为止。本人可在 https://sk-hub.jp/account/ 下载已保存的信息，并可随时删除本账号。删除后，包括第1款信息在内的账号信息将被删除。此外，也可在 Google 账号的设置（https://myaccount.google.com/connections）中解除与 SK Hub Systems 的关联。2年以上未登录的本账号，开发者可能会将其删除。
+7.对从 Google API 接收的信息的使用及向其他应用的转移，将遵守 Google API 服务用户数据政策（https://developers.google.com/terms/api-services-user-data-policy），包括有限使用（Limited Use）的要求。
+
 第五条 使用目的
 1.本服务的提供、维护及改进
 2.应对不当使用和骚扰行为（包括访问限制）
@@ -100,3 +118,4 @@ SK 隐私政策
 12.2026年10月9日，配合 SK's Toolbox 的 Timetable 邀请码加入功能的推出，修订了第二条。
 13.2026年10月11日，配合 SK Hub Systems 账户新增 GitHub 账号登录，修订了第二条。
 14.2026年10月11日，配合 SK's Toolbox 的 LINE 迷你应用的推出，修订了第二条。
+15.2026年10月13日，为明确 Google 用户数据的处理方式，新增了第四条之三。

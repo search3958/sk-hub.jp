@@ -81,7 +81,7 @@
     text.style.cssText = "margin:0;color:#48484d";
     text.textContent = t("サイトをよりよくするため、Google アナリティクスで、見られたページなどを集計してもいいですか？広告には使いません。");
     var more = document.createElement("a");
-    more.href = "/policies/#sk-privacy";
+    more.href = "/policies/privacy/";
     more.textContent = t("詳しく");
     more.style.cssText = "color:#0066cc";
     text.append(" ", more);

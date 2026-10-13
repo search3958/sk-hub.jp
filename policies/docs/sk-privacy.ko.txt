@@ -37,6 +37,24 @@ SK 개인정보 처리방침
 4.허용은 본 사이트 아래에 있는 '접속 분석 설정'에서 언제든 취소할 수 있습니다. 취소하면 이후의 측정은 하지 않으며, 브라우저 안의 Google 애널리틱스 쿠키를 삭제합니다.
 5.Google의 정보 처리에 대해서는 Google 개인정보처리방침(https://policies.google.com/privacy) 및 'Google 서비스를 사용하는 사이트 또는 앱에서 수집한 정보를 Google이 사용하는 방법'(https://policies.google.com/technologies/partner-sites)을 참고하세요.
 
+제4조의3 Google 사용자 데이터(Google 계정으로 로그인)
+1.SK Hub Systems 계정에 Google 계정으로 로그인한 경우, 개발자는 Google로부터 다음 정보만 받습니다(Google 로그인에서 요청하는 범위는 openid·email·profile뿐입니다).
+(a) Google 계정의 식별자
+(b) 이름
+(c) 이메일 주소
+(d) 프로필 사진의 URL
+2.개발자는 Gmail, Google 드라이브, Google 캘린더, 연락처 등 다른 Google 서비스의 데이터에 접근하지 않습니다. Google 계정의 비밀번호도 받지 않습니다.
+3.제1항의 정보는 다음 목적으로만 사용합니다.
+(a) SK Hub Systems 계정의 생성과 로그인(본인 확인)
+(b) 계정 페이지와 사이트 헤더에 본인의 이름과 아이콘을 표시하는 것
+(c) 본인이 선택해 저장한 데이터(설정 동기화·MALU·Nagi·SK's Toolbox 등)를 본인의 계정에 연결하는 것
+(d) SK's Toolbox의 Timetable에서, 배포 대상으로 입력된 이메일 주소와 로그인한 본인의 이메일 주소를 대조해 본인에게 시간표를 표시하는 것
+(e) 본 계정의 알림(문의에 대한 답변 등)을 본인에게 전달하는 것
+4.제1항의 정보는 Google LLC의 Firebase(Firebase Authentication 및 Cloud Firestore. Cloud Firestore의 데이터는 도쿄 리전)에 저장하며, 통신은 HTTPS로 암호화합니다.
+5.개발자는 Google로부터 받은 정보를 판매하지 않고, 광고나 마케팅에 사용하지 않으며, 제3자에게 제공하지 않습니다. 인공지능·머신러닝 모델의 개발이나 학습에도 사용하지 않습니다. 저장처인 Firebase를 제공하는 Google LLC의 처리와 법령에 따른 경우(제8조)를 제외하고 다른 사람에게 넘기지 않습니다. 개발자가 내용을 보는 것은 장애나 부정 이용에 대한 대응, 법령에 따른 요청에 대한 대응, 또는 본인의 요청이 있는 경우로 한정합니다.
+6.제1항의 정보는 본 계정을 삭제할 때까지 보관합니다. 본인은 https://sk-hub.jp/account/ 에서 저장된 정보를 다운로드할 수 있으며, 언제든지 본 계정을 삭제할 수 있습니다. 삭제하면 제1항의 정보를 포함한 계정 정보가 삭제됩니다. 또한 Google 계정 설정(https://myaccount.google.com/connections)에서 SK Hub Systems와의 연결을 해제할 수 있습니다. 2년 이상 로그인하지 않은 본 계정은 개발자가 삭제할 수 있습니다.
+7.Google API로부터 받은 정보의 사용 및 다른 앱으로의 전송은 제한적 사용(Limited Use) 요건을 포함하여 Google API 서비스 사용자 데이터 정책(https://developers.google.com/terms/api-services-user-data-policy)을 따릅니다.
+
 제5조 이용 목적
 1.본 서비스의 제공, 유지 및 개선
 2.부정 이용이나 민폐 행위에 대한 대응(접근 제한을 포함합니다)
@@ -100,3 +118,4 @@ SK 개인정보 처리방침
 12.2026년 10월 9일, SK's Toolbox Timetable의 초대 코드 참가 기능 제공 시작에 맞춰 제2조를 개정했습니다.
 13.2026년 10월 11일, SK Hub Systems 계정에 GitHub 계정 로그인 추가에 맞춰 제2조를 개정했습니다.
 14.2026년 10월 11일, SK's Toolbox의 LINE 미니앱 제공 시작에 맞춰 제2조를 개정했습니다.
+15.2026년 10월 13일, Google 사용자 데이터의 취급을 명확히 하기 위해 제4조의3을 추가했습니다.

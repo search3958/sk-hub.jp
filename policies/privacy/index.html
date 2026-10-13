@@ -1,0 +1,321 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <script src="/assets/coming-soon.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- 多言語: /lang/ で選んだ言語で表示する（URL は変わらない）。ページの最後の translatePage() で訳す -->
+  <script src="/assets/i18n.js"></script>
+  <!-- 表示（ライト・ダーク・テーマカラー）。ちらつかないよう、CSS より先に <html> に付ける（選ぶのはヘッダーのアカウントのメニューの「表示」。assets/site.js） -->
+  <script>(function(){try{var t=JSON.parse(localStorage.getItem("sk_theme")||"{}"),d=document.documentElement;if(t.mode==="light"||t.mode==="dark")d.setAttribute("data-theme",t.mode);if(/^[a-z]{2,12}$/.test(t.accent||"")&&t.accent!=="blue")d.setAttribute("data-accent",t.accent);}catch(e){}})();</script>
+  <title>SK プライバシーポリシー | SK</title>
+  <meta name="description" content="SK のサービス（サイト・MALU・Nagi・SK's Toolbox・Y-FILTER.・SK Hub Systems アカウント）での情報の取り扱い。Google アカウントでログインしたときの情報（Google のユーザーデータ）の取り扱いを含みます。">
+  <meta name="theme-color" content="#ffffff" data-theme-color>
+  <link rel="canonical" href="https://sk-hub.jp/policies/privacy/">
+  <!-- SNS で共有したときの表示（各ページのタイトル・説明・URL は build で入れ替える） -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="SK">
+  <meta property="og:locale" content="ja_JP">
+  <meta property="og:title" content="SK プライバシーポリシー | SK">
+  <meta property="og:description" content="SK のサービス（サイト・MALU・Nagi・SK's Toolbox・Y-FILTER.・SK Hub Systems アカウント）での情報の取り扱い。Google アカウントでログインしたときの情報（Google のユーザーデータ）の取り扱いを含みます。">
+  <meta property="og:url" content="https://sk-hub.jp/policies/privacy/">
+  <meta property="og:image" content="https://sk-hub.jp/assets/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+  <script src="/assets/fonts.js" data-fonts="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@400;500;700;800&display=swap"></script>
+  <link rel="stylesheet" href="/assets/header.css">
+  <link rel="stylesheet" href="/assets/site.css">
+</head>
+<body>
+  <a class="skip" href="#main">本文へ移動</a>
+  <header class="site-header">
+    <a class="hd-logo" href="/" aria-label="ホーム">
+      <span class="hd-logo-image" aria-hidden="true"><img src="/assets/logo.svg" alt="" width="26" height="26"></span>
+      <span class="hd-logo-back" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M19 12H5M5 12L11 6M5 12L11 18" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+    </a>
+    <a class="hd-item" href="/about/">私について</a>
+    <a class="hd-item" href="/products/" data-menu="products">プロダクト</a>
+    <a class="hd-item" href="/support/" data-menu="support" data-no-navigation="true">サポートと情報</a>
+    <a class="hd-item hd-account" href="/account/" data-menu="account" data-account-link>アカウント</a>
+    <a class="hd-item hd-lang" href="/lang/" data-lang-link><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3Z"/></svg><span class="hd-lang-label">言語</span></a>
+    <button class="hd-menu-btn" type="button" aria-expanded="false" aria-controls="hd-menu" aria-label="メニュー"><span></span><span></span></button>
+  </header>
+  <div class="hd-menu" id="hd-menu"><div class="hd-menu-inner"><div class="hd-menu-content"></div></div></div>
+  <div class="hd-backdrop" id="hd-backdrop"></div>
+  <!-- sk-hub.jp（新しいアドレス）のお知らせ（ヘッダーの下の帯。スタイルは /assets/site.css の sk-dn）
+       閉じたら、同じ段階（data-stage）のあいだは出さない（localStorage の sk_domain_notice）。文を変えたときは data-stage も変える
+       古いアドレス（sy9-k.github.io）では、同じ場所にオレンジの「古いアドレスです」の帯を出している -->
+  <div class="sk-dn" id="sk-dn" data-stage="new" role="region" aria-label="お知らせ" hidden>
+    <p class="sk-dn-text"><strong>SK の新しいアドレス sk-hub.jp へようこそ</strong><span>ブックマークやホーム画面のアイコンは、このアドレスで登録し直してください。</span></p>
+    <a class="sk-dn-more" href="/move/">データを移す</a>
+    <button class="sk-dn-close" type="button" aria-label="閉じる"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+  </div>
+  <script>(function(){var b=document.getElementById("sk-dn"),k="sk_domain_notice",s=b.getAttribute("data-stage");try{if(localStorage.getItem(k)===s||/^\/domain\//.test(location.pathname)||/[?&](embed|line)\b/.test(location.search)||sessionStorage.getItem("sk_line"))return;}catch(e){return;}b.hidden=false;function done(){try{localStorage.setItem(k,s);}catch(e){}}b.querySelector(".sk-dn-close").addEventListener("click",function(){done();b.hidden=true;});b.querySelector(".sk-dn-more").addEventListener("click",done);})();</script>
+
+  <main id="main">
+    <!-- SK プライバシーポリシー（build で policies/docs/sk-privacy.txt・sk-privacy.en.txt から作る。直すのはテキストファイル） -->
+    <section class="p-hero band band--plain">
+      <div class="wrap">
+        <span class="eyebrow">Privacy Policy</span>
+        <h1>SK プライバシーポリシー</h1>
+        <p class="lead">SK のサービス（サイト・MALU・Nagi・SK's Toolbox・Y-FILTER.・SK Hub Systems アカウント）での情報の取り扱いです。Google アカウントでログインしたときの情報は、<a href="#google-user-data">第四条の三</a>にあります。</p>
+        <p class="lead" lang="en">How SK handles information in its services. For data received when you sign in with a Google Account, see <a href="#google-user-data-en">Article 4-3</a>. <a href="#en">Read in English</a></p>
+      </div>
+    </section>
+
+    <section class="section" style="padding-top:0">
+      <div class="wrap">
+        <article class="doc" id="ja" lang="ja">
+          <h2 class="doc-title">SK プライバシーポリシー</h2>
+          <p class="meta">制定日：2026年9月25日</p>
+          <h3>第一条 基本方針</h3>
+          <p>1.SK（以下「開発者」といいます。）は、SK 利用規約に定める本サービスにおいて、ユーザーの情報を本ポリシーに従って取り扱います。</p>
+          <p>2.開発者は、本サービスの提供に必要な範囲でのみ情報を取り扱います。取り扱う情報を、広告、販売、第三者への提供、本サービスの外での行動の追跡に利用することはありません。第四条の二のアクセス解析は、許可した人についてのみ行います。</p>
+          <p>3.Y-FILTER.、SK Hub Systems 及び SK Hub Systems アカウントにおける情報の取り扱いの詳細は、「Y-FILTER. 利用規約およびプライバシーポリシー」、「SK Hub Systems 利用規約」及び「SK Hub Systems アカウント規約」に定めます。これらと本ポリシーの内容が異なる場合は、そのサービスについてはそれぞれの定めが優先します。</p>
+          <h3>第二条 サービスごとの概要</h3>
+          <p class="sub">(a) 本サイト（SK&#x27;s Lab のツールを含みます。）・MALU・Nagi・Y-FILTER. の管理コンソール：第三条のアクセスチェックの情報を取り扱います。MALU の検索語・検索履歴・設定は、ブラウザの中だけに保存し、送信しません。ただし、SK Hub Systems アカウントでログインしている場合は、SK Hub Systems アカウント規約に定めるとおり、MALU の設定を同期し、MALU に接続したときは単語帳に保存した言葉を、検索履歴の同期を有効にしたときは検索履歴を、本人のアカウントに保存します。</p>
+          <p class="sub">(b) Y-FILTER.：フィルタリングはブラウザの中で行い、閲覧履歴や検索語を開発者に送信しません。</p>
+          <p class="sub">(c) SK Hub Systems：Y-FILTER. の遠隔管理機能を利用する場合、または Y-FILTER. を自分の端末として SK Hub Systems アカウントにつないだ場合に限り、設定内容や端末の状態、設定のバックアップなどを保存します。</p>
+          <p class="sub">(d) お問い合わせ：お問い合わせフォームに入力された内容を SK Hub Systems に保存します。</p>
+          <p class="sub">(e) SK Hub Systems アカウント：アカウントを作成した場合に限り、ログインに使うアカウント（Google 又は GitHub）の情報（識別子・名前・メールアドレス・アイコン）と、規約に同意した日などを保存します。</p>
+          <p class="sub">(f) Nagi：集中の記録（集中を始めた時刻と集中した時間）と設定は、ブラウザの中だけに保存し、送信しません。ただし、SK Hub Systems アカウントで Nagi に接続したときは、集中の記録と 1 日の目標を本人のアカウントに保存します。何を勉強したかや、閲覧しているサイトは記録しません。</p>
+          <p class="sub">(g) SK&#x27;s Toolbox：Clock・Calc・Memo・Todo・Countdown・Timetable・Roulette のデータと設定は、ブラウザの中だけに保存し、送信しません。ただし、SK Hub Systems アカウントで SK&#x27;s Toolbox に接続し、オンライン同期を始めたときは、同期を選んだアプリのデータを、利用者が決めた同期用のパスフレーズで端末で暗号化してから本人のアカウントに保存します。暗号を解く鍵は端末の中にだけあり、開発者は内容を読み取れません。Memo の画像は送信しません。また、開発者が Timetable で時間割を配信する場合は、配信先として開発者が入力したメールアドレスと配信する時間割を SK Hub Systems に保存し、そのメールアドレスの SK Hub Systems アカウントでログインした本人に時間割を表示するためだけに使います。配信先の人どうしには表示せず、配信をやめると削除します。招待コードで配信に参加した場合、又は配信先の人が配信された時間割を開いた場合は、名前・アイコンとメールアドレス、参加した日時を SK Hub Systems に保存し、配信している開発者が参加している人を確かめたり外したりするためだけに使います（ほかの参加者には表示しません）。また、SK&#x27;s Toolbox を LINE のミニアプリとして開いた場合は、LINE のプロフィール（名前・アイコン）を画面の表示にだけ使い、保存・送信しません。「LINE で送る」は、利用者が選んだ相手に、利用者の操作で LINE を通じて送ります。</p>
+          <h3>第三条 アクセスチェックで取り扱う情報</h3>
+          <p>1.本サイト（SK&#x27;s Lab のツールを含みます。）、MALU、Nagi 及び Y-FILTER. の管理コンソールでは、不正な利用への対応と利用状況の把握のため、アクセスチェックを行います。</p>
+          <p>2.ブラウザの中に保存するもの：サポートID（ブラウザごとにランダムに作る識別子）、利用規約への同意状態、お知らせを表示したかどうか</p>
+          <p>3.SK Hub Systems に送信・保存するもの：サポートID、アクセスしたページの URL（「?」以降は含みません）、移動元サイトのドメイン、ブラウザの種類（ユーザーエージェント）、言語設定、アクセス日時、アクセス制限の判定結果</p>
+          <p>4.アクセスチェックでは、名前、メールアドレス、IP アドレスを記録しません。</p>
+          <p>5.「同意して閉じる」を選ぶまでの間、「同意しない」を選んだ場合、または同意を撤回した場合は、サーバーへの送信を行いません。</p>
+          <h3>第四条 お問い合わせで取り扱う情報</h3>
+          <p>1.お問い合わせフォーム（<a href="https://sk-hub.jp/contact/">https://sk-hub.jp/contact/</a>）から送信された次の情報を、SK Hub Systems に保存します。</p>
+          <p class="sub">(a) お問い合わせの種類、対象のサービス、内容</p>
+          <p class="sub">(b) 返信先のメールアドレス（入力した場合のみ）</p>
+          <p class="sub">(c) サポートID、ブラウザの種類（ユーザーエージェント）、言語設定（「サポートIDとブラウザの情報を添える」を選んだ場合のみ）</p>
+          <p class="sub">(d) 送信日時</p>
+          <p>2.これらの情報は、お問い合わせへの対応のためにのみ利用します。読み取れるのは開発者だけです。</p>
+          <h3>第四条の二 アクセス解析（Google アナリティクス）</h3>
+          <p>1.本サイト（SK&#x27;s Lab のツールを含みます。）、MALU 及び Nagi では、利用状況を把握して本サービスを改善するため、Google LLC の Google アナリティクスによるアクセス解析を行います。アクセス解析は、はじめて開いたときの案内でアクセス解析をオンにしたまま同意した場合（この案内のスイッチは、ブラウザのタイムゾーンが日本の場合は最初からオン、それ以外の場合は最初からオフです）、または表示される案内で「許可する」を選んだ場合に限り行います。選ぶまでの間や、許可しなかった場合は、Google アナリティクスを読み込みません。</p>
+          <p>2.許可した場合、Google アナリティクスは Cookie を使い、閲覧したページの URL とタイトル、移動元のページ、滞在時間、画面の大きさ、ブラウザ及び OS の種類、言語、おおまかな地域（国・地方程度）などを Google に送信します。IP アドレスは Google アナリティクスで匿名化され、開発者は、個人を特定できる形でこれらを受け取りません。</p>
+          <p>3.開発者は、Google シグナル及び広告のための機能を使いません。SK Hub Systems アカウントのページ、開発者用のページ及び同意の画面は、アクセス解析の対象にしません。MALU の検索語は送信しません。</p>
+          <p>4.許可は、本サイトの下にある「アクセス解析の設定」からいつでも取り消せます。取り消すと、以後の測定は行わず、ブラウザの中の Google アナリティクスの Cookie を削除します。</p>
+          <p>5.Google による情報の取り扱いについては、Google のプライバシーポリシー（<a href="https://policies.google.com/privacy">https://policies.google.com/privacy</a>）及び「Google のサービスを使用するサイトやアプリから収集した情報の Google による使用」（<a href="https://policies.google.com/technologies/partner-sites">https://policies.google.com/technologies/partner-sites</a>）をご覧ください。</p>
+          <h3 id="google-user-data">第四条の三 Google のユーザーデータ（Google アカウントでのログイン）</h3>
+          <p>1.SK Hub Systems アカウントに Google アカウントでログインした場合、開発者は Google から次の情報だけを受け取ります（Google のログインで求める範囲は openid・email・profile だけです。）。</p>
+          <p class="sub">(a) Google アカウントの識別子</p>
+          <p class="sub">(b) 名前</p>
+          <p class="sub">(c) メールアドレス</p>
+          <p class="sub">(d) プロフィール画像の URL</p>
+          <p>2.開発者は、Gmail、Google ドライブ、Google カレンダー、連絡先など、ほかの Google のサービスのデータにはアクセスしません。Google アカウントのパスワードも受け取りません。</p>
+          <p>3.第1項の情報は、次の目的にだけ使います。</p>
+          <p class="sub">(a) SK Hub Systems アカウントの作成とログイン（本人の確認）</p>
+          <p class="sub">(b) アカウントのページやサイトのヘッダーに、本人の名前とアイコンを表示すること</p>
+          <p class="sub">(c) 本人が選んで保存したデータ（設定の同期・MALU・Nagi・SK&#x27;s Toolbox など）を、本人のアカウントに結び付けること</p>
+          <p class="sub">(d) SK&#x27;s Toolbox の Timetable で、配信先として入力されたメールアドレスとログインした本人のメールアドレスを照らし合わせ、本人に時間割を表示すること</p>
+          <p class="sub">(e) 本アカウントのお知らせ（お問い合わせへの返事など）を本人に届けること</p>
+          <p>4.第1項の情報は、Google LLC の Firebase（Firebase Authentication 及び Cloud Firestore。Cloud Firestore のデータは東京リージョン）に保存し、通信は HTTPS で暗号化します。</p>
+          <p>5.開発者は、Google から受け取った情報を販売せず、広告やマーケティングに使わず、第三者に提供しません。人工知能・機械学習のモデルの開発や学習にも使いません。保存先の Firebase を提供する Google LLC による処理と、法令に基づく場合（第八条）を除き、ほかの者に渡しません。開発者が内容を見るのは、障害や不正な利用への対応、法令に基づく要請への対応、又は本人からの依頼による場合に限ります。</p>
+          <p>6.第1項の情報は、本アカウントを削除するまで保存します。本人は、<a href="https://sk-hub.jp/account/">https://sk-hub.jp/account/</a> から、保存されている情報をダウンロードでき、いつでも本アカウントを削除できます。削除すると、第1項の情報を含むアカウントの情報は削除されます。また、Google アカウントの設定（<a href="https://myaccount.google.com/connections">https://myaccount.google.com/connections</a>）から、SK Hub Systems とのつながりを解除できます。2年以上ログインのない本アカウントは、開発者が削除する場合があります。</p>
+          <p>7.Google API から受け取った情報の利用及び他のアプリへの転送は、Google API サービスのユーザーデータに関するポリシー（<a href="https://developers.google.com/terms/api-services-user-data-policy">https://developers.google.com/terms/api-services-user-data-policy</a>）に、限定的使用（Limited Use）の要件を含めて従います。</p>
+          <h3>第五条 利用目的</h3>
+          <p>1.本サービスの提供、維持及び改善</p>
+          <p>2.不正な利用や迷惑行為への対応（アクセスの制限を含みます。）</p>
+          <p>3.お問い合わせへの対応</p>
+          <p>4.重要なお知らせ</p>
+          <h3>第六条 保存場所と安全管理</h3>
+          <p>1.SK Hub Systems に保存する情報は、Google LLC の Firebase（Cloud Firestore 及び Firebase Authentication）に保存します。Cloud Firestore のデータは東京リージョンに保存されます。</p>
+          <p>2.通信は HTTPS により暗号化されます。アクセスチェックの記録とお問い合わせの内容を読み取れるのは開発者だけです。</p>
+          <h3>第七条 保存期間</h3>
+          <p>1.アクセスチェックの記録は、保存から1年を過ぎたものを順次削除します。</p>
+          <p>2.アクセス制限の情報は、制限を解除した時点で削除します。</p>
+          <p>3.お問い合わせの内容は、対応が終わってから1年を目安に削除します。</p>
+          <p>4.個別規約に保存期間の定めがある場合は、それに従います。</p>
+          <p>5.Google アナリティクスのデータは、Google アナリティクスの設定により、2か月を過ぎたものが削除されます。</p>
+          <h3>第八条 第三者への提供</h3>
+          <p>開発者は、法令に基づく場合を除き、取り扱う情報を第三者に提供しません。</p>
+          <h3>第九条 外部サービス</h3>
+          <p>本サービスは、次の外部サービスを利用しています。これらのサービスが、アクセスの際に IP アドレスなどを受け取ることがあります。その取り扱いは、各社のプライバシーポリシーに従います。</p>
+          <p class="sub">(a) GitHub Pages（本サイトの配信・GitHub, Inc.）</p>
+          <p class="sub">(b) Firebase（SK Hub Systems・Google LLC）</p>
+          <p class="sub">(c) Google Fonts（文字の表示・Google LLC）</p>
+          <p class="sub">(d) Google アナリティクス（アクセス解析・Google LLC。第四条の二のとおり、許可した場合のみ）</p>
+          <h3>第十条 未成年者の情報</h3>
+          <p>本サービスは未成年者も利用することを想定しています。開発者は、必要以上の情報を取り扱わないよう努めます。</p>
+          <h3>第十一条 情報の確認・削除</h3>
+          <p>1.ブラウザのサイトデータを消去すると、ブラウザの中に保存した情報は削除されます。</p>
+          <p>2.SK Hub Systems アカウントの情報は、アカウントのページ（<a href="https://sk-hub.jp/account/">https://sk-hub.jp/account/</a>）でダウンロード・削除できます。</p>
+          <p>3.そのほかにサーバーに保存した情報の確認や削除を希望する場合は、サポートID（本サイトのサポートページで確認できます）を添えて、お問い合わせページ（<a href="https://sk-hub.jp/contact/">https://sk-hub.jp/contact/</a>）からご連絡ください。</p>
+          <h3>第十一条の二 欧州経済領域・英国などにお住まいの方</h3>
+          <p>1.欧州経済領域（EEA）、英国、スイスなど、GDPR（EU 一般データ保護規則）やこれに類する法令が適用される地域にお住まいの方については、開発者（連絡先：<a href="https://sk-hub.jp/contact/">https://sk-hub.jp/contact/</a>）が情報の管理者となり、次の根拠に基づいて情報を取り扱います。</p>
+          <p class="sub">(a) アクセスチェック（第三条）：本サービスを安全に提供し、不正な利用を防ぐための開発者の正当な利益</p>
+          <p class="sub">(b) アクセス解析（第四条の二）：本人の同意</p>
+          <p class="sub">(c) お問い合わせ（第四条）：本人の求めに応じて対応するための開発者の正当な利益</p>
+          <p class="sub">(d) SK Hub Systems アカウント及び SK Hub Systems：各規約に基づくサービスの提供</p>
+          <p>2.これらの方は、法令の定めに従い、自分の情報の開示、訂正、削除、取り扱いの制限及びデータポータビリティ（持ち運び）を求め、また取り扱いに異議を述べることができます。同意に基づく取り扱いは、いつでも同意を撤回できます（撤回までの取り扱いには影響しません）。請求は、第十一条の方法で受け付けます。</p>
+          <p>3.これらの方は、お住まいの地域のデータ保護監督機関に苦情を申し立てることができます。</p>
+          <p>4.SK Hub Systems の情報は日本（Cloud Firestore の東京リージョン）に保存します。日本は、欧州委員会及び英国から、個人データの十分な保護水準を確保している国と認められています。Firebase Authentication、Google アナリティクス及び第九条の外部サービスでは、情報が米国など日本国外で取り扱われることがあり、各社は EU-米国データプライバシーフレームワークや標準契約条項などに基づく保護措置をとっています。</p>
+          <h3>第十二条 変更</h3>
+          <p>本ポリシーを変更する場合は、本サイトに掲載してお知らせします。取り扱う情報を増やすなど重要な変更の場合は、改めて同意をお願いします。</p>
+          <h3>附則</h3>
+          <p>1.本ポリシーは2026年9月25日から施行します。</p>
+          <p>2.2026年9月26日、SK Hub Systems アカウントの提供開始にあわせて、第一条、第二条、第六条及び第十一条を改定しました。</p>
+          <p>3.2026年9月26日、お問い合わせの受け付けを Google フォームから SK Hub Systems のお問い合わせフォームに変更し、第二条、第四条、第六条及び第九条を改定しました。</p>
+          <p>4.2026年9月27日、SK Hub Systems アカウントの設定の同期及び MALU との連携にあわせて、第二条を改定しました。</p>
+          <p>5.2026年9月27日、Google アナリティクスによるアクセス解析（許可した場合のみ）の導入にあわせて、第一条、第七条及び第九条を改定し、第四条の二を追加しました。</p>
+          <p>6.2026年9月27日、SK 利用規約の同意の方法の変更にあわせて、第三条を改定しました。</p>
+          <p>7.2026年9月27日、アクセス解析のスイッチの初期状態を地域によって変えることにあわせて第四条の二を改定し、欧州経済領域・英国などにお住まいの方についての第十一条の二を追加しました。</p>
+          <p>8.2026年9月27日、Y-FILTER. の自分の端末（設定のバックアップ）の機能の追加にあわせて、第二条を改定しました。</p>
+          <p>9.2026年9月27日、集中タイマー「Nagi」の提供開始にあわせて、第二条、第三条及び第四条の二を改定しました。</p>
+          <p>10.2026年10月8日、SK&#x27;s Toolbox のオンライン同期の提供開始にあわせて、第二条を改定しました。</p>
+          <p>11.2026年10月8日、SK&#x27;s Toolbox の Timetable（時間割の配信）・Roulette の提供開始にあわせて、第二条を改定しました。</p>
+          <p>12.2026年10月9日、SK&#x27;s Toolbox の Timetable の招待コードでの参加の提供開始にあわせて、第二条を改定しました。</p>
+          <p>13.2026年10月11日、SK Hub Systems アカウントへの GitHub アカウントでのログインの追加にあわせて、第二条を改定しました。</p>
+          <p>14.2026年10月11日、SK&#x27;s Toolbox の LINE ミニアプリの提供開始にあわせて、第二条を改定しました。</p>
+          <p>15.2026年10月13日、Google のユーザーデータの取り扱いを明確にするため、第四条の三を追加しました。</p>
+        </article>
+        <article class="doc" id="en" lang="en" style="margin-top:32px">
+          <h2 class="doc-title">SK Privacy Policy</h2>
+          <p class="meta">Established: September 25, 2026</p>
+          <h3>Article 1 Basic Policy</h3>
+          <p>1. SK (the &quot;Developer&quot;) handles Users&#x27; information in the Services defined in the SK Terms of Service in accordance with this Policy.</p>
+          <p>2. The Developer handles information only to the extent necessary to provide the Services. The information handled is never used for advertising, sale, provision to third parties, or tracking behavior outside the Services. The access analytics in Article 4-2 is performed only for people who allow it.</p>
+          <p>3. Details of how information is handled in Y-FILTER., SK Hub Systems, and the SK Hub Systems account are set out in the &quot;Y-FILTER. Terms of Service and Privacy Policy,&quot; the &quot;SK Hub Systems Terms of Service,&quot; and the &quot;SK Hub Systems Account Terms.&quot; Where they differ from this Policy, their provisions prevail for that service.</p>
+          <h3>Article 2 Overview by Service</h3>
+          <p class="sub">(a) The Site (including SK&#x27;s Lab tools), MALU, Nagi, and the Y-FILTER. management console: handle the access check information in Article 3. MALU&#x27;s search terms, search history, and settings are stored only in the browser and never sent. However, when signed in with an SK Hub Systems account, as set out in the SK Hub Systems Account Terms, MALU settings are synced, words saved to the wordbook are stored in the user&#x27;s own account when connected to MALU, and search history is stored there when search history sync is turned on.</p>
+          <p class="sub">(b) Y-FILTER.: filtering happens inside the browser, and browsing history and search terms are never sent to the Developer.</p>
+          <p class="sub">(c) SK Hub Systems: stores settings, device status, settings backups, and the like only when Y-FILTER.&#x27;s remote management is used or Y-FILTER. is connected to an SK Hub Systems account as a personal device.</p>
+          <p class="sub">(d) Contact: stores what is entered in the contact form in SK Hub Systems.</p>
+          <p class="sub">(e) SK Hub Systems account: only when an account is created, stores the information of the account used to sign in (Google or GitHub) (ID, name, email address, profile picture) and the date the terms were agreed to, among other things.</p>
+          <p class="sub">(f) Nagi: focus records (when you started focusing and how long you focused) and settings are stored only in the browser and are not sent. However, when you connect Nagi to your SK Hub Systems account, your focus records and daily goal are stored in your account. What you studied and the sites you view are not recorded.</p>
+          <p class="sub">(g) SK&#x27;s Toolbox: the data and settings of Clock, Calc, Memo, Todo, Countdown, Timetable, and Roulette are stored only in the browser and are not sent. However, when you connect SK&#x27;s Toolbox to your SK Hub Systems account and start online sync, the data of the apps you choose is encrypted on your device with a sync passphrase you choose and then stored in your account. The decryption key exists only on your devices, so the Developer cannot read the contents. Memo images are not sent. In addition, when the Developer shares a timetable with Timetable, the email addresses entered by the Developer as recipients and the shared timetable are stored in SK Hub Systems and used only to show the timetable to the person signed in with the SK Hub Systems account for that email address. Recipients cannot see each other, and the data is deleted when sharing stops. If you join a share with an invite code, or open a timetable shared with you, your name, icon, email address, and the time you joined are stored in SK Hub Systems and used only so that the Developer who shares the timetable can see and remove members (other members cannot see them). When you open SK&#x27;s Toolbox as a LINE MINI App, your LINE profile (name and icon) is used only for display on screen and is not stored or sent. &quot;Send with LINE&quot; sends content through LINE only to the people you choose, when you choose to.</p>
+          <h3>Article 3 Information Handled by the Access Check</h3>
+          <p>1. The Site (including SK&#x27;s Lab tools), MALU, Nagi, and the Y-FILTER. management console perform an access check to respond to abuse and understand usage.</p>
+          <p>2. Stored in the browser: a support ID (a random identifier created for each browser), the terms consent status, and whether notices have been shown</p>
+          <p>3. Sent to and stored in SK Hub Systems: the support ID, the URL of the page accessed (excluding anything after &quot;?&quot;), the domain of the referring site, the browser type (user agent), language setting, date and time of access, and the result of the access restriction check</p>
+          <p>4. The access check does not record names, email addresses, or IP addresses.</p>
+          <p>5. Nothing is sent to the server until you choose &quot;Agree and close,&quot; if you choose &quot;Decline,&quot; or if you withdraw your agreement.</p>
+          <h3>Article 4 Information Handled for Inquiries</h3>
+          <p>1. The following information sent from the contact form (<a href="https://sk-hub.jp/contact/">https://sk-hub.jp/contact/</a>) is stored in SK Hub Systems:</p>
+          <p class="sub">(a) The type of inquiry, the service concerned, and the message</p>
+          <p class="sub">(b) The reply-to email address (only if entered)</p>
+          <p class="sub">(c) The support ID, browser type (user agent), and language setting (only if &quot;Include my support ID and browser info&quot; is chosen)</p>
+          <p class="sub">(d) The date and time sent</p>
+          <p>2. This information is used only to respond to inquiries. Only the Developer can read it.</p>
+          <h3>Article 4-2 Access Analytics (Google Analytics)</h3>
+          <p>1. On the Site (including SK&#x27;s Lab tools), MALU, and Nagi, access analytics using Google Analytics by Google LLC is performed to understand how the Services are used and improve them. It is performed only if you agree with analytics left on in the notice shown on your first visit (the switch in that notice is on by default if your browser&#x27;s time zone is Japan, and off by default otherwise), or choose &quot;Allow&quot; in the notice shown. Until you choose, or if you don&#x27;t allow it, Google Analytics is not loaded.</p>
+          <p>2. If you allow it, Google Analytics uses cookies and sends Google information such as the URL and title of pages viewed, the referring page, time spent, screen size, browser and OS type, language, and approximate region (country or region level). IP addresses are anonymized by Google Analytics, and the Developer does not receive this information in a form that identifies individuals.</p>
+          <p>3. The Developer does not use Google signals or advertising features. The SK Hub Systems account page, developer pages, and consent screens are not included in access analytics. MALU search terms are not sent.</p>
+          <p>4. You can withdraw your permission at any time from &quot;Analytics settings&quot; at the bottom of the Site. After withdrawal, no further measurement is made, and Google Analytics cookies in the browser are deleted.</p>
+          <p>5. For how Google handles information, see Google&#x27;s Privacy Policy (<a href="https://policies.google.com/privacy">https://policies.google.com/privacy</a>) and &quot;How Google uses information from sites or apps that use our services&quot; (<a href="https://policies.google.com/technologies/partner-sites">https://policies.google.com/technologies/partner-sites</a>).</p>
+          <h3 id="google-user-data-en">Article 4-3 Google User Data (Signing In with a Google Account)</h3>
+          <p>1. When you sign in to an SK Hub Systems Account with a Google Account, the Developer receives only the following information from Google (Google Sign-In requests only the openid, email, and profile scopes):</p>
+          <p class="sub">(a) Your Google Account identifier</p>
+          <p class="sub">(b) Your name</p>
+          <p class="sub">(c) Your email address</p>
+          <p class="sub">(d) The URL of your profile picture</p>
+          <p>2. The Developer does not access data from any other Google services, such as Gmail, Google Drive, Google Calendar, or Contacts, and does not receive your Google Account password.</p>
+          <p>3. The information in paragraph 1 is used only for the following purposes:</p>
+          <p class="sub">(a) Creating your SK Hub Systems Account and signing you in (verifying that it is you)</p>
+          <p class="sub">(b) Showing your name and icon on the account page and in the site header</p>
+          <p class="sub">(c) Linking the data you choose to save (settings sync, MALU, Nagi, SK&#x27;s Toolbox, etc.) to your own account</p>
+          <p class="sub">(d) In SK&#x27;s Toolbox Timetable, matching an email address entered as a recipient with the email address of the signed-in user, so that the timetable is shown to that person</p>
+          <p class="sub">(e) Delivering account notices (such as replies to your inquiries) to you</p>
+          <p>4. The information in paragraph 1 is stored in Firebase by Google LLC (Firebase Authentication and Cloud Firestore; Cloud Firestore data is stored in the Tokyo region). All communication is encrypted with HTTPS.</p>
+          <p>5. The Developer does not sell information received from Google, does not use it for advertising or marketing, and does not provide it to third parties. It is not used to develop or train artificial intelligence or machine learning models. Except for processing by Google LLC as the provider of Firebase and cases required by law (Article 8), it is not passed to anyone else. The Developer looks at the content only to respond to failures or misuse, to respond to legal requests, or at your request.</p>
+          <p>6. The information in paragraph 1 is kept until you delete your SK Hub Systems Account. At <a href="https://sk-hub.jp/account/,">https://sk-hub.jp/account/,</a> you can download the stored information and delete your account at any time. When you delete your account, the account information, including the information in paragraph 1, is deleted. You can also remove the connection to SK Hub Systems in your Google Account settings (<a href="https://myaccount.google.com/connections">https://myaccount.google.com/connections</a>). The Developer may delete accounts that have not been signed in to for two years or more.</p>
+          <p>7. The Developer&#x27;s use and transfer to any other app of information received from Google APIs will adhere to the Google API Services User Data Policy (<a href="https://developers.google.com/terms/api-services-user-data-policy">https://developers.google.com/terms/api-services-user-data-policy</a>), including the Limited Use requirements.</p>
+          <h3>Article 5 Purposes of Use</h3>
+          <p>1. Providing, maintaining, and improving the Services</p>
+          <p>2. Responding to abuse and nuisance behavior (including access restrictions)</p>
+          <p>3. Responding to inquiries</p>
+          <p>4. Important notices</p>
+          <h3>Article 6 Storage Location and Security</h3>
+          <p>1. Information stored in SK Hub Systems is stored in Firebase (Cloud Firestore and Firebase Authentication) by Google LLC. Cloud Firestore data is stored in the Tokyo region.</p>
+          <p>2. Communications are encrypted with HTTPS. Only the Developer can read access check logs and the content of inquiries.</p>
+          <h3>Article 7 Retention Period</h3>
+          <p>1. Access check logs are deleted progressively once more than one year has passed since they were stored.</p>
+          <p>2. Access restriction information is deleted when the restriction is lifted.</p>
+          <p>3. The content of inquiries is deleted about one year after they have been handled.</p>
+          <p>4. Where Service Terms specify a retention period, that period applies.</p>
+          <p>5. Google Analytics data older than 2 months is deleted according to the Google Analytics settings.</p>
+          <h3>Article 8 Provision to Third Parties</h3>
+          <p>The Developer does not provide the information it handles to third parties, except as required by law.</p>
+          <h3>Article 9 External Services</h3>
+          <p>The Services use the following external services. These services may receive IP addresses and the like when accessed. Their handling follows each company&#x27;s privacy policy.</p>
+          <p class="sub">(a) GitHub Pages (hosting the Site; GitHub, Inc.)</p>
+          <p class="sub">(b) Firebase (SK Hub Systems; Google LLC)</p>
+          <p class="sub">(c) Google Fonts (displaying text; Google LLC)</p>
+          <p class="sub">(d) Google Analytics (access analytics, Google LLC; only if allowed, as set out in Article 4-2)</p>
+          <h3>Article 10 Information of Minors</h3>
+          <p>The Services are expected to be used by minors as well. The Developer strives not to handle more information than necessary.</p>
+          <h3>Article 11 Viewing and Deleting Information</h3>
+          <p>1. Clearing the browser&#x27;s site data deletes the information stored in the browser.</p>
+          <p>2. SK Hub Systems account information can be downloaded and deleted on the account page (<a href="https://sk-hub.jp/account/">https://sk-hub.jp/account/</a>).</p>
+          <p>3. To request viewing or deletion of any other information stored on the server, please contact us through the contact page (<a href="https://sk-hub.jp/contact/">https://sk-hub.jp/contact/</a>), including your support ID (shown on the Site&#x27;s support page).</p>
+          <h3>Article 11-2 Residents of the EEA, the UK, and Similar Regions</h3>
+          <p>1. For residents of regions where the GDPR (EU General Data Protection Regulation) or similar laws apply, such as the European Economic Area (EEA), the United Kingdom, and Switzerland, the Developer (contact: <a href="https://sk-hub.jp/contact/">https://sk-hub.jp/contact/</a>) is the controller of the information and handles it on the following legal bases.</p>
+          <p class="sub">(a) Access check (Article 3): the Developer&#x27;s legitimate interest in providing the Services securely and preventing misuse</p>
+          <p class="sub">(b) Access analytics (Article 4-2): your consent</p>
+          <p class="sub">(c) Inquiries (Article 4): the Developer&#x27;s legitimate interest in responding to your request</p>
+          <p class="sub">(d) SK Hub Systems account and SK Hub Systems: providing the services under their respective terms</p>
+          <p>2. In accordance with applicable law, these users may request access to, rectification, erasure, restriction of processing, and portability of their information, and may object to its processing. Where processing is based on consent, you may withdraw consent at any time (this does not affect processing before withdrawal). Requests are accepted by the method in Article 11.</p>
+          <p>3. These users may lodge a complaint with the data protection supervisory authority in their region.</p>
+          <p>4. Information in SK Hub Systems is stored in Japan (the Tokyo region of Cloud Firestore). Japan is recognized by the European Commission and the United Kingdom as ensuring an adequate level of protection for personal data. With Firebase Authentication, Google Analytics, and the external services in Article 9, information may be processed outside Japan, such as in the United States, and each company takes safeguards such as the EU-U.S. Data Privacy Framework and standard contractual clauses.</p>
+          <h3>Article 12 Changes</h3>
+          <p>If this Policy is changed, notice will be posted on the Site. For important changes, such as increasing the information handled, consent will be requested again.</p>
+          <h3>Supplementary Provisions</h3>
+          <p>1. This Policy takes effect on September 25, 2026.</p>
+          <p>2. On September 26, 2026, Articles 1, 2, 6, and 11 were revised for the launch of the SK Hub Systems account.</p>
+          <p>3. On September 26, 2026, inquiries moved from Google Forms to the SK Hub Systems contact form, and Articles 2, 4, 6, and 9 were revised.</p>
+          <p>4. On September 27, 2026, Article 2 was revised for SK Hub Systems account settings sync and MALU integration.</p>
+          <p>5. On September 27, 2026, Articles 1, 7, and 9 were revised and Article 4-2 was added with the introduction of access analytics using Google Analytics (only if allowed).</p>
+          <p>6. On September 27, 2026, Article 3 was revised along with the change to how agreement to the SK Terms of Service is given.</p>
+          <p>7. On September 27, 2026, Article 4-2 was revised as the default state of the analytics switch now depends on the region, and Article 11-2 for residents of the EEA, the UK, and similar regions was added.</p>
+          <p>8. On September 27, 2026, Article 2 was revised with the addition of Y-FILTER.&#x27;s personal device feature (settings backups).</p>
+          <p>9. On September 27, 2026, Articles 2, 3, and 4-2 were revised with the launch of the focus timer &quot;Nagi.&quot;</p>
+          <p>10. On October 8, 2026, Article 2 was revised with the launch of online sync for SK&#x27;s Toolbox.</p>
+          <p>11. On October 8, 2026, Article 2 was revised with the launch of Timetable (timetable sharing) and Roulette in SK&#x27;s Toolbox.</p>
+          <p>12. On October 9, 2026, Article 2 was revised with the launch of joining by invite code in SK&#x27;s Toolbox Timetable.</p>
+          <p>13. On October 11, 2026, Article 2 was revised to add signing in to the SK Hub Systems account with a GitHub account.</p>
+          <p>14. On October 11, 2026, Article 2 was revised with the launch of SK&#x27;s Toolbox as a LINE MINI App.</p>
+          <p>15. On October 13, 2026, Article 4-3 was added to clarify how Google user data is handled.</p>
+        </article>
+        <p style="margin-top:24px">ほかの言語（参考訳） / Other languages: <a href="/policies/docs/sk-privacy.zh-CN.txt">简体中文</a> · <a href="/policies/docs/sk-privacy.zh-TW.txt">繁體中文</a> · <a href="/policies/docs/sk-privacy.ko.txt">한국어</a> · <a href="/policies/">利用規約・プライバシーポリシーの一覧</a></p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="cols">
+        <div>
+          <a class="logo" href="/" aria-label="SK ホーム"><img src="/assets/logo.svg" alt="" width="36" height="36">SK</a>
+          <p class="about">毎日のネットを、もう少し安心で便利に。Y-FILTER. と MALU を開発しています。</p>
+        </div>
+        <div>
+          <h2>プロダクト</h2>
+          <ul><li><a href="/products/y-filter/">Y-FILTER.</a></li><li><a href="/products/malu/">MALU</a></li><li><a href="/products/nagi/">Nagi</a></li><li><a href="/sk-hub-systems/">SK Hub Systems</a></li><li><a href="/toolbox/">SK's Toolbox</a></li><li><a href="/lab/">SK's Lab</a></li></ul>
+        </div>
+        <div>
+          <h2>サポートと情報</h2>
+          <ul><li><a href="/support/">サポート記事</a></li><li><a href="/support/?type=news">お知らせ</a></li><li><a href="/contact/">お問い合わせ</a></li><li><a href="/status/">システム稼働状況</a></li><li><a href="/updates/">アップデート</a></li><li><a href="/policies/">利用規約・プライバシー</a></li><li><a href="/policies/privacy/">プライバシーポリシー</a></li><li data-analytics-settings hidden><a href="#analytics">アクセス解析の設定</a></li><li><a href="/brand/">SK's Brand</a></li><li><a href="/credits/">Link &amp; Credit</a></li><li><a href="/about/">私について</a></li><li><a href="https://github.com/sy9-k" target="_blank" rel="noopener">私のGitHub</a></li></ul>
+        </div>
+      </div>
+      <div class="wordmark" aria-hidden="true">SK</div>
+      <div class="legal"><span>© 2026 SK</span><span>サーバー基盤: SK Hub Systems</span></div>
+    </div>
+  </footer>
+
+  <!-- ページを選んだ言語に訳す（ほかのスクリプトが動く前に。assets/i18n.js） -->
+  
+  <script src="/support/articles.js" defer></script>
+  <script src="/assets/site.js" defer></script>
+  <!-- SK Hub Systems アカウントの設定の同期（ログイン中だけ） -->
+  <script src="/assets/hub/sync-loader.js" defer></script>
+  <script src="/frameworks/check.js?check=none" defer></script>
+  <!-- アクセス解析（Google アナリティクス。許可した人だけ） -->
+  <script src="/assets/analytics.js" defer></script>
+</body>
+</html>

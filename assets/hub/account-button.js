@@ -222,7 +222,7 @@
         '<div class="label">' + esc(t("SK のアプリ")) + "</div>" +
         '<div class="apps">' + apps + "</div>" +
         rows +
-        '<div class="foot"><a href="' + lp("/policies/#sk-privacy") + '">' + esc(t("プライバシーポリシー")) + "</a>" +
+        '<div class="foot"><a href="' + lp("/policies/privacy/") + '">' + esc(t("プライバシーポリシー")) + "</a>" +
         '<a href="' + lp("/policies/#sk-hub-account") + '">' + esc(t("アカウント規約")) + "</a>" +
         '<a href="' + lp("/sk-hub-systems/account/") + '">' + esc(t("SK Hub Systems アカウントについて")) + "</a></div>" +
         "</div>";

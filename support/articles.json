@@ -257,7 +257,7 @@
           "note": "同意の手順は [更新後に同意の画面が開き、フィルタリングが止まったとき](/support/?a=yfilter-consent-after-update) をご覧ください。"
         },
         {
-          "p": "規約の内容は [SK 利用規約](/policies/#sk-terms) と [SK プライバシーポリシー](/policies/#sk-privacy) で読めます。"
+          "p": "規約の内容は [SK 利用規約](/policies/#sk-terms) と [SK プライバシーポリシー](/policies/privacy/) で読めます。"
         }
       ],
       "i18n": {
@@ -275,7 +275,7 @@
               "note": "For the steps, see [A consent screen opened after an update and filtering stopped](/support/?a=yfilter-consent-after-update)."
             },
             {
-              "p": "You can read the [SK Terms of Service](/policies/#sk-terms) and the [SK Privacy Policy](/policies/#sk-privacy)."
+              "p": "You can read the [SK Terms of Service](/policies/#sk-terms) and the [SK Privacy Policy](/policies/privacy/)."
             }
           ]
         },
@@ -293,7 +293,7 @@
               "note": "同意步骤请参阅[更新后打开同意界面、过滤停止时](/support/?a=yfilter-consent-after-update)。"
             },
             {
-              "p": "条款内容可在[SK 使用条款](/policies/#sk-terms)和[SK 隐私政策](/policies/#sk-privacy)中阅读。"
+              "p": "条款内容可在[SK 使用条款](/policies/#sk-terms)和[SK 隐私政策](/policies/privacy/)中阅读。"
             }
           ]
         },
@@ -311,7 +311,7 @@
               "note": "同意步驟請參閱[更新後開啟同意畫面、過濾停止時](/support/?a=yfilter-consent-after-update)。"
             },
             {
-              "p": "條款內容可在[SK 使用條款](/policies/#sk-terms)和[SK 隱私權政策](/policies/#sk-privacy)中閱讀。"
+              "p": "條款內容可在[SK 使用條款](/policies/#sk-terms)和[SK 隱私權政策](/policies/privacy/)中閱讀。"
             }
           ]
         },
@@ -329,7 +329,7 @@
               "note": "동의 방법은 [업데이트 후 동의 화면이 열리고 필터링이 멈췄을 때](/support/?a=yfilter-consent-after-update)를 확인해 주세요."
             },
             {
-              "p": "약관 내용은 [SK 이용약관](/policies/#sk-terms)과 [SK 개인정보 처리방침](/policies/#sk-privacy)에서 볼 수 있습니다."
+              "p": "약관 내용은 [SK 이용약관](/policies/#sk-terms)과 [SK 개인정보 처리방침](/policies/privacy/)에서 볼 수 있습니다."
             }
           ]
         }
@@ -4030,7 +4030,7 @@
           ]
         },
         {
-          "p": "取り扱う情報は [SK プライバシーポリシー](/policies/#sk-privacy) と [SK Hub Systems 利用規約](/policies/#sk-hub-systems) にまとめています。"
+          "p": "取り扱う情報は [SK プライバシーポリシー](/policies/privacy/) と [SK Hub Systems 利用規約](/policies/#sk-hub-systems) にまとめています。"
         }
       ],
       "i18n": {
@@ -4046,7 +4046,7 @@
               ]
             },
             {
-              "p": "The information we handle is described in the [SK Privacy Policy](/policies/#sk-privacy) and the [SK Hub Systems Terms of Service](/policies/#sk-hub-systems)."
+              "p": "The information we handle is described in the [SK Privacy Policy](/policies/privacy/) and the [SK Hub Systems Terms of Service](/policies/#sk-hub-systems)."
             }
           ]
         },
@@ -4062,7 +4062,7 @@
               ]
             },
             {
-              "p": "处理的信息汇总在[SK 隐私政策](/policies/#sk-privacy)和[SK Hub Systems 使用条款](/policies/#sk-hub-systems)中。"
+              "p": "处理的信息汇总在[SK 隐私政策](/policies/privacy/)和[SK Hub Systems 使用条款](/policies/#sk-hub-systems)中。"
             }
           ]
         },
@@ -4078,7 +4078,7 @@
               ]
             },
             {
-              "p": "處理的資訊彙整在[SK 隱私權政策](/policies/#sk-privacy)和[SK Hub Systems 使用條款](/policies/#sk-hub-systems)中。"
+              "p": "處理的資訊彙整在[SK 隱私權政策](/policies/privacy/)和[SK Hub Systems 使用條款](/policies/#sk-hub-systems)中。"
             }
           ]
         },
@@ -4094,7 +4094,7 @@
               ]
             },
             {
-              "p": "다루는 정보는 [SK 개인정보 처리방침](/policies/#sk-privacy)과 [SK Hub Systems 이용약관](/policies/#sk-hub-systems)에 정리해 두었습니다."
+              "p": "다루는 정보는 [SK 개인정보 처리방침](/policies/privacy/)과 [SK Hub Systems 이용약관](/policies/#sk-hub-systems)에 정리해 두었습니다."
             }
           ]
         }
@@ -4138,7 +4138,7 @@
           "p": "サイトのいちばん下の「アクセス解析の設定」から、いつでも許可・取り消しを選び直せます。取り消すと、ブラウザの中の Google アナリティクスの Cookie も削除します。"
         },
         {
-          "note": "詳しくは [SK プライバシーポリシー](/policies/#sk-privacy) の第四条の二をご覧ください。"
+          "note": "詳しくは [SK プライバシーポリシー](/policies/privacy/) の第四条の二をご覧ください。"
         }
       ],
       "i18n": {
@@ -4176,7 +4176,7 @@
               "p": "You can allow or withdraw at any time from \"Analytics settings\" at the very bottom of the site. Withdrawing also deletes Google Analytics cookies in your browser."
             },
             {
-              "note": "For details, see Article 4-2 of the [SK Privacy Policy](/policies/#sk-privacy)."
+              "note": "For details, see Article 4-2 of the [SK Privacy Policy](/policies/privacy/)."
             }
           ]
         },
@@ -4214,7 +4214,7 @@
               "p": "可以随时通过网站最下方的“访问分析设置”重新选择允许或撤回。撤回后，也会删除浏览器中 Google Analytics 的 Cookie。"
             },
             {
-              "note": "详情请参阅 [SK 隐私政策](/policies/#sk-privacy) 第四条之二。"
+              "note": "详情请参阅 [SK 隐私政策](/policies/privacy/) 第四条之二。"
             }
           ]
         },
@@ -4252,7 +4252,7 @@
               "p": "可以隨時透過網站最下方的「存取分析設定」重新選擇允許或撤回。撤回後，也會刪除瀏覽器中 Google Analytics 的 Cookie。"
             },
             {
-              "note": "詳情請參閱 [SK 隱私權政策](/policies/#sk-privacy) 第四條之二。"
+              "note": "詳情請參閱 [SK 隱私權政策](/policies/privacy/) 第四條之二。"
             }
           ]
         },
@@ -4290,7 +4290,7 @@
               "p": "사이트 맨 아래의 '접속 분석 설정'에서 언제든 허용·취소를 다시 고를 수 있습니다. 취소하면 브라우저 안의 Google 애널리틱스 쿠키도 삭제합니다."
             },
             {
-              "note": "자세한 내용은 [SK 개인정보 처리방침](/policies/#sk-privacy) 제4조의2를 참고하세요."
+              "note": "자세한 내용은 [SK 개인정보 처리방침](/policies/privacy/) 제4조의2를 참고하세요."
             }
           ]
         }

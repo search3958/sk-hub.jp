@@ -37,6 +37,24 @@ SK 隱私權政策
 4.可以隨時透過本網站下方的「存取分析設定」撤回允許。撤回後將不再進行測量，並刪除瀏覽器中 Google Analytics 的 Cookie。
 5.關於 Google 對資訊的處理，請參閱 Google 隱私權政策（https://policies.google.com/privacy）及「Google 如何使用來自使用其服務的網站或應用程式的資訊」（https://policies.google.com/technologies/partner-sites）。
 
+第四條之三 Google 使用者資料（使用 Google 帳號登入）
+1.使用 Google 帳號登入 SK Hub Systems 帳號時，開發者只從 Google 接收以下資訊（Google 登入只要求 openid、email、profile 範圍）。
+(a) Google 帳號的識別碼
+(b) 姓名
+(c) 電子郵件地址
+(d) 個人資料相片的 URL
+2.開發者不會存取 Gmail、Google 雲端硬碟、Google 日曆、聯絡人等其他 Google 服務的資料，也不會接收 Google 帳號的密碼。
+3.第1項的資訊僅用於以下目的。
+(a) 建立 SK Hub Systems 帳號及登入（確認本人）
+(b) 在帳號頁面和網站頂部顯示本人的姓名和圖示
+(c) 將本人選擇儲存的資料（設定同步、MALU、Nagi、SK's Toolbox 等）連結到本人的帳號
+(d) 在 SK's Toolbox 的 Timetable 中，將作為接收者輸入的電子郵件地址與已登入本人的電子郵件地址進行核對，並向本人顯示課表
+(e) 向本人傳送本帳號的通知（如對詢問的回覆）
+4.第1項的資訊儲存在 Google LLC 的 Firebase（Firebase Authentication 及 Cloud Firestore。Cloud Firestore 的資料儲存在東京區域），通訊透過 HTTPS 加密。
+5.開發者不會出售從 Google 接收的資訊，不會將其用於廣告或行銷，也不會提供給第三方。也不會將其用於開發或訓練人工智慧、機器學習模型。除提供 Firebase 的 Google LLC 進行的處理及依法令的情況（第八條）外，不會交給其他人。開發者僅在處理故障或不當使用、回應依法提出的要求或應本人要求時查看其內容。
+6.第1項的資訊保存至本帳號被刪除為止。本人可在 https://sk-hub.jp/account/ 下載已儲存的資訊，並可隨時刪除本帳號。刪除後，包括第1項資訊在內的帳號資訊將被刪除。此外，也可在 Google 帳號的設定（https://myaccount.google.com/connections）中解除與 SK Hub Systems 的連結。2年以上未登入的本帳號，開發者可能會將其刪除。
+7.對從 Google API 接收的資訊的使用及向其他應用程式的轉移，將遵守 Google API 服務使用者資料政策（https://developers.google.com/terms/api-services-user-data-policy），包括有限使用（Limited Use）的要求。
+
 第五條 使用目的
 1.本服務的提供、維護及改善
 2.因應不當使用和騷擾行為（包括存取限制）
@@ -100,3 +118,4 @@ SK 隱私權政策
 12.2026年10月9日，配合 SK's Toolbox 的 Timetable 邀請碼加入功能的推出，修訂了第二條。
 13.2026年10月11日，配合 SK Hub Systems 帳戶新增 GitHub 帳戶登入，修訂了第二條。
 14.2026年10月11日，配合 SK's Toolbox 的 LINE 迷你應用程式的推出，修訂了第二條。
+15.2026年10月13日，為明確 Google 使用者資料的處理方式，新增了第四條之三。
