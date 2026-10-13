@@ -112,7 +112,7 @@
             [t("サポート記事"), lp("/support/")],
             [t("お知らせ"), lp("/support/?type=news")],
             [t("お問い合わせ"), lp("/contact/")],
-            [t("システム稼働状況"), lp("/status/")]
+            [t("システム稼働状況"), "https://sk-hub.online/"]
           ]
         },
         {
