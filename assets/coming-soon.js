@@ -2,12 +2,15 @@
 //   ・公開の時刻（LAUNCH・日本時間 2026-10-14 12:00）までは、どのページを開いてもこの画面だけを出す。時刻を過ぎたら何もしない
 //   ・ページの中身は読み込まれるが、body の中のほかの要素は見えなくする。開いたまま公開の時刻になったら読み込み直す
 //   ・開発者の確認用: URL に ?preview を付けて開くと、そのタブを閉じるまでふつうに見られる（sessionStorage の sk_preview）
+//   ・SK Hub Systems の紹介（/sk-hub-systems/）と規約（/policies/）は、公開の前でもふつうに見せる
+//     （Google ログインの OAuth 同意画面のホーム・プライバシーポリシー・規約の URL。審査で開かれる）
 //   ・すべてのページの <head> の一番上で読み込む（build で作るページは index.html の <head>、ほかは各ページに直接）
 //   ・公開のあと落ち着いたら、このファイルと各ページの <script src="/assets/coming-soon.js"> を消す
 (function () {
   "use strict";
   var LAUNCH = Date.UTC(2026, 9, 14, 3, 0, 0); // 2026-10-14 12:00（日本時間）
   if (Date.now() >= LAUNCH) return;
+  if (/^\/(sk-hub-systems|policies)\//.test(location.pathname)) return;
   try {
     if (/[?&]preview\b/.test(location.search)) sessionStorage.setItem("sk_preview", "1");
     if (sessionStorage.getItem("sk_preview")) return;
