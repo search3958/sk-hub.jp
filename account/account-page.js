@@ -886,7 +886,7 @@ $("[data-acct-export]").addEventListener("click", async (e) => {
         createdAt: user.metadata?.creationTime,
         lastSignInAt: user.metadata?.lastSignInTime
       },
-      // profile（表示名・アイコン）・settings（同期している設定）・noticesSeenAt を含む
+      // profile（表示名・アイコン）・settings（同期している設定）・noticesSeenAt・seen（利用の記録: タイムゾーンとサポートID）を含む
       account: plain(account),
       notices: notices.docs.map((d) => ({ id: d.id, ...plain(d.data()) })),
       malu: {

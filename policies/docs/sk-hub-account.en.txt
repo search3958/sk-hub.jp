@@ -23,6 +23,7 @@ Article 3 Information Handled
 (g) Nagi data: focus records (when you started focusing and how long you focused) and the daily goal, when connected to Nagi
 (h) SK's Toolbox data: when connected to SK's Toolbox and online sync is started, the data of the apps chosen for sync (Toolbox settings, Todo, Memo text, Countdown, and Calc history) encrypted on the user's device, and a value used to check that the sync passphrase is correct (the sync passphrase and the decryption key are not stored)
 (i) Timetable sharing: when the Developer shares an SK's Toolbox timetable, the email addresses entered by the Developer as recipients and the shared timetable (used so that a person signed in to the Account can view timetables shared with their own email address; recipients cannot see each other) In addition, when you join a timetable share with an invite code, or when you open a timetable shared with you, your name, icon, email address, the time you joined, and the invite code used (used by the Developer who shares the timetable to see and remove members; other members cannot see them)
+(j) Usage records: the time zone of the browsers where the user signed in to and used the Account (to know the approximate region), the support ID of those browsers (SK Privacy Policy Article 3; up to the five most recent), and the date and time of last use
 2. When services are used with the Account, their data is stored linked to the Account. Details are set out in each service's Service Terms.
 3. The Developer does not obtain Sign-in Account passwords, the contents of Google services such as Gmail or Google Drive, the contents of GitHub such as repositories, browsing history, or search terms. However, the MALU data in paragraph 1 (f), the Nagi data in (g), and the SK's Toolbox data in (h) are stored in the Account only when the user chooses it, and only the account holder can read it. Because the SK's Toolbox data in (h) is encrypted on the user's device with a sync passphrase chosen by the user before it is stored, not even the Developer can read its contents.
 4. To show in the site header that the user is signed in, the display name, profile picture URL (or initial and color), and number of unread notices are stored in the browser used to sign in. This information is not sent to the server and is deleted on sign-out or account deletion.
@@ -32,8 +33,12 @@ Article 3 Information Handled
 Article 4 Storage Location and Management
 1. The information in the preceding Article is stored in Firebase (Firebase Authentication and Cloud Firestore) by Google LLC, operated by the Developer. Cloud Firestore data is stored in the Tokyo region. Sign-in information is managed on Google's infrastructure and may be processed outside Japan.
 2. All communications are encrypted with HTTPS.
-3. Only the account holder can read and change the account information. However, the notices in Article 3, Paragraph 1 (e) are sent to the Account by the Developer.
-4. As the operator of Firebase, the Developer is technically able to access this information, but does not view or use it except to respond to outages, abuse, or legal requests, or at the account holder's request.
+3. Only the account holder can read and change the account information. However, the notices in Article 3, Paragraph 1 (e) are sent to the Account by the Developer, and the Developer may check the information in the next paragraph.
+4. To respond to inquiries, outages, abuse, and requests based on law, the Developer may check the following information of the Account on the Developer's admin console. Each check is recorded in the admin console's activity log for one year.
+(a) The account information in Article 3, Paragraph 1 (b) and the display name in (c)
+(b) The usage records in Article 3, Paragraph 1 (j)
+(c) Inquiries sent from the Account
+5. As the operator of Firebase, the Developer is technically able to access this information, but does not view or use any information other than that in the preceding paragraph (including the data in Article 3, Paragraph 1 (f) to (h) and the data of each service, including Y-FILTER.) except to respond to outages, abuse, or requests based on law, or at the request of the account holder.
 
 Article 5 Viewing and Deleting Information
 1. Users can download the information stored about the Account as a file from https://sk-hub.jp/account/.
@@ -84,3 +89,4 @@ Supplementary Provisions
 7. On October 8, 2026, Article 3 was revised to add timetable sharing for SK's Toolbox.
 8. On October 9, 2026, Article 3 was revised to add joining SK's Toolbox timetable sharing with an invite code.
 9. On October 11, 2026, Articles 2, 3, 6, 7, and 8 were revised to add signing in with a GitHub account.
+10. On October 13, 2026, Articles 3 and 4 were revised to add usage records and the information the Developer checks on the admin console.

@@ -21,7 +21,7 @@ import { firebaseConfig } from "/y-filter/firebase-config.js";
 
 export const ACCOUNT_NAME = "SK Hub Systems アカウント";
 // アカウント規約（/policies/docs/sk-hub-account.txt）の版。変えると、次に使うときに同意し直してもらう
-export const ACCOUNT_TERMS_VERSION = "2026-10-08.2";
+export const ACCOUNT_TERMS_VERSION = "2026-10-13";
 
 export const app = getApps().length ? getApp() : initializeApp(firebaseConfig);
 export const auth = getAuth(app);
@@ -333,6 +333,25 @@ export async function markNoticesSeen(user) {
   setUnreadHint(0);
 }
 
+// ---------- 利用の記録（アカウント規約 第三条1項(j)） ----------
+// このブラウザのタイムゾーン（おおまかな地域）とサポートID（frameworks/check.js の skhub_uuid。新しいものから 5 つまで）と、最後に使った日時。
+// 規約の最新の版に同意した人だけ（watchAccount の ready のとき）。変わらなければ 1 日 1 回まで書く。
+// 開発者が管理画面（sy9-k.github.io/admin/accounts/）で、お問い合わせ・不正利用への対応のために確認する（同 第四条4）
+const SEEN_IDS_MAX = 5;
+const SUPPORT_ID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/;
+async function recordSeen(user, account) {
+  let tz = "";
+  try { tz = (Intl.DateTimeFormat().resolvedOptions().timeZone || "").slice(0, 64); } catch (e) { /* 分からなければ空 */ }
+  let id = "";
+  try { id = localStorage.getItem("skhub_uuid") || ""; } catch (e) { /* 読めなければ入れない */ }
+  const prev = account.seen || {};
+  const ids = [SUPPORT_ID.test(id) ? id : "", ...(Array.isArray(prev.ids) ? prev.ids : []).filter((x) => x !== id)].filter(Boolean).slice(0, SEEN_IDS_MAX);
+  const at = prev.at && typeof prev.at.toMillis === "function" ? prev.at.toMillis() : 0;
+  const same = prev.tz === tz && JSON.stringify(prev.ids || []) === JSON.stringify(ids);
+  if (same && Date.now() - at < 24 * 60 * 60 * 1000) return;
+  await updateDoc(accountRef(user.uid), { seen: { tz, ids, at: serverTimestamp() } });
+}
+
 // ---------- アカウントの状態 ----------
 // ログイン状態とアカウントの状態を知らせる
 //   status: "signed-out"   … ログインしていない
@@ -357,6 +376,7 @@ export function watchAccount(callback) {
       saveHint(user, account);
       const ready = account.termsVersion === ACCOUNT_TERMS_VERSION;
       if (ready) {
+        recordSeen(user, account).catch(() => { /* 書けなくても使える */ });
         const result = await syncSettings(user, account).catch(() => ({ pulled: [], pushed: [] }));
         if (languageChanged(result)) { location.reload(); return; }
         countUnread(user, account).then(setUnreadHint, () => {});
