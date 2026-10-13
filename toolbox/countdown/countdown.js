@@ -108,7 +108,7 @@
     var inf = info(ev, new Date());
     var big = inf.days === 0 ? t("今日です") : inf.days > 0 ? t("あと {n} 日", { n: inf.days.toLocaleString(locale) }) : t("{n} 日前", { n: (-inf.days).toLocaleString(locale) });
     var title = (ev.emoji ? ev.emoji + " " : "") + ev.name;
-    var url = "https://sy9-k.github.io/toolbox/countdown/";
+    var url = "https://sk-hub.jp/toolbox/countdown/";
     SKLine.share(SKLine.card({
       alt: title + " " + big, kicker: "Countdown", title: big, sub: title + "\n" + dateText(ev, inf), color: ev.color, url: url, button: t("SK's Toolbox で数える")
     }), title + " " + big + "（" + dateText(ev, inf) + "）\n" + url).then(function (r) { if (r === "sent") say(t("LINE で送りました")); });

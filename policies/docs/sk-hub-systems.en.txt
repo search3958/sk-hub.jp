@@ -11,7 +11,7 @@ Article 2 Definitions
 1. "Administrator" means a person (such as a parent or guardian, or a person in charge at a school or organization) who signs in to the management console with an SK Hub Systems account (an account signed in with a Google account, as set out in the SK Hub Systems Account Terms) and registers and manages devices. Administrators include the "Owner," who created the management group, and "Co-admins" invited by the Owner.
 2. "User" means a person who uses the Software on a device under an Administrator's management.
 3. "Device" means an instance of the Software (per browser profile) connected to the Feature.
-4. "Management console" means the web page for Administrators to manage devices (https://sy9-k.github.io/y-filter/).
+4. "Management console" means the web page for Administrators to manage devices (https://sk-hub.jp/y-filter/).
 5. "Pairing code" means an 8-character code issued in the management console to link a device to an Administrator.
 6. "Sent settings" means Software settings that an Administrator sends to devices from the management console, and "Report" means the current settings and status that a device sends to its Administrators.
 7. "Management group" means a set of devices managed jointly by an Owner and Co-admins.
@@ -65,7 +65,7 @@ Article 7 Retention Period and Deletion
 4. A request is deleted when the device receives the Administrator's reply. Requests not received 7 days after the reply, requests with no reply after 30 days, and requests from disconnected devices are automatically deleted when an Administrator opens the management console.
 5. When a Co-admin leaves a management group, or the Owner removes a Co-admin, that Co-admin's information is deleted from the management group.
 6. The Developer may delete the information of devices that have not connected for one year or more.
-7. Administrators can delete their own sign-in information and all information they manage as Owner (management groups, device information, requests, pairing codes, and invite codes) by deleting their account on the SK Hub Systems account page (https://sy9-k.github.io/account/). If deletion is not possible by this method, they may contact the Developer by the method set out in Article 15 of the SK Terms of Service to request deletion. This deletion includes backups of personal devices.
+7. Administrators can delete their own sign-in information and all information they manage as Owner (management groups, device information, requests, pairing codes, and invite codes) by deleting their account on the SK Hub Systems account page (https://sk-hub.jp/account/). If deletion is not possible by this method, they may contact the Developer by the method set out in Article 15 of the SK Terms of Service to request deletion. This deletion includes backups of personal devices.
 8. Backups are not deleted when a device is disconnected. They are deleted when the Owner deletes them in the management console, when the account is deleted, or, for disconnected devices, when more than 1 year has passed since they were saved (deleted when the Owner opens the management console).
 
 Article 8 Administrators' Responsibilities

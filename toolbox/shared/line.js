@@ -1,5 +1,5 @@
 // LINE in SK's Toolbox（LINE ミニアプリ。LINE Developers の「SK's Toolbox」チャネル）
-//   ・LINE のミニアプリとして開いたとき（エンドポイント https://sy9-k.github.io/toolbox/?line=dev など）だけ、LIFF の SDK を読み込む
+//   ・LINE のミニアプリとして開いたとき（エンドポイント https://sk-hub.jp/toolbox/?line=dev など）だけ、LIFF の SDK を読み込む
 //       ?line=dev … 開発用・?line=review … 審査用・?line=1 … 本番用。最初のページで覚えて（sessionStorage の sk_line）、ほかのページでも同じ ID を使う
 //   ・<html class="in-line"> … LINE の中。アプリとして入れるボタンやサイトのヘッダーを隠す（/toolbox/shared/m3.css）
 //   ・window.SKLine
@@ -79,7 +79,7 @@
     var btn = card.contents && card.contents.footer && card.contents.footer.contents[0];
     var uri = btn && btn.action && btn.action.uri;
     var liff = window.liff;
-    if (!uri || uri.indexOf("https://sy9-k.github.io/toolbox/") !== 0 || !liff || !liff.permanentLink || !liff.permanentLink.createUrlBy) return Promise.resolve(card);
+    if (!uri || uri.indexOf("https://sk-hub.jp/toolbox/") !== 0 || !liff || !liff.permanentLink || !liff.permanentLink.createUrlBy) return Promise.resolve(card);
     return liff.permanentLink.createUrlBy(uri).then(function (u) { if (u) btn.action.uri = u; return card; }, function () { return card; });
   }
   api.share = function (card, text) {
@@ -96,7 +96,7 @@
     location.href = full;
   };
   api.recommend = function () {
-    var url = "https://sy9-k.github.io/toolbox/";
+    var url = "https://sk-hub.jp/toolbox/";
     return api.share(api.card({
       alt: t("SK's Toolbox をすすめます"), kicker: t("おすすめ"), title: "SK's Toolbox",
       sub: t("時計・Todo・時間割・Countdown・ルーレットが、LINE の中ですぐ使えます。結果や時間割を友だちにカードで送れます。"), color: "#2563eb", url: url, button: t("開いてみる")

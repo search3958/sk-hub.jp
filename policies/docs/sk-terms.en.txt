@@ -4,7 +4,7 @@ Established: September 25, 2026
 Article 1 Purpose and Scope
 1. These Terms set out the conditions of use that apply in common to the website, web apps, browser extension, and server platform provided by SK (the "Developer") (collectively, the "Services").
 2. The Services include the following:
-(a) The website "sy9-k.github.io" (including SK's Lab tools; the "Site")
+(a) The website "sk-hub.jp" (including SK's Lab tools; the "Site")
 (b) The dictionary search app "MALU"
 (c) The browser extension "Y-FILTER." and its management console
 (d) The server platform "SK Hub Systems" and the "SK Hub Systems account"
@@ -72,7 +72,7 @@ The official text of these Terms and all Service Terms is in Japanese.
 
 Article 15 Notices and Inquiries
 1. The Developer gives notices to Users by posting them on the Site or displaying them within each service.
-2. Inquiries about the Services and these Terms, and requests to view or delete information, are accepted on the Site's contact page (https://sy9-k.github.io/contact/).
+2. Inquiries about the Services and these Terms, and requests to view or delete information, are accepted on the Site's contact page (https://sk-hub.jp/contact/).
 
 Supplementary Provisions
 1. These Terms take effect on September 25, 2026.

@@ -1116,7 +1116,7 @@
         {
           "steps": [
             "アドレスバーの右側に出る「ポップアップがブロックされました」のアイコンを押します。",
-            "sy9-k.github.io のポップアップを「常に許可」にします。",
+            "sk-hub.jp のポップアップを「常に許可」にします。",
             "もう一度検索します。"
           ]
         }
@@ -1132,7 +1132,7 @@
             {
               "steps": [
                 "Click the \"Pop-up blocked\" icon on the right side of the address bar.",
-                "Set pop-ups for sy9-k.github.io to \"Always allow.\"",
+                "Set pop-ups for sk-hub.jp to \"Always allow.\"",
                 "Search again."
               ]
             }
@@ -1148,7 +1148,7 @@
             {
               "steps": [
                 "点击地址栏右侧出现的“已拦截弹出窗口”图标。",
-                "将 sy9-k.github.io 的弹出窗口设为“始终允许”。",
+                "将 sk-hub.jp 的弹出窗口设为“始终允许”。",
                 "再次搜索。"
               ]
             }
@@ -1164,7 +1164,7 @@
             {
               "steps": [
                 "點選網址列右側出現的「已封鎖彈出式視窗」圖示。",
-                "將 sy9-k.github.io 的彈出式視窗設為「一律允許」。",
+                "將 sk-hub.jp 的彈出式視窗設為「一律允許」。",
                 "再搜尋一次。"
               ]
             }
@@ -1180,7 +1180,7 @@
             {
               "steps": [
                 "주소창 오른쪽에 나오는 '팝업이 차단됨' 아이콘을 누릅니다.",
-                "sy9-k.github.io의 팝업을 '항상 허용'으로 설정합니다.",
+                "sk-hub.jp의 팝업을 '항상 허용'으로 설정합니다.",
                 "다시 검색합니다."
               ]
             }
@@ -2518,7 +2518,7 @@
           "p": "使っている方の設定やデータを守るため、見える名前だけを SK Hub Systems に変え、仕組みの中の ID はそのまま使っています。ID が違っても、扱う情報や規約は変わりません。"
         },
         {
-          "note": "ログインの画面で、`y-filter-systems.firebaseapp.com` または `sy9-k.github.io` 以外のアドレスが表示されたときは、ログインせずに [お問い合わせ](/contact/) ください。"
+          "note": "ログインの画面で、`y-filter-systems.firebaseapp.com` または `sk-hub.jp` 以外のアドレスが表示されたときは、ログインせずに [お問い合わせ](/contact/) ください。"
         }
       ],
       "i18n": {
@@ -2546,7 +2546,7 @@
               "p": "To protect users' settings and data, only the visible name was changed to SK Hub Systems, and the internal ID is still used as is. The information handled and the terms are the same regardless of the ID."
             },
             {
-              "note": "If the sign-in screen shows an address other than `y-filter-systems.firebaseapp.com` or `sy9-k.github.io`, don't sign in, and please [contact us](/contact/)."
+              "note": "If the sign-in screen shows an address other than `y-filter-systems.firebaseapp.com` or `sk-hub.jp`, don't sign in, and please [contact us](/contact/)."
             }
           ]
         },
@@ -2574,7 +2574,7 @@
               "p": "为了保护用户的设置和数据，只将显示的名称改为 SK Hub Systems，内部的 ID 保持不变。即使 ID 不同，处理的信息和条款也不会改变。"
             },
             {
-              "note": "如果登录画面显示 `y-filter-systems.firebaseapp.com` 或 `sy9-k.github.io` 以外的地址，请不要登录，并[联系我们](/contact/)。"
+              "note": "如果登录画面显示 `y-filter-systems.firebaseapp.com` 或 `sk-hub.jp` 以外的地址，请不要登录，并[联系我们](/contact/)。"
             }
           ]
         },
@@ -2602,7 +2602,7 @@
               "p": "為了保護使用者的設定和資料，只將顯示的名稱改為 SK Hub Systems，內部的 ID 保持不變。即使 ID 不同，處理的資訊和條款也不會改變。"
             },
             {
-              "note": "如果登入畫面顯示 `y-filter-systems.firebaseapp.com` 或 `sy9-k.github.io` 以外的網址，請不要登入，並[聯絡我們](/contact/)。"
+              "note": "如果登入畫面顯示 `y-filter-systems.firebaseapp.com` 或 `sk-hub.jp` 以外的網址，請不要登入，並[聯絡我們](/contact/)。"
             }
           ]
         },
@@ -2630,7 +2630,7 @@
               "p": "사용자의 설정과 데이터를 지키기 위해, 보이는 이름만 SK Hub Systems로 바꾸고 내부 ID는 그대로 사용하고 있습니다. ID가 달라도 처리하는 정보와 약관은 바뀌지 않습니다."
             },
             {
-              "note": "로그인 화면에 `y-filter-systems.firebaseapp.com` 또는 `sy9-k.github.io` 이외의 주소가 표시되면 로그인하지 말고 [문의](/contact/)해 주세요."
+              "note": "로그인 화면에 `y-filter-systems.firebaseapp.com` 또는 `sk-hub.jp` 이외의 주소가 표시되면 로그인하지 말고 [문의](/contact/)해 주세요."
             }
           ]
         }
@@ -3936,7 +3936,7 @@
           "h": "リセットしたいとき"
         },
         {
-          "p": "ブラウザの設定で sy9-k.github.io のサイトデータ（Cookie とサイトデータ）を消去すると、次にアクセスしたときに新しいサポートIDが作られます。利用規約のお知らせも、もう一度表示されます。"
+          "p": "ブラウザの設定で sk-hub.jp のサイトデータ（Cookie とサイトデータ）を消去すると、次にアクセスしたときに新しいサポートIDが作られます。利用規約のお知らせも、もう一度表示されます。"
         }
       ],
       "i18n": {
@@ -3954,7 +3954,7 @@
               "h": "To reset it"
             },
             {
-              "p": "Clear the site data (cookies and site data) for sy9-k.github.io in your browser settings, and a new support ID is created on your next visit. The terms notice appears again too."
+              "p": "Clear the site data (cookies and site data) for sk-hub.jp in your browser settings, and a new support ID is created on your next visit. The terms notice appears again too."
             }
           ]
         },
@@ -3972,7 +3972,7 @@
               "h": "想要重置时"
             },
             {
-              "p": "在浏览器设置中清除 sy9-k.github.io 的网站数据（Cookie 和网站数据）后，下次访问时会生成新的支持 ID。使用条款的通知也会再次显示。"
+              "p": "在浏览器设置中清除 sk-hub.jp 的网站数据（Cookie 和网站数据）后，下次访问时会生成新的支持 ID。使用条款的通知也会再次显示。"
             }
           ]
         },
@@ -3990,7 +3990,7 @@
               "h": "想要重設時"
             },
             {
-              "p": "在瀏覽器設定中清除 sy9-k.github.io 的網站資料（Cookie 和網站資料）後，下次造訪時會產生新的支援 ID。使用條款的通知也會再次顯示。"
+              "p": "在瀏覽器設定中清除 sk-hub.jp 的網站資料（Cookie 和網站資料）後，下次造訪時會產生新的支援 ID。使用條款的通知也會再次顯示。"
             }
           ]
         },
@@ -4008,7 +4008,7 @@
               "h": "초기화하고 싶을 때"
             },
             {
-              "p": "브라우저 설정에서 sy9-k.github.io의 사이트 데이터(쿠키와 사이트 데이터)를 지우면, 다음에 접속할 때 새 지원 ID가 만들어집니다. 이용약관 안내도 다시 표시됩니다."
+              "p": "브라우저 설정에서 sk-hub.jp의 사이트 데이터(쿠키와 사이트 데이터)를 지우면, 다음에 접속할 때 새 지원 ID가 만들어집니다. 이용약관 안내도 다시 표시됩니다."
             }
           ]
         }

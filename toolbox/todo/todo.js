@@ -740,7 +740,7 @@
   // タスクを LINE の友だち・グループにカードで送る（/toolbox/shared/line.js。宿題や持ち物の共有に）
   function shareTask(x) {
     var list = listById(x.list), when = x.due ? dueText(x) : "";
-    var url = "https://sy9-k.github.io/toolbox/todo/";
+    var url = "https://sk-hub.jp/toolbox/todo/";
     SKLine.share(SKLine.card({
       alt: x.text, kicker: "Todo" + (list ? " · " + list.name : ""), title: x.text,
       sub: [when ? t("期限 {due}", { due: when }) : "", x.notes || ""].filter(Boolean).join("\n"), color: list ? list.color : "#16a34a", url: url, button: t("Todo を開く")

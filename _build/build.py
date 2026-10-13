@@ -11,7 +11,7 @@ BUILD = pathlib.Path(__file__).resolve().parent
 REPO = BUILD.parent
 PAGES = BUILD / "pages"
 I18N = BUILD / "i18n"
-ORIGIN = "https://sy9-k.github.io"
+ORIGIN = "https://sk-hub.jp"
 sys.path.insert(0, str(BUILD))
 from i18n import LANGS, Translator, key_of, load_table, translate  # noqa: E402
 

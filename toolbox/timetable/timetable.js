@@ -1276,7 +1276,7 @@
   // ================================================================
   // LINE で送る（/toolbox/shared/line.js。LINE の中では友だち・グループを選んでカードで、外では LINE の共有のリンクで）
   // ================================================================
-  var TT_URL = "https://sy9-k.github.io/toolbox/timetable/";
+  var TT_URL = "https://sk-hub.jp/toolbox/timetable/";
   function lineDone(r) { if (r === "sent") say(t("LINE で送りました")); }
   // 今日（0）・明日（1）の時間割（特別な日程・休みも）
   function shareDay(offset) {

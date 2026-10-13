@@ -9,8 +9,8 @@ Article 1 Purpose and Scope
 Article 2 About the Account
 1. The Account lets users use services provided by the Developer with a single account.
 2. A Google account or a GitHub account ("Sign-in Account") is used to sign in to the Account. Users may connect more than one Sign-in Account to a single Account. The Developer does not issue or store passwords.
-3. The Account is created when the user signs in with a Sign-in Account at https://sy9-k.github.io/account/, agrees to these Terms, the SK Terms of Service, and the SK Privacy Policy, and chooses "Create account."
-4. The services available with the Account are shown at https://sy9-k.github.io/account/. Services may be added, changed, or ended.
+3. The Account is created when the user signs in with a Sign-in Account at https://sk-hub.jp/account/, agrees to these Terms, the SK Terms of Service, and the SK Privacy Policy, and chooses "Create account."
+4. The services available with the Account are shown at https://sk-hub.jp/account/. Services may be added, changed, or ended.
 
 Article 3 Information Handled
 1. The following information is handled for the Account:
@@ -36,8 +36,8 @@ Article 4 Storage Location and Management
 4. As the operator of Firebase, the Developer is technically able to access this information, but does not view or use it except to respond to outages, abuse, or legal requests, or at the account holder's request.
 
 Article 5 Viewing and Deleting Information
-1. Users can download the information stored about the Account as a file from https://sy9-k.github.io/account/.
-2. Users can delete the Account at any time from https://sy9-k.github.io/account/. Deleting it removes the account information and the data of services used with the Account (including management groups, connected device information, requests, pairing codes, and invite codes in the Y-FILTER. management console), and this cannot be undone. The user leaves any management groups joined as a co-admin.
+1. Users can download the information stored about the Account as a file from https://sk-hub.jp/account/.
+2. Users can delete the Account at any time from https://sk-hub.jp/account/. Deleting it removes the account information and the data of services used with the Account (including management groups, connected device information, requests, pairing codes, and invite codes in the Y-FILTER. management console), and this cannot be undone. The user leaves any management groups joined as a co-admin.
 3. If deletion is not possible by the method in the preceding paragraph, users may contact the Developer by the method set out in the SK Terms of Service to request deletion.
 4. The Developer may delete Accounts with no sign-in for two years or more.
 

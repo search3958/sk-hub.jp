@@ -23,7 +23,7 @@ Article 3 Information Handled by the Access Check
 5. Nothing is sent to the server until you choose "Agree and close," if you choose "Decline," or if you withdraw your agreement.
 
 Article 4 Information Handled for Inquiries
-1. The following information sent from the contact form (https://sy9-k.github.io/contact/) is stored in SK Hub Systems:
+1. The following information sent from the contact form (https://sk-hub.jp/contact/) is stored in SK Hub Systems:
 (a) The type of inquiry, the service concerned, and the message
 (b) The reply-to email address (only if entered)
 (c) The support ID, browser type (user agent), and language setting (only if "Include my support ID and browser info" is chosen)
@@ -69,11 +69,11 @@ The Services are expected to be used by minors as well. The Developer strives no
 
 Article 11 Viewing and Deleting Information
 1. Clearing the browser's site data deletes the information stored in the browser.
-2. SK Hub Systems account information can be downloaded and deleted on the account page (https://sy9-k.github.io/account/).
-3. To request viewing or deletion of any other information stored on the server, please contact us through the contact page (https://sy9-k.github.io/contact/), including your support ID (shown on the Site's support page).
+2. SK Hub Systems account information can be downloaded and deleted on the account page (https://sk-hub.jp/account/).
+3. To request viewing or deletion of any other information stored on the server, please contact us through the contact page (https://sk-hub.jp/contact/), including your support ID (shown on the Site's support page).
 
 Article 11-2 Residents of the EEA, the UK, and Similar Regions
-1. For residents of regions where the GDPR (EU General Data Protection Regulation) or similar laws apply, such as the European Economic Area (EEA), the United Kingdom, and Switzerland, the Developer (contact: https://sy9-k.github.io/contact/) is the controller of the information and handles it on the following legal bases.
+1. For residents of regions where the GDPR (EU General Data Protection Regulation) or similar laws apply, such as the European Economic Area (EEA), the United Kingdom, and Switzerland, the Developer (contact: https://sk-hub.jp/contact/) is the controller of the information and handles it on the following legal bases.
 (a) Access check (Article 3): the Developer's legitimate interest in providing the Services securely and preventing misuse
 (b) Access analytics (Article 4-2): your consent
 (c) Inquiries (Article 4): the Developer's legitimate interest in responding to your request

@@ -1,5 +1,5 @@
 // SK Hub Systems アカウント（ログインは Google・GitHub・Microsoft。GitHub は GITHUB_LOGIN、Microsoft は MICROSOFT_LOGIN が true のときだけ出す）
-// sy9-k.github.io のページ（管理コンソール・これからのサービス）で共通に使うモジュール。
+// sk-hub.jp のページ（管理コンソール・これからのサービス）で共通に使うモジュール。
 //   ・ログイン状態は同じサイトの中で共有される（Firebase Authentication がブラウザに保存する）
 //   ・アカウントの登録 = accounts/{UID} に規約への同意を記録すること。Google の名前・メールアドレスは Firebase Authentication にだけある
 //   ・accounts/{UID} には、本人が決めたプロフィール（profile）・同期する設定（settings）・お知らせを読んだ日時（noticesSeenAt）も入る

@@ -153,7 +153,7 @@
     ].join("\n");
     console.log("%c" + art, CONSOLE_FONT + "color:#2563eb;font-weight:700;line-height:1.15");
     console.log("%c" + t("コードを見てくれてありがとう！"), CONSOLE_FONT + "font-size:14px;font-weight:700");
-    console.log("%c" + t("このサイトのコードは GitHub にあります: {url}", { url: "https://github.com/sy9-k/sy9-k.github.io" }), CONSOLE_FONT);
+    console.log("%c" + t("このサイトのコードは GitHub にあります: {url}", { url: "https://github.com/sy9-k/sk-hub.jp" }), CONSOLE_FONT);
     console.log("%c" + t("ヒント: ページで「`」キーを押すか、いちばん下の「SK」を押してみて。"), CONSOLE_FONT + "color:#5a6371");
     console.log("%c" + t("ヒント: このコンソールで SK と打ってみて。"), CONSOLE_FONT + "color:#5a6371");
   }

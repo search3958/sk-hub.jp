@@ -245,7 +245,7 @@
     lineBtn.classList.add("win__line");
     lineBtn.addEventListener("click", function () {
       if (!lastWin) return;
-      var url = "https://sy9-k.github.io/toolbox/roulette/";
+      var url = "https://sk-hub.jp/toolbox/roulette/";
       var name = wheel().name;
       SKLine.share(SKLine.card({
         alt: t("ルーレットの結果: {text}", { text: lastWin.text }), kicker: t("ルーレット · {name}", { name: name }), title: lastWin.text,
