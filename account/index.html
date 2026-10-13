@@ -442,14 +442,10 @@
               <h2 class="acct-section-title" id="acct-h-developer">開発者</h2>
               <p class="acct-section-lead">開発者として登録されているアカウントだけに表示しています。</p>
               <div class="acct-tiles">
-                <a class="acct-tile" href="/inbox/">
-                  <span class="acct-tile-title">お問い合わせの受信箱</span>
-                  <span class="acct-tile-value">お問い合わせフォームから届いた内容を読み、アカウントに返事を送れます。</span>
-                  <svg class="acct-tile-mark" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg>
-                </a>
-                <a class="acct-tile" href="/studio/">
-                  <span class="acct-tile-title">記事エディター</span>
-                  <span class="acct-tile-value">サポートのお知らせと記事を書いて公開できます。</span>
+                <!-- 管理画面は旧ドメインだけに置く（sy9-k/sy9-k.github.io の admin/） -->
+                <a class="acct-tile" href="https://sy9-k.github.io/admin/">
+                  <span class="acct-tile-title">管理画面</span>
+                  <span class="acct-tile-value">お問い合わせ・お知らせ・記事・SK Share・アクセスの制限・メンテナンスの告知などをまとめて扱えます。</span>
                   <svg class="acct-tile-mark" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg>
                 </a>
               </div>
@@ -560,6 +556,8 @@
   <script>window.SKI18N && SKI18N.translatePage();</script>
   <script src="/support/articles.js" defer></script>
   <script src="/assets/site.js" defer></script>
+  <!-- メンテナンス・障害のお知らせの帯（config/maintenance。変えるのは旧ドメインの管理画面） -->
+  <script src="/assets/maintenance.js" defer></script>
   <!-- SK Hub Systems アカウントの設定の同期（ログイン中だけ） -->
   <script src="/assets/hub/sync-loader.js" defer></script>
   <script src="/frameworks/check.js?check=none" defer></script>
