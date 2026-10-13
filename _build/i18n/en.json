@@ -3122,5 +3122,6 @@
   "ただいまメンテナンス中です": "Under maintenance",
   "ご不便をおかけしてすみません。終わるまで、しばらくお待ちください。": "Sorry for the inconvenience. Please wait a little while until it's finished.",
   "再開の予定": "Expected back",
-  "終わると、このページは自動で開き直します。": "This page will reopen automatically when it's over."
+  "終わると、このページは自動で開き直します。": "This page will reopen automatically when it's over.",
+  "使ったブラウザのタイムゾーン（おおまかな地域）とサポートID（お問い合わせ・不正な利用への対応に使います）": "The time zone (approximate region) and support ID of the browsers you use (used to respond to inquiries and abuse)"
 }
