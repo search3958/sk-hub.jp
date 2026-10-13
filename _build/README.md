@@ -65,10 +65,14 @@ URL は変えずに、`/lang/` で選んだ言語でページを訳して表示�
 - `view/`（SK Share。マテリアルデザイン）
 - `inbox/`・`studio/`・`view/editor/`（旧ドメインの管理画面 https://sy9-k.github.io/admin/ へ転送するだけのページ。管理画面は sy9-k/sy9-k.github.io リポジトリの `admin/`）
 
-## メンテナンス・障害のお知らせの帯
+## メンテナンス・障害のお知らせ（帯・ページを閉じる）
 
-`/assets/maintenance.js` が、SK Hub Systems の `config/maintenance` を読んで、ページのいちばん上に帯を出します（変えるのは旧ドメインの管理画面の「メンテナンスの告知」 https://sy9-k.github.io/admin/maintenance/）。
+`/assets/maintenance.js` が、SK Hub Systems の `config/maintenance` を読んで、ページのいちばん上に帯を出すか、ページを閉じて「ただいまメンテナンス中です」の画面にします（変えるのは旧ドメインの管理画面の「メンテナンスの告知」 https://sy9-k.github.io/admin/maintenance/）。
 
-- build のページはトップ（`index.html`）の型から入ります。build で作らないアプリ（SK's Toolbox・Nagi・MALU・SK's Lab・SK Share）は、`/assets/domain-snack.js` の隣で読み込みます。
+- ページを閉じているあいだは、1 分ごとに確かめ直し、終わったら自動で開き直します。稼働状況（`/status/`）・規約（`/policies/`）・同意と制限の画面（`/usercheck/`）は閉じません。
+- 閉じているあいだに自分で確かめるときは、URL の最後に `?maintenance=skip` を付けて開きます（そのタブだけ、閉じずに帯になります）。
+- 文字は M PLUS 1（`/assets/fonts.js` と同じく、EU・英国・スイスなどのタイムゾーンでは Google Fonts を読み込みません）。
+
+- build のページはトップ（`index.html`）の型から入ります。build で作らないアプリ（SK's Toolbox・Nagi・MALU・SK's Lab・SK Share）は `/assets/domain-snack.js` の隣、Y-FILTER. の管理コンソール（`/y-filter/`・`/y-filter/link/`）は `site.js` の隣で読み込みます。
 - 結果は 5 分だけ覚えておくので、管理画面で変えてから出る・消えるまで最大 5 分かかります。
 - `sy9-k/sy9-k.github.io` にも同じファイルがあります（管理画面のプレビューに使う）。直すときは両方を同じにします。
