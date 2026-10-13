@@ -781,13 +781,13 @@
 
     // ---- 全般 ----
     var general = page("general", "tune", t("全般"), null, t("言語・ホームの最初の画面"), "#3b82f6");
-    // お知らせ: sk-hub.jp への引っ越し（/domain/。LINE の中では出さない。アプリを開いたときの 1 回だけの知らせは /assets/domain-snack.js）
+    // お知らせ: 新しいアドレス sk-hub.jp（/domain/。LINE の中では出さない。アプリを開いたときの 1 回だけの知らせは /assets/domain-snack.js）
     if (!IN_LINE) {
       var news = section(t("お知らせ"));
       var newsRow = el("a", "tbs-item tbs-item--link tbs-item--news m3-state");
       newsRow.href = "/domain/";
       newsRow.appendChild(icon("campaign"));
-      newsRow.appendChild(label(t("SK のサイトは sk-hub.jp に引っ越します"), t("いまは準備中です。日程は決まりしだいお知らせします。")));
+      newsRow.appendChild(label(t("SK の新しいアドレスは sk-hub.jp です"), t("ブックマークやホーム画面のアイコンは、このアドレスで登録し直してください。")));
       newsRow.appendChild(icon("chevron_right"));
       news.appendChild(newsRow);
       general.appendChild(news);

@@ -2,6 +2,7 @@
 <html lang="ja">
 <head>
   <meta charset="utf-8">
+  <script src="/assets/coming-soon.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- 多言語: /lang/ で選んだ言語で表示する（URL は変わらない）。ページの最後の translatePage() で訳す -->
   <script src="/assets/i18n.js"></script>
@@ -53,10 +54,11 @@
   </header>
   <div class="hd-menu" id="hd-menu"><div class="hd-menu-inner"><div class="hd-menu-content"></div></div></div>
   <div class="hd-backdrop" id="hd-backdrop"></div>
-  <!-- sk-hub.jp への引っ越しのお知らせ（ヘッダーの下の帯。スタイルは /assets/site.css の sk-dn）
-       閉じたら、同じ段階（data-stage）のあいだは出さない（localStorage の sk_domain_notice）。日程が決まった・切り替えたときは data-stage と文を変える -->
-  <div class="sk-dn" id="sk-dn" data-stage="prep" role="region" aria-label="お知らせ" hidden>
-    <p class="sk-dn-text"><strong>SK のサイトは sk-hub.jp に引っ越します</strong><span>いまは準備中です。日程は決まりしだいお知らせします。</span></p>
+  <!-- sk-hub.jp（新しいアドレス）のお知らせ（ヘッダーの下の帯。スタイルは /assets/site.css の sk-dn）
+       閉じたら、同じ段階（data-stage）のあいだは出さない（localStorage の sk_domain_notice）。文を変えたときは data-stage も変える
+       古いアドレス（sy9-k.github.io）では、同じ場所にオレンジの「古いアドレスです」の帯を出している -->
+  <div class="sk-dn" id="sk-dn" data-stage="new" role="region" aria-label="お知らせ" hidden>
+    <p class="sk-dn-text"><strong>SK の新しいアドレス sk-hub.jp へようこそ</strong><span>ブックマークやホーム画面のアイコンは、このアドレスで登録し直してください。</span></p>
     <a class="sk-dn-more" href="/domain/">詳しく</a>
     <button class="sk-dn-close" type="button" aria-label="閉じる"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
   </div>

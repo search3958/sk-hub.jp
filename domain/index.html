@@ -2,6 +2,7 @@
 <html lang="ja">
 <head>
   <meta charset="utf-8">
+  <script src="/assets/coming-soon.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- 多言語: /lang/ で選んだ言語で表示する（URL は変わらない）。ページの最後の translatePage() で訳す -->
   <script src="/assets/i18n.js"></script>
@@ -44,10 +45,11 @@
   </header>
   <div class="hd-menu" id="hd-menu"><div class="hd-menu-inner"><div class="hd-menu-content"></div></div></div>
   <div class="hd-backdrop" id="hd-backdrop"></div>
-  <!-- sk-hub.jp への引っ越しのお知らせ（ヘッダーの下の帯。スタイルは /assets/site.css の sk-dn）
-       閉じたら、同じ段階（data-stage）のあいだは出さない（localStorage の sk_domain_notice）。日程が決まった・切り替えたときは data-stage と文を変える -->
-  <div class="sk-dn" id="sk-dn" data-stage="prep" role="region" aria-label="お知らせ" hidden>
-    <p class="sk-dn-text"><strong>SK のサイトは sk-hub.jp に引っ越します</strong><span>いまは準備中です。日程は決まりしだいお知らせします。</span></p>
+  <!-- sk-hub.jp（新しいアドレス）のお知らせ（ヘッダーの下の帯。スタイルは /assets/site.css の sk-dn）
+       閉じたら、同じ段階（data-stage）のあいだは出さない（localStorage の sk_domain_notice）。文を変えたときは data-stage も変える
+       古いアドレス（sy9-k.github.io）では、同じ場所にオレンジの「古いアドレスです」の帯を出している -->
+  <div class="sk-dn" id="sk-dn" data-stage="new" role="region" aria-label="お知らせ" hidden>
+    <p class="sk-dn-text"><strong>SK の新しいアドレス sk-hub.jp へようこそ</strong><span>ブックマークやホーム画面のアイコンは、このアドレスで登録し直してください。</span></p>
     <a class="sk-dn-more" href="/domain/">詳しく</a>
     <button class="sk-dn-close" type="button" aria-label="閉じる"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
   </div>
@@ -81,18 +83,18 @@
         <div class="section-head">
           <span class="eyebrow">スケジュール</span>
           <h2>いつ変わるの？</h2>
-          <p>切り替えの日は、まだ決まっていません。決まったら、このページとサポートのお知らせでお知らせします。</p>
+          <p>2026年10月14日（水）12:00 に、sk-hub.jp で公開しました。いまは移行期間です。</p>
         </div>
         <ol class="dm-steps">
-          <li class="dm-step is-now">
-            <span class="dm-step-tag">いま</span>
-            <strong>準備中</strong>
-            <p>新しいドメインの手続きと、引っ越しの準備をしています。いまは、これまでどおり sy9-k.github.io をお使いください。</p>
-          </li>
           <li class="dm-step">
-            <span class="dm-step-tag">移行期間</span>
+            <span class="dm-step-tag">10月13日まで</span>
+            <strong>準備</strong>
+            <p>新しいドメインの手続きと、引っ越しの準備をしました。</p>
+          </li>
+          <li class="dm-step is-now">
+            <span class="dm-step-tag">いま（10月14日 12:00〜）</span>
             <strong>sk-hub.jp で公開</strong>
-            <p>サイトとプロダクトが sk-hub.jp で開けるようになります。このあいだは sy9-k.github.io もそのまま使えますが、更新は止まります。日程は、事前にお知らせします。</p>
+            <p>サイトとプロダクトが sk-hub.jp で開けるようになりました。このあいだは sy9-k.github.io もそのまま使えますが、更新は止まっています。</p>
           </li>
           <li class="dm-step">
             <span class="dm-step-tag">移行期間の終わり</span>

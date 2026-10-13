@@ -1,4 +1,4 @@
-// sk-hub.jp への引っ越しのお知らせ（アプリ用。SK's Toolbox の各アプリ・Nagi・MALU・SK's Lab）
+// sk-hub.jp（新しいアドレス）のお知らせ（アプリ用。SK's Toolbox の各アプリ・Nagi・MALU・SK's Lab）
 //   ・アプリにはサイトのヘッダーがないので、ヘッダーの下の帯（index.html の #sk-dn）の代わりに、
 //     最初に開いたとき 1 回だけ、画面の下に小さな知らせ（スナックバー）を出す。設定の画面にも同じお知らせを置いている
 //   ・アプリの下のボタン（Todo の「新規リマインダー」・Clock のドックなど）にかぶらないよう、下から 88px あける
@@ -9,7 +9,7 @@
 //   ・出さないところ: iframe の中・LINE のミニアプリ・?embed
 (function () {
   "use strict";
-  var STAGE = "prep";
+  var STAGE = "new";
   if (window.top !== window.self) return;
   if (/[?&](embed|line)\b|[?&]liff\./.test(location.search)) return;
   try {
@@ -56,7 +56,7 @@
     var text = document.createElement("span");
     text.className = "sk-snack-text";
     // 「sk-hub.jp」の途中で改行しない
-    t("SK のサイトは sk-hub.jp に引っ越します").split("sk-hub.jp").forEach(function (part, i) {
+    t("SK の新しいアドレスは sk-hub.jp です").split("sk-hub.jp").forEach(function (part, i) {
       if (i) { var d = document.createElement("span"); d.className = "sk-snack-domain"; d.textContent = "sk-hub.jp"; text.appendChild(d); }
       text.appendChild(document.createTextNode(part));
     });
