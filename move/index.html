@@ -5,13 +5,14 @@
 <script src="/assets/coming-soon.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 <meta name="robots" content="noindex" />
-<meta name="description" content="この端末に保存している SK のデータを、新しいアドレス sk-hub.jp へ移します。" />
+<meta name="description" content="古いアドレス（sy9-k.github.io）で使っていた SK のデータを、sk-hub.jp に移します。" />
 <meta name="theme-color" content="#f9f9ff" />
 <title>データの引っ越し | SK</title>
-<!-- データの引っ越し（sy9-k.github.io → sk-hub.jp）。移行期間が終わったら、古いアドレスでこの画面だけを出す。
-     最初に「移し方は 2 つ」を出し、選んだ方の画面に進んで案内する: choose → device（選ぶ → moving → done）/ account
-     見た目は Material 3（/move/theme.css・move.css。部品は /toolbox/shared/m3.css・m3.js）、動きは /move/move.js
-     いまは形だけ（データは移さない）。本番にするときは .prep を消し、move.js の PREVIEW を false にして中身を作る -->
+<!-- データの引っ越しの受け取り（sk-hub.jp 側）。送るのは古いアドレスの /move/（sy9-k.github.io リポジトリ）
+     ・?from=old で古いアドレスのタブから開かれたとき: wait → （conflict）→ moving → done
+     ・直接開いたとき: intro（古いアドレスで移す・ファイルから読み込む）→ （conflict）→ moving → done
+     done が「移したあとの画面」: 移したアプリをすぐ開けるようにし、このあとにすること（ログイン・アプリの入れ直し・ブックマーク）を出す
+     見た目は古いアドレスの /move/ と同じ（Material 3。/move/theme.css・move.css は 2 つのリポジトリで同じ）、動きは /move/move.js -->
 <!-- 表示（ライト・ダーク）。サイトで選んだものに合わせる -->
 <script>(function(){try{var t=JSON.parse(localStorage.getItem("sk_theme")||"{}");if(t.mode==="light"||t.mode==="dark")document.documentElement.setAttribute("data-theme",t.mode);}catch(e){}})();</script>
 <!-- 文字は M PLUS 1（M+）。アイコンは Material Symbols -->
@@ -27,60 +28,59 @@
 <header class="app-bar" id="bar">
   <button class="icon-btn m3-state" type="button" id="back" aria-label="戻る"><span class="msr">arrow_back</span></button>
 </header>
-
 <div class="stage">
-  <p class="prep"><span class="msr" aria-hidden="true">construction</span><span><b>このページは準備中です。</b>いまはまだデータは移りません。流れだけを確かめられます。</span></p>
-
-  <!-- 1. 選ぶ -->
-  <section class="screen is-on" data-screen="choose" aria-labelledby="choose-h">
+  <!-- 1. 直接開いたとき -->
+  <section class="screen is-on" data-screen="intro" aria-labelledby="intro-h">
     <div class="head">
-      <div class="hero" aria-hidden="true"><span class="msr">move_up</span></div>
-      <h1 id="choose-h">データを sk-hub.jp に移す</h1>
-      <p class="sub">SK は sk-hub.jp に引っ越しました。移し方は 2 つあります。</p>
+      <div class="hero" aria-hidden="true"><span class="msr">move_down</span></div>
+      <h1 id="intro-h">前のアドレスのデータを移す</h1>
+      <p class="sub">sy9-k.github.io で使っていたデータは、ここ sk-hub.jp からは見えません。古いアドレスのページから、この端末のデータを移せます。</p>
     </div>
     <div class="body">
-      <div class="choices">
-        <button class="choice m3-state" type="button" data-go="device">
-          <span class="lead" aria-hidden="true"><span class="msr">smartphone</span></span>
-          <span class="txt"><b>この端末から移す<span class="badge">おすすめ</span></b><small>ログインなしで、この端末のデータをそのまま移します</small></span>
-          <span class="msr" aria-hidden="true">chevron_right</span>
-        </button>
-        <button class="choice m3-state" type="button" data-go="account">
-          <span class="lead" aria-hidden="true"><span class="msr">cloud_sync</span></span>
-          <span class="txt"><b>SK Hub Systems アカウントで移す</b><small>同期しているデータは、sk-hub.jp でログインすると戻ります</small></span>
-          <span class="msr" aria-hidden="true">chevron_right</span>
-        </button>
-      </div>
-    </div>
-    <div class="bottom">
-      <a class="text-btn m3-state" href="https://sk-hub.jp/">移さずに進む</a>
-    </div>
-  </section>
-
-  <!-- 2a. この端末から: 選ぶ -->
-  <section class="screen" data-screen="device" aria-labelledby="device-h">
-    <div class="head">
-      <div class="hero" aria-hidden="true"><span class="msr">smartphone</span></div>
-      <h1 id="device-h">この端末から移す</h1>
-      <p class="sub">この端末に保存されているデータです。移すものを選んでください。</p>
-    </div>
-    <div class="body">
-      <p class="list-h">この端末のデータ</p>
-      <ul class="list" id="pick">
-        <li><label class="item m3-state"><span class="avatar avatar--toolbox"><span class="msr">home_repair_service</span></span><span class="item-text"><b>SK's Toolbox</b><small>Todo・Memo（画像も）・時間割など</small></span><input class="check" type="checkbox" checked data-name="SK's Toolbox"></label></li>
-        <li><label class="item m3-state"><span class="avatar avatar--nagi"><span class="msr">timer</span></span><span class="item-text"><b>Nagi</b><small>集中の記録・目標・連続日数</small></span><input class="check" type="checkbox" checked data-name="Nagi"></label></li>
-        <li><label class="item m3-state"><span class="avatar avatar--malu"><span class="msr">menu_book</span></span><span class="item-text"><b>MALU</b><small>単語帳・検索の履歴・設定</small></span><input class="check" type="checkbox" checked data-name="MALU"></label></li>
-        <li><label class="item m3-state"><span class="avatar avatar--lab"><span class="msr">science</span></span><span class="item-text"><b>SK's Lab</b><small>QR Drop・スマートダッシュボード</small></span><input class="check" type="checkbox" checked data-name="SK's Lab"></label></li>
-        <li><label class="item m3-state"><span class="avatar avatar--site"><span class="msr">tune</span></span><span class="item-text"><b>サイトの設定</b><small>表示・言語・お知らせの既読</small></span><input class="check" type="checkbox" checked data-name="サイトの設定"></label></li>
+      <p class="list-h">移せるもの</p>
+      <ul class="list">
+        <li class="item"><span class="avatar avatar--toolbox"><span class="msr">home_repair_service</span></span><span class="item-text"><b>SK's Toolbox</b><small>Todo・Memo（画像も）・時間割など</small></span></li>
+        <li class="item"><span class="avatar avatar--nagi"><span class="msr">timer</span></span><span class="item-text"><b>Nagi</b><small>集中の記録・目標・連続日数</small></span></li>
+        <li class="item"><span class="avatar avatar--malu"><span class="msr">menu_book</span></span><span class="item-text"><b>MALU</b><small>検索の履歴・設定（単語帳はログインで戻ります）</small></span></li>
+        <li class="item"><span class="avatar avatar--lab"><span class="msr">science</span></span><span class="item-text"><b>SK's Lab</b><small>QR Drop・スマートダッシュボード</small></span></li>
+        <li class="item"><span class="avatar avatar--site"><span class="msr">tune</span></span><span class="item-text"><b>サイトの設定</b><small>表示・言語</small></span></li>
       </ul>
-      <p class="note"><span class="msr" aria-hidden="true">info</span><span>ログインの状態は移りません。新しいアドレスで、もう一度ログインしてください。</span></p>
+      <p class="note" id="moved-before" hidden><span class="msr" aria-hidden="true">history</span><span id="moved-before-text"></span></p>
+      <p class="note"><span class="msr" aria-hidden="true">info</span><span>同じ端末・同じブラウザで開いてください。ほかの端末のデータは、その端末から移します。</span></p>
     </div>
     <div class="bottom">
-      <button class="m3-btn m3-state" type="button" id="start">移す</button>
+      <label class="text-btn m3-state" for="file">ファイルから読み込む<input type="file" id="file" accept=".json,application/json" hidden></label>
+      <a class="m3-btn m3-state" href="https://sy9-k.github.io/move/" id="to-old"><span class="msr">open_in_new</span>古いアドレスで移す</a>
     </div>
   </section>
-
-  <!-- 2a-2. 移している -->
+  <!-- 2. 古いアドレスのタブから届くのを待つ -->
+  <section class="screen" data-screen="wait" aria-labelledby="wait-h">
+    <div class="head">
+      <div class="hero" aria-hidden="true"><span class="msr">sync</span></div>
+      <h1 id="wait-h">データを受け取っています</h1>
+      <p class="sub">古いアドレス（sy9-k.github.io）のタブから届くのを待っています。このタブは閉じないでください。</p>
+    </div>
+    <div class="body">
+      <div class="linear linear--wait" aria-hidden="true"><i></i></div>
+    </div>
+  </section>
+  <!-- 3. sk-hub.jp にもうデータがある -->
+  <section class="screen" data-screen="conflict" aria-labelledby="conflict-h">
+    <div class="head">
+      <div class="hero" aria-hidden="true"><span class="msr">sync_problem</span></div>
+      <h1 id="conflict-h">sk-hub.jp にもうデータがあります</h1>
+      <p class="sub">次のアプリは、sk-hub.jp でもう使われています。古いアドレスのデータで置きかえますか？</p>
+    </div>
+    <div class="body">
+      <ul class="list" id="conflicts"></ul>
+      <div class="callout"><span class="msr" aria-hidden="true">info</span><span>置きかえると、sk-hub.jp にあるそのアプリのデータは消えます。置きかえないときは、ほかのアプリのデータだけを移します。</span></div>
+    </div>
+    <div class="bottom">
+      <button class="text-btn m3-state" type="button" id="keep">置きかえない</button>
+      <button class="m3-btn m3-state" type="button" id="replace">置きかえる</button>
+    </div>
+  </section>
+  <!-- 4. 移している -->
   <section class="screen" data-screen="moving" aria-labelledby="moving-h">
     <div class="head">
       <div class="hero" aria-hidden="true"><span class="msr">sync</span></div>
@@ -92,61 +92,48 @@
       <ul class="list" id="progress" aria-live="polite"></ul>
     </div>
   </section>
-
-  <!-- 2a-3. 終わり -->
+  <!-- 5. 移したあと -->
   <section class="screen" data-screen="done" aria-labelledby="done-h">
     <div class="head">
       <div class="hero hero--ok" aria-hidden="true"><span class="msr msr--fill">check_circle</span></div>
-      <h1 id="done-h">移しました</h1>
+      <h1 id="done-h">引っ越しが終わりました</h1>
       <p class="sub" id="done-sub">sk-hub.jp で、いつものように使えます。</p>
     </div>
     <div class="body">
-      <p class="list-h">このあとにすること</p>
+      <p class="list-h">移したもの</p>
+      <ul class="list" id="moved"></ul>
+      <p class="list-h list-h--gap">このあとにすること</p>
       <ul class="list">
-        <li class="item"><span class="avatar avatar--site"><span class="msr">login</span></span><span class="item-text"><b>もう一度ログイン</b><small>いつもの Google か GitHub のアカウントで</small></span></li>
-        <li class="item"><span class="avatar avatar--site"><span class="msr">install_mobile</span></span><span class="item-text"><b>アプリを入れ直す</b><small>ホーム画面やパソコンに入れている人は、sk-hub.jp で</small></span></li>
+        <li><a class="item m3-state" href="/account/"><span class="avatar avatar--site"><span class="msr">login</span></span><span class="item-text"><b>もう一度ログイン</b><small>同期を使っている人は、いつもの Google か GitHub のアカウントで</small></span><span class="msr" aria-hidden="true">chevron_right</span></a></li>
+        <li><a class="item m3-state" href="/toolbox/install/"><span class="avatar avatar--site"><span class="msr">install_mobile</span></span><span class="item-text"><b>アプリを入れ直す</b><small>ホーム画面やパソコンに入れている人は、sk-hub.jp で入れ直して、古いアイコンは消す</small></span><span class="msr" aria-hidden="true">chevron_right</span></a></li>
         <li class="item"><span class="avatar avatar--site"><span class="msr">bookmark_add</span></span><span class="item-text"><b>ブックマークを新しく</b><small>sk-hub.jp のアドレスで登録し直す</small></span></li>
       </ul>
+      <p class="note"><span class="msr" aria-hidden="true">tab_close</span><span>古いアドレス（sy9-k.github.io）のタブは、閉じてかまいません。古いアドレスのデータは、そのまま残っています。</span></p>
     </div>
     <div class="bottom">
-      <a class="m3-btn m3-state" href="https://sk-hub.jp/"><span class="msr">open_in_new</span>sk-hub.jp を開く</a>
+      <a class="m3-btn m3-state" href="/"><span class="msr">home</span>sk-hub.jp を使いはじめる</a>
     </div>
   </section>
-
-  <!-- 2b. アカウントで -->
-  <section class="screen" data-screen="account" aria-labelledby="account-h">
+  <!-- 6. 受け取れなかった -->
+  <section class="screen" data-screen="error" aria-labelledby="error-h">
     <div class="head">
-      <div class="hero" aria-hidden="true"><span class="msr">cloud_sync</span></div>
-      <h1 id="account-h">SK Hub Systems アカウントで移す</h1>
-      <p class="sub">同期しているデータは、アカウントに保存されています。sk-hub.jp でログインすると、そのまま戻ります。</p>
+      <div class="hero hero--err" aria-hidden="true"><span class="msr">error</span></div>
+      <h1 id="error-h">受け取れませんでした</h1>
+      <p class="sub" id="error-sub">データを書き込めませんでした。</p>
     </div>
     <div class="body">
-      <p class="list-h">ログインすると戻るもの</p>
-      <ul class="list">
-        <li class="item"><span class="avatar avatar--toolbox"><span class="msr">home_repair_service</span></span><span class="item-text"><b>SK's Toolbox</b><small>オンライン同期をオンにしている人だけ。パスフレーズが必要です</small></span></li>
-        <li class="item"><span class="avatar avatar--nagi"><span class="msr">timer</span></span><span class="item-text"><b>Nagi</b><small>集中の記録</small></span></li>
-        <li class="item"><span class="avatar avatar--malu"><span class="msr">menu_book</span></span><span class="item-text"><b>MALU</b><small>単語帳・検索の履歴</small></span></li>
-        <li class="item"><span class="avatar avatar--site"><span class="msr">tune</span></span><span class="item-text"><b>サイトの設定</b><small>表示・言語など</small></span></li>
-      </ul>
-      <p class="list-h list-h--gap">やること</p>
-      <ol class="steps">
-        <li><b>sk-hub.jp でログイン</b><small>この端末で使っていた、いつもの Google か GitHub のアカウントで</small></li>
-        <li><b>同期を待つ</b><small>少しすると、データが戻ります。SK's Toolbox は、設定の「オンライン同期」でパスフレーズを入力します</small></li>
-      </ol>
-      <div class="callout"><span class="msr" aria-hidden="true">info</span><span>同期していなかったデータは、アカウントには入っていません。その分は「この端末から移す」で移してください。</span></div>
+      <div class="callout"><span class="msr" aria-hidden="true">info</span><span>古いアドレスのデータは消えていません。もう一度、古いアドレスのページから移してください。</span></div>
     </div>
     <div class="bottom">
-      <button class="text-btn m3-state" type="button" data-go="device">端末から移す</button>
-      <a class="m3-btn m3-state" href="https://sk-hub.jp/account/"><span class="msr">login</span>sk-hub.jp でログイン</a>
+      <a class="m3-btn m3-state" href="https://sy9-k.github.io/move/" id="to-old-2"><span class="msr">open_in_new</span>古いアドレスでやり直す</a>
     </div>
   </section>
 </div>
-
 <div class="snackbar" id="snack" role="status"><span id="snack-text"></span></div>
-
 <!-- 先に訳す（訳すと文の中の要素が作り直されるので、動きのスクリプトより前） -->
 <script>window.SKI18N && SKI18N.translatePage();</script>
 <script src="/toolbox/shared/m3.js"></script>
+<script src="/assets/move-data.js"></script>
 <script src="/move/move.js"></script>
 </body>
 </html>

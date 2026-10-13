@@ -20,6 +20,7 @@
 .head .hero { display: grid; place-items: center; width: 56px; height: 56px; border-radius: 16px; background: var(--md-primary-container); color: var(--md-on-primary-container); }
 .head .hero .msr { font-size: 32px; }
 .head .hero--ok { background: color-mix(in srgb, var(--ok) 18%, var(--md-surface)); color: var(--ok); }
+.head .hero--err { background: var(--md-error-container); color: var(--md-on-error-container); }
 .head h1 { margin: 20px 0 0; font-size: 32px; line-height: 40px; font-weight: 500; word-break: auto-phrase; }
 .sub { margin: 12px 0 0; color: var(--md-on-surface-variant); }
 .body { flex: 1; padding: 24px 0; }
@@ -69,7 +70,20 @@ label.item { cursor: pointer; }
 .item.is-busy .status .spin { display: block; }
 .item.is-busy .status .wait, .item.is-done .status .wait { display: none; }
 .item.is-done .status .msr { display: inline-block; }
+/* 向こうにデータがあって、置きかえなかった */
+.item.is-skip .status .wait { display: inline; }
+/* この端末にデータがないアプリ（選べない） */
+.item.is-empty { opacity: .55; }
+.item.is-empty .check { cursor: default; }
 @keyframes mv-spin { to { rotate: 360deg; } }
+/* 届くのを待っているあいだ（どれだけかかるか分からないので、行ったり来たり） */
+.linear--wait i { width: 35%; animation: mv-wait 1.3s var(--md-emphasized) infinite; }
+@keyframes mv-wait { from { translate: -100% 0; } to { translate: 290% 0; } }
+@media (prefers-reduced-motion: reduce) { .linear--wait i { animation-duration: 3s; } }
+/* 移したあとの画面: アプリを開く行 */
+a.item { color: inherit; text-decoration: none; }
+a.item > .msr:last-child { color: var(--md-on-surface-variant); }
+label.text-btn { cursor: pointer; }
 
 /* 手順 */
 .steps { list-style: none; margin: 0; padding: 0 0 0 4px; counter-reset: s; }

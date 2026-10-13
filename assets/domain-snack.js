@@ -61,8 +61,9 @@
       text.appendChild(document.createTextNode(part));
     });
     var more = document.createElement("a");
-    more.href = "/domain/";
-    more.textContent = t("詳しく");
+    // 古いアドレスのデータを移すページへ
+    more.href = "/move/";
+    more.textContent = t("データを移す");
     var close = document.createElement("button");
     close.type = "button";
     close.setAttribute("aria-label", t("閉じる"));
