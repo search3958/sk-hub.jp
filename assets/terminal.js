@@ -17,7 +17,7 @@
   // open / cd で移動できるページ（ls で一覧）
   var PAGES = {
     home: "/", about: "/about/", "y-filter": "/products/y-filter/", malu: "/products/malu/", hub: "/sk-hub-systems/",
-    lab: "/lab/", support: "/support/", updates: "/updates/", status: "/status/", policies: "/policies/",
+    lab: "/lab/", support: "/support/", updates: "/updates/", status: "https://sk-hub.online/", policies: "/policies/",
     contact: "/contact/", account: "/account/", console: "/y-filter/", credits: "/credits/", lang: "/lang/"
   };
   var LOGO = [

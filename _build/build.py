@@ -26,7 +26,6 @@ pages = [
     ("toolbox.html", "toolbox/index.html", "SK's Toolbox", "毎日ちょっと使う、小さなアプリを集めた SK の道具箱。時計とアラームの「Clock」、関数電卓にもなる「Calc」、画像も入るメモ帳「Memo」、リマインダー「Todo」、あと何日を数える「Countdown」、時間割の「Timetable」、回して決める「Roulette」。", False, True),
     ("lab.html", "lab/index.html", "SK's Lab | SK", "SK の実験的なツールを置いている場所。QR Drop やスマートダッシュボードなど。", False, True),
     ("domain.html", "domain/index.html", "sk-hub.jp への引っ越しのお知らせ | SK", "SK のサイトとプロダクトのアドレスが、sy9-k.github.io から sk-hub.jp に変わります。変わること・新しくできるようになること・変わらないこと・切り替えのときにしてほしいこと。", True, True),
-    ("status.html", "status/index.html", "システム稼働状況 | SK", "SK のサイトとプロダクト（MALU・Nagi・SK's Toolbox・SK Share・Y-FILTER.・SK Hub Systems）のシステム稼働状況と、メンテナンス・障害のお知らせ。", True, True),
     ("credits.html", "credits/index.html", "Link & Credit | SK", "SK のサイトとプロダクトで使わせてもらっているもの（RedCheck など）と、つながりのあるサイト。", True, True),
     ("about.html", "about/index.html", "私について | SK", "Y-FILTER. と MALU を開発している SK の自己紹介と、これまでにつくったもの。", False, True),
     ("y-filter.html", "products/y-filter/index.html", "Y-FILTER. | SK", "有害なサイトのブロックや利用時間の管理ができるブラウザ拡張機能「Y-FILTER.」（開発中）。", False, True),
@@ -53,7 +52,6 @@ EXTRA = {
     "account.html": ('  <script type="module" src="/account/account-page.js"></script>\n', None),
     "contact.html": ('  <script src="/contact/contact.js" defer></script>\n', None),
     "support.html": ('  <script src="/support/help.js" defer></script>\n', None),
-    "status.html": ('  <script src="/status/status.js" defer></script>\n', None),
     # 言語の画面。どこから開いたか（戻り先の next・LINE の中・アプリとして開いているか）を、画面が出る前に <html> に付ける
     #   data-lang-from="toolbox|malu|nagi|lab" … 戻り先のアプリ（?from= で指定もできる）
     #     Toolbox のときは、Toolbox の言語の画面（/toolbox/lang/。マテリアルデザイン）に移る
@@ -107,7 +105,7 @@ EXTRA = {
 # t("…") などで訳す文を探すファイル（ページの外でスクリプトが作る文字）
 RUNTIME_SOURCES = [
     "assets/site.js", "assets/maintenance.js", "support/help.js", "support/articles.js", "account/account-page.js",
-    "contact/contact.js", "status/status.js", "frameworks/check.js",
+    "contact/contact.js", "frameworks/check.js",
     "dictionary/script.js", "dictionary/account.js", "assets/hub/sync-loader.js", "assets/analytics.js", "assets/nf-secret.js", "assets/terminal.js",
     "nagi/app.js", "nagi/account.js", "brand/brand.js", "assets/hub/account-button.js",
     "toolbox/clock/clock.js", "toolbox/calc/calc.js", "toolbox/memo/memo.js", "toolbox/todo/todo.js", "toolbox/countdown/countdown.js", "toolbox/clock/clock-tools.js", "toolbox/shared/settings.js", "toolbox/shared/m3.js", "toolbox/shared/remind.js", "toolbox/home.js",

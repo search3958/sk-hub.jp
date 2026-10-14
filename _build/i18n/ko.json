@@ -9,7 +9,6 @@
   "6 つのカテゴリの辞書と翻訳サイト": "6개 카테고리의 사전과 번역 사이트",
   "6 つの辞書カテゴリ": "6개 사전 카테고리",
   "<a href=\"/policies/#sk-terms\" target=\"_blank\" rel=\"noopener\">SK 利用規約</a>・<a href=\"/policies/privacy/\" target=\"_blank\" rel=\"noopener\">SK プライバシーポリシー</a>・<a href=\"/policies/#sk-hub-account\" target=\"_blank\" rel=\"noopener\">SK Hub Systems アカウント規約</a>に同意します": "<a href=\"/policies/#sk-terms\" target=\"_blank\" rel=\"noopener\">SK 이용약관</a>, <a href=\"/policies/privacy/\" target=\"_blank\" rel=\"noopener\">SK 개인정보 처리방침</a>, <a href=\"/policies/#sk-hub-account\" target=\"_blank\" rel=\"noopener\">SK Hub Systems 계정 약관</a>에 동의합니다",
-  "<a href=\"/status/\">システム稼働状況</a>と<a href=\"/support/?type=news\">お知らせ</a>で、障害や変更がないか確認する": "<a href=\"/status/\">시스템 가동 상태</a>와 <a href=\"/support/?type=news\">공지사항</a>에서 장애나 변경이 없는지 확인하기",
   "<em>のぞかない</em>。": "<em>들여다보지는 않습니다</em>.",
   "<em>ひと目で</em>わかる。": "<em>한눈에</em> 알 수 있습니다.",
   "<i class=\"st-down\"></i>停止（接続できない）": "<i class=\"st-down\"></i>중단(연결할 수 없음)",
@@ -2967,5 +2966,7 @@
   "新規登録": "가입",
   "管理コンソールも、MALU も、Nagi も、SK's Toolbox も。いつもの Google・GitHub・LINE・Kakao のアカウントでログインするだけ。パスワードを新しく作る必要はありません。": "관리 콘솔도, MALU도, Nagi도, SK's Toolbox도. 평소 쓰는 Google·GitHub·LINE·Kakao 계정으로 로그인하기만 하면 됩니다. 새 비밀번호는 필요 없습니다.",
   "選んだアカウントでログインしたあと、規約を確認して同意すると、アカウントができます。パスキーは、アカウントを作ったあとに登録できます。": "선택한 계정으로 로그인한 뒤 약관을 확인하고 동의하면 계정이 만들어집니다. 패스키는 계정을 만든 뒤에 등록할 수 있습니다.",
-  "SK Hub のログインのサーバー（api.sk-hub.jp）に接続できませんでした。フィルタリングや広告ブロックのアプリ・設定が止めていないか確かめてください。": "SK Hub 로그인 서버(api.sk-hub.jp)에 연결하지 못했습니다. 필터링이나 광고 차단 앱·설정이 막고 있지 않은지 확인해 주세요."
+  "SK Hub のログインのサーバー（api.sk-hub.jp）に接続できませんでした。フィルタリングや広告ブロックのアプリ・設定が止めていないか確かめてください。": "SK Hub 로그인 서버(api.sk-hub.jp)에 연결하지 못했습니다. 필터링이나 광고 차단 앱·설정이 막고 있지 않은지 확인해 주세요.",
+  "<a href=\"https://sk-hub.online/\">システム稼働状況</a>と<a href=\"/support/?type=news\">お知らせ</a>で、障害や変更がないか確認する": "<a href=\"https://sk-hub.online/\">시스템 가동 상태</a>와 <a href=\"/support/?type=news\">공지사항</a>에서 장애나 변경이 없는지 확인하기",
+  "SK Hub Systems やサイトが動いているかと、過去 90 日の記録を確認できます。": "SK Hub Systems와 사이트가 동작하는지, 그리고 지난 90일의 기록을 확인할 수 있습니다."
 }

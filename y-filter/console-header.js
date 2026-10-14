@@ -40,7 +40,7 @@
           {
             title: "情報と連絡",
             items: [
-              ["システム稼働状況", "/status/"],
+              ["システム稼働状況", "https://sk-hub.online/"],
               ["SK Hub Systems 利用規約", "/policies/#sk-hub-systems"],
               ["お問い合わせ", "/contact/?product=hub"]
             ]
