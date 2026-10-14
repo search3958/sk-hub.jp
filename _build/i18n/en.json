@@ -3136,5 +3136,17 @@
   "{name} で本人を確かめられませんでした。時間をおいて、もう一度お試しください。": "We couldn't verify you with {name}. Please wait a moment and try again.",
   "その {name} アカウントは、ほかの SK Hub Systems アカウントにつながっています。": "That {name} account is already linked to another SK Hub Systems account.",
   "このアカウントには、すでに別の {name} アカウントがつながっています。外してから、もう一度つないでください。": "A different {name} account is already linked to this account. Unlink it first, then link again.",
-  "このアカウントにつながっている {name} アカウントで確認してください。": "Please confirm with the {name} account linked to this account."
+  "このアカウントにつながっている {name} アカウントで確認してください。": "Please confirm with the {name} account linked to this account.",
+  "0F8 でログイン": "Sign in with 0F8",
+  "{n} 個登録しています": "{n} registered",
+  "このアカウントに登録されているパスキーで確認してください。": "Please confirm with a passkey registered to this account.",
+  "このパスキーは、SK Hub Systems アカウントに登録されていません。ほかの方法でログインしてから、パスキーを登録してください。": "This passkey isn't registered to an SK Hub Systems account. Sign in another way first, then register a passkey.",
+  "この端末のパスキーは、もう登録されています。": "A passkey for this device is already registered.",
+  "この端末のパスキーを登録しました。次からパスキーでもログインできます。": "A passkey for this device has been registered. You can now sign in with a passkey too.",
+  "パスキーは 10 個まで登録できます。使っていないものを外してください。": "You can register up to 10 passkeys. Please remove ones you no longer use.",
+  "パスキーを確かめられませんでした。もう一度お試しください。": "We couldn't verify the passkey. Please try again.",
+  "ログインに使うアカウント（Google・GitHub）の識別子・名前・メールアドレス・アイコン、LINE・Kakao の識別子・名前・アイコン、登録したパスキーの公開鍵（ログインに使います。LINE・Kakao からメールアドレスは受け取りません。指紋・顔などの情報は端末から出ません）": "The identifier, name, email address, and icon of the account you sign in with (Google, GitHub), the identifier, name, and icon of your LINE or Kakao account, and the public keys of registered passkeys (used for signing in; we do not receive email addresses from LINE or Kakao, and fingerprint, face, and similar information never leaves your device)",
+  "登録": "Register",
+  "登録しているパスキーを全部外しますか？ 外したあとは、パスキーではログインできなくなります。": "Remove all registered passkeys? After removing them, you won't be able to sign in with a passkey.",
+  "パスキー": "Passkey"
 }

@@ -1,5 +1,5 @@
-// SK Hub Systems アカウント（ログインは Google・GitHub・Microsoft・LINE・Kakao。GitHub は GITHUB_LOGIN、Microsoft は MICROSOFT_LOGIN、
-// LINE は LINE_LOGIN、Kakao は KAKAO_LOGIN が true のときだけ出す）
+// SK Hub Systems アカウント（ログインは Google・GitHub・Microsoft・LINE・Kakao・パスキー。GitHub は GITHUB_LOGIN、Microsoft は MICROSOFT_LOGIN、
+// LINE は LINE_LOGIN、Kakao は KAKAO_LOGIN、パスキーは PASSKEY_LOGIN が true のときだけ出す）
 // sk-hub.jp のページ（管理コンソール・これからのサービス）で共通に使うモジュール。
 //   ・ログイン状態は同じサイトの中で共有される（Firebase Authentication がブラウザに保存する）
 //   ・アカウントの登録 = accounts/{UID} に規約への同意を記録すること。Google の名前・メールアドレスは Firebase Authentication にだけある
@@ -138,6 +138,8 @@ export const MICROSOFT_LOGIN = false;
 // カスタムトークンでログインする（external: true）。チャネル・アプリを登録して Worker を公開してから true にする
 export const LINE_LOGIN = true;
 export const KAKAO_LOGIN = true;
+// パスキーも api.sk-hub.jp で確かめる（公開鍵だけを保存）。ほかの方法でログインしたあと「つなぐ」で登録し、次からパスキーだけで入れる
+export const PASSKEY_LOGIN = true;
 // 手元（http://localhost）で開いたページも本番の Worker を使う（api.sk-hub.jp は localhost から戻ることを許している）。
 // 手元の Worker（sk-api で npm run dev）を試すときだけ、localStorage の skhub_api に "http://localhost:8788" を入れる
 export const API_ORIGIN = (() => {
@@ -152,10 +154,13 @@ export const LOGIN_PROVIDERS = {
   github: { id: "github.com", name: "GitHub", security: "https://github.com/settings/security" },
   microsoft: { id: "microsoft.com", name: "Microsoft", security: "https://account.microsoft.com/security" },
   line: { id: "line", name: "LINE", security: "https://account.line.me/", external: true },
-  kakao: { id: "kakao", name: "Kakao", security: "https://accounts.kakao.com/weblogin/account/info", external: true }
+  kakao: { id: "kakao", name: "Kakao", security: "https://accounts.kakao.com/weblogin/account/info", external: true },
+  passkey: { id: "passkey", name: "パスキー", security: "", external: true, passkey: true }
 };
-const LOGIN_FLAGS = { github: GITHUB_LOGIN, microsoft: MICROSOFT_LOGIN, line: LINE_LOGIN, kakao: KAKAO_LOGIN };
-export const availableLogins = () => Object.keys(LOGIN_PROVIDERS).filter((k) => LOGIN_FLAGS[k] !== false);
+const LOGIN_FLAGS = { github: GITHUB_LOGIN, microsoft: MICROSOFT_LOGIN, line: LINE_LOGIN, kakao: KAKAO_LOGIN, passkey: PASSKEY_LOGIN };
+// パスキーは、ブラウザが対応しているときだけ
+const passkeySupported = () => typeof window !== "undefined" && !!window.PublicKeyCredential && !!navigator.credentials;
+export const availableLogins = () => Object.keys(LOGIN_PROVIDERS).filter((k) => LOGIN_FLAGS[k] !== false && (k !== "passkey" || passkeySupported()));
 const isExternal = (key) => !!LOGIN_PROVIDERS[key]?.external;
 function provider(key = "google") {
   if (key === "github") {
@@ -215,12 +220,83 @@ export async function loadExternalLogins(user) {
   return externalLogins.list;
 }
 
+// 読み込んだ LINE・Kakao・パスキーの一覧（パスキーは { provider: "passkey", count }）
+export function externalLoginsOf(user) {
+  return user && externalLogins.uid === user.uid ? externalLogins.list : [];
+}
+
 // LINE・Kakao の画面に移動する（戻ってくるまで終わらない）
 //   mode: "signin" | "link"（いまのアカウントにつなぐ）| "reauth"（本人の確認）
 async function goExternal(key, mode, returnTo = location.href, user = null) {
   const { url } = await api("/auth/start", { method: "POST", body: { provider: key, mode, returnTo }, user });
   location.assign(url);
   return new Promise(() => {});
+}
+
+// ---------- パスキー（WebAuthn） ----------
+// api.sk-hub.jp がくれたオプション（JSON。バイト列は base64url）を、ブラウザの形にする／ブラウザの結果を JSON にする
+const fromB64url = (s) => Uint8Array.from(atob(s.replace(/-/g, "+").replace(/_/g, "/") + "===".slice((s.length + 3) % 4)), (c) => c.charCodeAt(0)).buffer;
+const toB64url = (buf) => btoa(String.fromCharCode(...new Uint8Array(buf))).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
+const credList = (list) => (list || []).map((c) => ({ ...c, id: fromB64url(c.id) }));
+
+function credentialJSON(cred) {
+  if (typeof cred.toJSON === "function") return cred.toJSON();
+  const r = cred.response, out = { id: cred.id, rawId: toB64url(cred.rawId), type: cred.type, clientExtensionResults: cred.getClientExtensionResults?.() || {}, authenticatorAttachment: cred.authenticatorAttachment || undefined, response: { clientDataJSON: toB64url(r.clientDataJSON) } };
+  if (r.attestationObject) {
+    out.response.attestationObject = toB64url(r.attestationObject);
+    out.response.transports = r.getTransports?.() || [];
+  } else {
+    out.response.authenticatorData = toB64url(r.authenticatorData);
+    out.response.signature = toB64url(r.signature);
+    if (r.userHandle) out.response.userHandle = toB64url(r.userHandle);
+  }
+  return out;
+}
+
+// やめた・この端末にもうある、などを、分かる理由にする
+function passkeyError(err) {
+  if (err?.code) return err;
+  const e = new Error(err?.message || "passkey");
+  e.code = err?.name === "NotAllowedError" || err?.name === "AbortError" ? "sk/cancelled"
+    : err?.name === "InvalidStateError" ? "sk/passkey-exists"
+    : "sk/passkey-failed";
+  return e;
+}
+
+// この端末の呼び名（パスキーを見分けるため。例: Mac・Chrome）
+function deviceLabel() {
+  const ua = navigator.userAgent;
+  const os = /iPhone/.test(ua) ? "iPhone" : /iPad/.test(ua) ? "iPad" : /Android/.test(ua) ? "Android" : /Mac OS X/.test(ua) ? "Mac" : /Windows/.test(ua) ? "Windows" : /CrOS/.test(ua) ? "ChromeOS" : /Linux/.test(ua) ? "Linux" : "";
+  const br = /Edg\//.test(ua) ? "Edge" : /Firefox\//.test(ua) ? "Firefox" : /Chrome\//.test(ua) ? "Chrome" : /Safari\//.test(ua) ? "Safari" : "";
+  return [os, br].filter(Boolean).join("・");
+}
+
+// パスキーで署名して、カスタムトークンをもらう（expectUid … 本人の確認のとき。ほかの人のパスキーなら断られる）
+async function passkeyToken(expectUid) {
+  const { ticket, options } = await api("/passkey/login/options", { method: "POST" });
+  let cred;
+  try {
+    cred = await navigator.credentials.get({ publicKey: { ...options, challenge: fromB64url(options.challenge), allowCredentials: credList(options.allowCredentials) } });
+  } catch (err) {
+    throw passkeyError(err);
+  }
+  const { token } = await api("/passkey/login/verify", { method: "POST", body: { ticket, response: credentialJSON(cred), expectUid } });
+  return token;
+}
+
+// いまのアカウントに、この端末のパスキーを足す
+async function registerPasskey(user) {
+  const { ticket, options } = await api("/passkey/register/options", { method: "POST", user, body: { userName: user.email || user.displayName || "", displayName: user.displayName || "" } });
+  let cred;
+  try {
+    cred = await navigator.credentials.create({
+      publicKey: { ...options, challenge: fromB64url(options.challenge), user: { ...options.user, id: fromB64url(options.user.id) }, excludeCredentials: credList(options.excludeCredentials) }
+    });
+  } catch (err) {
+    throw passkeyError(err);
+  }
+  await api("/passkey/register/verify", { method: "POST", user, body: { ticket, response: credentialJSON(cred), name: deviceLabel() } });
+  await loadExternalLogins(user);
 }
 
 // 戻ってきたとき（#sk-auth=… / #sk-auth-error=…）。結果は { mode, provider, isNew } か { error }、戻ってきたのでなければ null
@@ -258,6 +334,7 @@ export function currentUser() {
 }
 
 export async function signIn(key = "google") {
+  if (key === "passkey") return signInWithCustomToken(auth, await passkeyToken());
   if (isExternal(key)) return goExternal(key, "signin");
   try {
     return await signInWithPopup(auth, provider(key));
@@ -285,7 +362,9 @@ export async function signInAndLinkPending(existingKey) {
 }
 // ログインの方法を足す・外す（アカウントのページの「サインインとセキュリティ」）。最後の 1 つは外せない
 //   LINE・Kakao をつなぐときは、LINE・Kakao の画面に移動する（戻ってきたら externalResult が { mode: "link" }）
+//   パスキーは、この端末で作って登録する（ページは移動しない）
 export function linkLogin(user, key) {
+  if (key === "passkey") return registerPasskey(user);
   if (isExternal(key)) return goExternal(key, "link", location.href, user);
   return linkWithPopup(user, provider(key));
 }
@@ -309,7 +388,7 @@ export function signOutAccount() {
 }
 
 // 大事な操作（アカウントの削除）の前に、もう一度確認する（つないでいる方法で。Google があれば Google）
-//   LINE・Kakao だけの人は、LINE・Kakao の画面に移動して確認する（returnTo に戻ってくる。戻ったあとの 4 分間は確認済みとして扱う）
+//   LINE・Kakao・パスキーだけの人は、パスキー（その場で）か LINE・Kakao の画面に移動して確認する（returnTo に戻ってくる。戻ったあとの 4 分間は確認済みとして扱う）
 const RECENT_LOGIN_MS = 4 * 60 * 1000;
 export async function confirmIdentity(user, returnTo = location.href) {
   if (externalLogins.uid !== user.uid) await loadExternalLogins(user);
@@ -319,6 +398,8 @@ export async function confirmIdentity(user, returnTo = location.href) {
   const { authTime } = await user.getIdTokenResult();
   if (Date.now() - new Date(authTime).getTime() < RECENT_LOGIN_MS) return;
   if (!logins.length) { const e = new Error("signed-out"); e.code = "sk/signed-out"; throw e; }
+  // パスキーがあれば、ページを移動せずにその場で確かめる（同じアカウントでログインし直す）
+  if (logins.includes("passkey")) return signInWithCustomToken(auth, await passkeyToken(user.uid));
   return goExternal(logins[0], "reauth", returnTo, user);
 }
 export const confirmWithGoogle = confirmIdentity; // 前の名前（互換）

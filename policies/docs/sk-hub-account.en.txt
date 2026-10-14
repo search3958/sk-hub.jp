@@ -8,13 +8,13 @@ Article 1 Purpose and Scope
 
 Article 2 About the Account
 1. The Account lets users use services provided by the Developer with a single account.
-2. A Google account, a GitHub account, a LINE account, or a Kakao account ("Sign-in Account") is used to sign in to the Account. Users may connect more than one Sign-in Account to a single Account. The Developer does not issue or store passwords.
+2. A Google account, a GitHub account, a LINE account, or a Kakao account ("Sign-in Account") is used to sign in to the Account. Users may connect more than one Sign-in Account to a single Account. After signing in with a Sign-in Account, users may also register a passkey and sign in with it. The Developer does not issue or store passwords.
 3. The Account is created when the user signs in with a Sign-in Account at https://sk-hub.jp/account/, agrees to these Terms, the SK Terms of Service, and the SK Privacy Policy, and chooses "Create account."
 4. The services available with the Account are shown at https://sk-hub.jp/account/. Services may be added, changed, or ended.
 
 Article 3 Information Handled
 1. The following information is handled for the Account:
-(a) Sign-in information: the Sign-in Account identifier (UID), name, email address, profile picture URL, and sign-in date and time (managed by Firebase Authentication). For LINE and Kakao accounts, the Developer receives the identifier, name, and profile picture URL (but not the email address), and stores the link between the identifier and the Account, the name, the date and time it was linked, and the date and time of the last sign-in
+(a) Sign-in information: the Sign-in Account identifier (UID), name, email address, profile picture URL, and sign-in date and time (managed by Firebase Authentication). For LINE and Kakao accounts, the Developer receives the identifier, name, and profile picture URL (but not the email address), and stores the link between the identifier and the Account, the name, the date and time it was linked, and the date and time of the last sign-in. If a passkey is registered, the Developer stores the passkey identifier, public key, use count, a device label (e.g., Mac・Chrome), and the dates and times it was registered and last used (private keys and biometric information such as fingerprints or faces never leave the device and are not obtained)
 (b) Account information: the account creation date, the version of these Terms agreed to, the date and time of agreement, and the services connected and when they were connected
 (c) Profile information: the display name, icon type (Sign-in Account picture or initial), and color, if set by the user
 (d) Synced settings: the display language, MALU settings, and QR Drop settings (so the same settings can be used across devices signed in to the Account; search history and transferred files are not included)
@@ -31,7 +31,7 @@ Article 3 Information Handled
 6. This information is used only to provide the Account and each service, verify identity, respond to inquiries, and respond to abuse. It is never used for advertising, sale, provision to third parties, or behavior analysis.
 
 Article 4 Storage Location and Management
-1. The information in the preceding Article is stored in Firebase (Firebase Authentication and Cloud Firestore) by Google LLC, operated by the Developer. Cloud Firestore data is stored in the Tokyo region. Sign-in information is managed on Google's infrastructure and may be processed outside Japan. The link between LINE or Kakao accounts and the Account (Article 3, Paragraph 1 (a)) is stored in Cloudflare Workers and D1 (Asia-Pacific region) by Cloudflare, Inc., operated by the Developer, and may be processed outside Japan.
+1. The information in the preceding Article is stored in Firebase (Firebase Authentication and Cloud Firestore) by Google LLC, operated by the Developer. Cloud Firestore data is stored in the Tokyo region. Sign-in information is managed on Google's infrastructure and may be processed outside Japan. The link between LINE or Kakao accounts and the Account, and passkey information (Article 3, Paragraph 1 (a)), are stored in Cloudflare Workers and D1 (Asia-Pacific region) by Cloudflare, Inc., operated by the Developer, and may be processed outside Japan.
 2. All communications are encrypted with HTTPS.
 3. Only the account holder can read and change the account information. However, the notices in Article 3, Paragraph 1 (e) are sent to the Account by the Developer, and the Developer may check the information in the next paragraph.
 4. To respond to inquiries, outages, abuse, and requests based on law, the Developer may check the following information of the Account on the Developer's admin console. Each check is recorded in the admin console's activity log for one year.
@@ -90,4 +90,4 @@ Supplementary Provisions
 8. On October 9, 2026, Article 3 was revised to add joining SK's Toolbox timetable sharing with an invite code.
 9. On October 11, 2026, Articles 2, 3, 6, 7, and 8 were revised to add signing in with a GitHub account.
 10. On October 13, 2026, Articles 3 and 4 were revised to add usage records and the information the Developer checks on the admin console.
-11. On October 14, 2026, Articles 2, 3, 4, and 8 were revised to add signing in with LINE and Kakao accounts.
+11. On October 14, 2026, Articles 2, 3, 4, and 8 were revised to add signing in with LINE accounts, Kakao accounts, and passkeys.

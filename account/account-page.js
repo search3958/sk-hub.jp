@@ -3,7 +3,7 @@
 // サービスのページから ?next=/y-filter/ のように来たときは、使えるようになったら戻す。
 import {
   LOGIN_PROVIDERS, PROFILE_COLORS, PROFILE_NAME_MAX, SERVICES, SYNC_AT_KEY, agreeLatestTerms, availableLogins, confirmIdentity,
-  connectService, disconnectService, externalResult, isConnected, db, deleteLogin, linkLogin, loadExternalLogins, loginsOf, markNoticesSeen,
+  connectService, disconnectService, externalLoginsOf, externalResult, isConnected, db, deleteLogin, linkLogin, loadExternalLogins, loginsOf, markNoticesSeen,
   profileOf, register, rememberAccount,
   safeNext, saveLanguage, saveProfile, signIn, signInAndLinkPending, signOutAccount, syncSettings, unlinkLogin, watchAccount
 } from "/assets/hub/account.js";
@@ -38,6 +38,12 @@ const errText = (err) => {
   if (code === "sk/last-login") return t("ログインの方法は、少なくとも 1 つ残す必要があります。");
   if (code === "sk/signed-out") return t("ログインが切れました。ページを開き直してから、もう一度お試しください。");
   if (code === "sk/unknown-provider") return t("このログインの方法は、まだ使えません。");
+  if (code === "sk/cancelled") return t("ログインをやめました。");
+  if (code === "sk/passkey-exists") return t("この端末のパスキーは、もう登録されています。");
+  if (code === "sk/unknown-passkey") return t("このパスキーは、SK Hub Systems アカウントに登録されていません。ほかの方法でログインしてから、パスキーを登録してください。");
+  if (code === "sk/too-many") return t("パスキーは 10 個まで登録できます。使っていないものを外してください。");
+  if (code === "sk/mismatch") return t("このアカウントに登録されているパスキーで確認してください。");
+  if (code === "sk/passkey-failed" || code === "sk/failed") return t("パスキーを確かめられませんでした。もう一度お試しください。");
   if (code === "TypeError" || err instanceof TypeError) return t("通信できませんでした。インターネットの接続を確認してください。");
   return t("うまくいきませんでした（{code}）", { code: code || err?.message || err });
 };
@@ -265,10 +271,12 @@ function renderLogins(user) {
     const name = document.createElement("strong");
     name.textContent = info.name;
     const state = document.createElement("small");
-    state.textContent = on ? t("つながっています") : t("つないでいません");
+    // パスキーは、いくつ登録しているか
+    const passkeys = key === "passkey" ? (externalLoginsOf(user).find((l) => l.provider === "passkey")?.count || 0) : 0;
+    state.textContent = key === "passkey" && on ? t("{n} 個登録しています", { n: passkeys }) : on ? t("つながっています") : t("つないでいません");
     text.append(name, state);
     row.append(logo, text);
-    if (on) {
+    if (on && info.security) {
       const sec = document.createElement("a");
       sec.className = "acct-login-link";
       sec.href = info.security;
@@ -277,22 +285,32 @@ function renderLogins(user) {
       sec.textContent = t("セキュリティ");
       row.appendChild(sec);
     }
+    // パスキーは、登録したあとも別の端末の分を足せる
+    if (key === "passkey" && on) row.appendChild(loginButton(t("追加"), "", async () => {
+      await linkLogin(current.user, key);
+      renderLogins(current.user);
+      message(t("この端末のパスキーを登録しました。次からパスキーでもログインできます。"));
+    }));
     const btn = document.createElement("button");
     btn.type = "button";
     btn.className = "acct-login-btn" + (on ? " is-unlink" : "");
-    btn.textContent = on ? t("外す") : t("つなぐ");
+    btn.textContent = on ? t("外す") : key === "passkey" ? t("登録") : t("つなぐ");
     btn.disabled = on && linked.length <= 1;
     if (btn.disabled) btn.title = t("ログインの方法は、少なくとも 1 つ残す必要があります。");
     btn.addEventListener("click", async () => {
       if (busy) return;
-      if (on && !confirm(t("{name} でのログインを外しますか？ 外したあとは、{name} ではログインできなくなります。", { name: info.name }))) return;
+      if (on && !confirm(key === "passkey"
+        ? t("登録しているパスキーを全部外しますか？ 外したあとは、パスキーではログインできなくなります。")
+        : t("{name} でのログインを外しますか？ 外したあとは、{name} ではログインできなくなります。", { name: info.name }))) return;
       setBusy(true, btn);
       try {
         if (on) await unlinkLogin(current.user, key);
         else await linkLogin(current.user, key);
         await current.user.reload();
         renderLogins(current.user);
-        message(on ? t("{name} を外しました", { name: info.name }) : t("{name} をつなぎました。次から {name} でもログインできます。", { name: info.name }));
+        message(on ? t("{name} を外しました", { name: info.name })
+          : key === "passkey" ? t("この端末のパスキーを登録しました。次からパスキーでもログインできます。")
+          : t("{name} をつなぎました。次から {name} でもログインできます。", { name: info.name }));
       } catch (err) {
         message(errText(err));
       } finally {
@@ -302,6 +320,26 @@ function renderLogins(user) {
     row.appendChild(btn);
     return row;
   }));
+}
+
+// 「サインインとセキュリティ」の小さなボタン（パスキーの「追加」）
+function loginButton(label, extraClass, action) {
+  const b = document.createElement("button");
+  b.type = "button";
+  b.className = "acct-login-btn" + (extraClass ? " " + extraClass : "");
+  b.textContent = label;
+  b.addEventListener("click", async () => {
+    if (busy) return;
+    setBusy(true, b);
+    try {
+      await action();
+    } catch (err) {
+      message(errText(err));
+    } finally {
+      setBusy(false, b);
+    }
+  });
+  return b;
 }
 
 // ---------- プロフィール ----------
@@ -819,7 +857,8 @@ const logins = availableLogins();
 root.querySelectorAll("[data-acct-signin]").forEach((btn) => { btn.hidden = !logins.includes(btn.dataset.acctSignin || "google"); });
 // 説明の文も、使える方法に合わせる（例:「Google か GitHub」）
 {
-  const names = logins.map((k) => LOGIN_PROVIDERS[k].name);
+  // パスキーは「〜のアカウント」ではないので、説明の文には入れない
+  const names = logins.filter((k) => k !== "passkey").map((k) => LOGIN_PROVIDERS[k].name);
   if (names.length === 1) {
     $("[data-acct-signin-lead]").textContent = t("SK のサービスを、ひとつの Google アカウントで。パスワードを新しく作る必要はありません。");
     $("[data-acct-signin-note]").textContent = t("SK Hub Systems アカウントのログインは、Google アカウントだけに対応しています。はじめての方も、このボタンからアカウントを作成できます。");
