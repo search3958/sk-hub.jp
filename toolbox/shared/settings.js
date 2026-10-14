@@ -781,17 +781,6 @@
 
     // ---- 全般 ----
     var general = page("general", "tune", t("全般"), null, t("言語・ホームの最初の画面"), "#3b82f6");
-    // お知らせ: 新しいアドレス sk-hub.jp（/domain/。LINE の中では出さない。アプリを開いたときの 1 回だけの知らせは /assets/domain-snack.js）
-    if (!IN_LINE) {
-      var news = section(t("お知らせ"));
-      var newsRow = el("a", "tbs-item tbs-item--link tbs-item--news m3-state");
-      newsRow.href = "/domain/";
-      newsRow.appendChild(icon("campaign"));
-      newsRow.appendChild(label(t("SK の新しいアドレスは sk-hub.jp です"), t("ブックマークやホーム画面のアイコンは、このアドレスで登録し直してください。")));
-      newsRow.appendChild(icon("chevron_right"));
-      news.appendChild(newsRow);
-      general.appendChild(news);
-    }
     var basic = section(t("基本"));
     var langName = "";
     if (I18N) I18N.LANGS.forEach(function (l) { if (l.code === I18N.lang) langName = l.name; });
@@ -917,7 +906,7 @@
     }
 
     // ---- データ ----
-    var dataPage = page("data", "storage", t("データ"), null, t("アプリごとのデータ・バックアップ・引っ越し"), "#22a06b");
+    var dataPage = page("data", "storage", t("データ"), null, t("アプリごとのデータ・バックアップ"), "#22a06b");
     var data = section(t("この端末のデータ"));
     var dataNote = el("p", "tbs-text");
     data.appendChild(dataNote);
@@ -958,17 +947,6 @@
     var appsData = section(t("アプリごとのデータ"));
     APPS.forEach(function (a) { appsData.appendChild(dataRow(a)); });
     dataPage.appendChild(appsData);
-    // 新しいアドレス（sk-hub.jp）への引っ越し。まだ使えない（形だけ。切り替えのときに中身を作る。/domain/）
-    var move = section(t("引っ越し"));
-    var moveRow = el("div", "tbs-item");
-    moveRow.appendChild(icon("local_shipping"));
-    moveRow.appendChild(label(t("新しいアドレスへの引っ越し"), t("sk-hub.jp に切り替えたときに、この端末のデータをそのまま新しいアドレスへ移します。切り替えの準備ができたら使えるようになります。")));
-    var moveBtn = el("button", "m3-btn m3-btn--tonal m3-state", t("準備中"));
-    moveBtn.type = "button";
-    moveBtn.disabled = true;
-    moveRow.appendChild(moveBtn);
-    move.appendChild(moveRow);
-    dataPage.appendChild(move);
     // まとめてバックアップ（Clock・Calc・Memo（画像も）・Todo・Countdown・Timetable・Roulette・この設定）
     var backup = section(t("バックアップ"));
     var backupRow = el("div", "tbs-item tbs-item--backup");

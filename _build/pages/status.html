@@ -31,15 +31,41 @@
         <div class="status-group">
           <h2>サイト</h2>
           <div class="status-list">
-            <div class="status-row" data-check="site">
-              <div class="status-name"><strong>ウェブサイト</strong><small>sk-hub.jp（GitHub Pages）</small></div>
+            <div class="status-row" data-check="site" data-service="site">
+              <div class="status-name"><strong>ウェブサイト</strong><small>sk-hub.jp（GitHub Pages・Cloudflare）</small></div>
               <span class="status-ms" data-ms></span><span class="status-pill" data-pill>確認中</span>
             </div>
-            <div class="status-row" data-check="malu">
+            <div class="status-row" data-check="old">
+              <div class="status-name"><strong>古いアドレス</strong><small>sy9-k.github.io（データの引っ越し専用）</small></div>
+              <span class="status-ms" data-ms></span><span class="status-pill" data-pill>確認中</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="status-group">
+          <h2>アプリ</h2>
+          <div class="status-list">
+            <div class="status-row" data-check="malu" data-service="malu">
               <div class="status-name"><strong>MALU</strong><small>辞書検索アプリ</small></div>
               <span class="status-ms" data-ms></span><span class="status-pill" data-pill>確認中</span>
             </div>
-            <div class="status-row" data-check="console">
+            <div class="status-row" data-check="nagi" data-service="nagi">
+              <div class="status-name"><strong>Nagi</strong><small>集中タイマー</small></div>
+              <span class="status-ms" data-ms></span><span class="status-pill" data-pill>確認中</span>
+            </div>
+            <div class="status-row" data-check="toolbox" data-service="toolbox">
+              <div class="status-name"><strong>SK's Toolbox</strong><small>Clock・Calc・Memo・Todo・時間割など</small></div>
+              <span class="status-ms" data-ms></span><span class="status-pill" data-pill>確認中</span>
+            </div>
+            <div class="status-row" data-check="lab" data-service="lab">
+              <div class="status-name"><strong>SK's Lab</strong><small>QR Drop・スマートダッシュボード</small></div>
+              <span class="status-ms" data-ms></span><span class="status-pill" data-pill>確認中</span>
+            </div>
+            <div class="status-row" data-check="view" data-service="view">
+              <div class="status-name"><strong>SK Share</strong><small>パスワードで見る動画・文書</small></div>
+              <span class="status-ms" data-ms></span><span class="status-pill" data-pill>確認中</span>
+            </div>
+            <div class="status-row" data-check="console" data-service="y-filter">
               <div class="status-name"><strong>管理コンソール</strong><small>Y-FILTER. の遠隔管理（Web）</small></div>
               <span class="status-ms" data-ms></span><span class="status-pill" data-pill>確認中</span>
             </div>
@@ -58,11 +84,15 @@
               <span class="status-ms" data-ms></span><span class="status-pill" data-pill>確認中</span>
             </div>
             <div class="status-row" data-check="accesscheck">
-              <div class="status-name"><strong>アクセスチェック</strong><small>サイト・MALU・管理コンソールの利用規約の同意とアクセス制限</small></div>
+              <div class="status-name"><strong>アクセスチェック</strong><small>サイトと各アプリの利用規約の同意とアクセス制限</small></div>
               <span class="status-ms" data-ms></span><span class="status-pill" data-pill>確認中</span>
             </div>
-            <div class="status-row" data-check="login">
-              <div class="status-name"><strong>アカウントのログイン</strong><small>SK Hub Systems アカウント（Google ログイン・Firebase Authentication）</small></div>
+            <div class="status-row" data-check="login" data-service="account">
+              <div class="status-name"><strong>アカウントのログイン</strong><small>SK Hub Systems アカウント（Google・GitHub ログイン・Firebase Authentication）</small></div>
+              <span class="status-ms" data-ms></span><span class="status-pill" data-pill>確認中</span>
+            </div>
+            <div class="status-row" data-check="articles">
+              <div class="status-name"><strong>お知らせ・サポート記事の配信</strong><small data-note>サポートページのお知らせと記事</small></div>
               <span class="status-ms" data-ms></span><span class="status-pill" data-pill>確認中</span>
             </div>
             <div class="status-row" data-check="contact">
@@ -75,6 +105,10 @@
         <div class="status-group">
           <h2>外部サービス</h2>
           <div class="status-list">
+            <div class="status-row" data-check="line">
+              <div class="status-name"><strong>LINE ミニアプリ</strong><small>LINE の中で使う SK's Toolbox（LIFF）</small></div>
+              <span class="status-ms" data-ms></span><span class="status-pill" data-pill>確認中</span>
+            </div>
             <div class="status-row" data-check="newtab">
               <div class="status-name"><strong>Newtab（Search3958）</strong><small>Newtab in Y-FILTER. で表示する新しいタブページ</small></div>
               <span class="status-ms" data-ms></span><span class="status-pill" data-pill>確認中</span>
@@ -87,7 +121,8 @@
         <div class="status-legend" aria-label="表示の意味">
           <span><i class="st-ok"></i>正常</span>
           <span><i class="st-slow"></i>遅延（応答に時間がかかっている）</span>
-          <span><i class="st-down"></i>停止（接続できない）</span>
+          <span><i class="st-down"></i>停止（接続できない）・障害</span>
+          <span><i class="st-maint"></i>メンテナンス中</span>
           <span><i class="st-setup"></i>準備中</span>
         </div>
       </div>
