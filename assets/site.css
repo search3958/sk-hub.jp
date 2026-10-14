@@ -770,6 +770,12 @@ img.yf-tile.yf-tile {
 .acct-google:disabled { opacity: .6; cursor: progress; transform: none; }
 .acct-google svg { width: 22px; height: 22px; }
 .acct-microsoft svg, .acct-github svg { width: 20px; height: 20px; }
+/* LINE・Kakao は、それぞれのログインボタンのきまり（LINE: 緑に白い文字、Kakao: 黄色に黒い文字）に合わせる */
+.acct-google.acct-line { background: #06c755; color: #fff; box-shadow: none; }
+.acct-google.acct-line:hover { background: #05b34c; box-shadow: 0 14px 30px rgba(6, 199, 85, .25); }
+.acct-google.acct-kakao { background: #fee500; color: rgba(0, 0, 0, .85); box-shadow: none; }
+.acct-google.acct-kakao:hover { box-shadow: 0 14px 30px rgba(254, 229, 0, .35); }
+.acct-google.acct-0f8 svg text { font-family: system-ui, sans-serif; }
 .acct-link-box .acct-signins { margin-top: 10px; }
 .acct-signins { display: flex; flex-direction: column; align-items: center; gap: 12px; }
 .acct-center .acct-signins .acct-google { margin-top: 0; min-width: 260px; justify-content: center; }
@@ -790,12 +796,17 @@ img.yf-tile.yf-tile {
 .acct-login-logo--github { width: 26px; height: 26px; margin: 1px; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='%23181717' d='M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z'/%3E%3C/svg%3E"); }
 :root[data-theme="dark"] .acct-login-logo--github { filter: invert(1); }
 .acct-login-logo--microsoft { width: 24px; height: 24px; margin: 2px; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 23 23'%3E%3Cpath fill='%23f25022' d='M1 1h10v10H1z'/%3E%3Cpath fill='%237fba00' d='M12 1h10v10H12z'/%3E%3Cpath fill='%2300a4ef' d='M1 12h10v10H1z'/%3E%3Cpath fill='%23ffb900' d='M12 12h10v10H12z'/%3E%3C/svg%3E"); }
+.acct-login-logo--line { background-image: url("data:image/svg+xml,%3Csvg viewBox=%220 0 24 24%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Crect width=%2224%22 height=%2224%22 rx=%225.5%22 fill=%22%2306c755%22/%3E%3Cpath fill=%22%23fff%22 d=%22M12 4.6c-4.4 0-8 2.9-8 6.5 0 3.2 2.9 5.9 6.7 6.4.3.1.6.2.7.4.1.2.1.5 0 .7l-.1.7c0 .2-.2.8.7.4.9-.4 4.8-2.8 6.5-4.8 1.2-1.3 1.5-2.6 1.5-3.8 0-3.6-3.6-6.5-8-6.5z%22/%3E%3Cpath fill=%22%2306c755%22 d=%22M7.3 9.3h-.6c-.1 0-.2.1-.2.2v3.5c0 .1.1.2.2.2h2.2c.1 0 .2-.1.2-.2v-.5c0-.1-.1-.2-.2-.2H7.5V9.5c0-.1-.1-.2-.2-.2zm2.6 0h-.5c-.1 0-.2.1-.2.2v3.5c0 .1.1.2.2.2h.5c.1 0 .2-.1.2-.2V9.5c0-.1-.1-.2-.2-.2zm3.8 0h-.5c-.1 0-.2.1-.2.2v2l-1.6-2.1-.1-.1h-.6c-.1 0-.2.1-.2.2v3.5c0 .1.1.2.2.2h.5c.1 0 .2-.1.2-.2v-2l1.6 2.1.1.1h.6c.1 0 .2-.1.2-.2V9.5c0-.1-.1-.2-.2-.2zm3.3.7v-.5c0-.1-.1-.2-.2-.2h-2.2c-.1 0-.2.1-.2.2v3.5c0 .1.1.2.2.2h2.2c.1 0 .2-.1.2-.2v-.5c0-.1-.1-.2-.2-.2h-1.5v-.6h1.5c.1 0 .2-.1.2-.2v-.5c0-.1-.1-.2-.2-.2h-1.5v-.6h1.5c.1 0 .2-.1.2-.2z%22/%3E%3C/svg%3E"); }
+.acct-login-logo--kakao { background-image: url("data:image/svg+xml,%3Csvg viewBox=%220 0 24 24%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Crect width=%2224%22 height=%2224%22 rx=%225.5%22 fill=%22%23fee500%22/%3E%3Cpath fill=%22%23191919%22 d=%22M12 5.2c-4.3 0-7.8 2.7-7.8 6.1 0 2.2 1.5 4.1 3.7 5.2l-.9 3.3c-.1.3.3.5.5.3l3.9-2.6c.2 0 .4.1.6.1 4.3 0 7.8-2.7 7.8-6.1S16.3 5.2 12 5.2z%22/%3E%3C/svg%3E"); }
+.acct-login-logo--passkey { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%232563eb' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='9' cy='7' r='4'/%3E%3Cpath d='M2 21v-1a6 6 0 0 1 9.5-4.9'/%3E%3Ccircle cx='18' cy='13' r='2.5'/%3E%3Cpath d='M18 15.5V21m0-2h2m-2-1.5h1.5'/%3E%3C/svg%3E"); }
 .acct-login-text { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
 .acct-login-text small { font-size: 12.5px; opacity: .7; }
 .acct-login-link { font-size: 13px; }
 .acct-login-btn { min-height: 36px; padding: 0 16px; border: 0; border-radius: 999px; background: var(--ink); color: var(--surface); font: inherit; font-size: 13.5px; font-weight: 700; cursor: pointer; }
 .acct-login-btn.is-unlink { background: none; color: inherit; box-shadow: inset 0 0 0 1px var(--line); }
 .acct-login-btn:disabled { opacity: .45; cursor: not-allowed; }
+.acct-reauthed { padding: 10px 14px; border-radius: 12px; background: rgba(22, 163, 74, .12); color: #15803d; font-weight: 600; }
+.acct-reauthed[hidden] { display: none; }
 
 /* ページの見出しの帯（ログイン後。ヘッダーの下に貼り付く） */
 .acct-localnav { position: sticky; top: 51px; z-index: 50; background: color-mix(in srgb, var(--acct-bg) 80%, transparent); backdrop-filter: saturate(180%) blur(20px); -webkit-backdrop-filter: saturate(180%) blur(20px); border-bottom: 1px solid var(--acct-line); }
@@ -821,6 +832,16 @@ img.yf-tile.yf-tile {
 .acct-center-title { font-size: clamp(32px, 5vw, 48px); font-weight: 700; letter-spacing: -.02em; line-height: 1.15; }
 .acct-center-lead { margin: 14px auto 0; max-width: 520px; font-size: 17px; line-height: 1.6; color: var(--acct-muted); }
 .acct-center .acct-google { margin-top: 32px; }
+.acct-center-eyebrow { margin: 20px 0 0; font-size: 15px; font-weight: 700; color: var(--acct-muted); }
+.acct-center-eyebrow + .acct-center-title { margin-top: 6px; }
+/* ログイン前の「ログイン」「新規登録」の切り替え（data-acct-mode）。data-acct-for はどちらか一方だけで出す */
+.acct-center[data-acct-mode="login"] [data-acct-for="signup"], .acct-center[data-acct-mode="signup"] [data-acct-for="login"] { display: none !important; }
+.acct-mode { display: inline-flex; gap: 4px; margin-top: 22px; padding: 4px; border-radius: 999px; background: var(--surface); box-shadow: inset 0 0 0 1px var(--acct-line); }
+.acct-mode-tab { min-height: 36px; padding: 0 22px; border: 0; border-radius: 999px; background: none; color: inherit; font: inherit; font-size: 14px; font-weight: 700; opacity: .6; cursor: pointer; }
+.acct-mode-tab:hover { opacity: .85; }
+.acct-mode-tab[aria-selected="true"] { background: var(--acct-ink); color: var(--acct-bg); opacity: 1; }
+.acct-mode-switch { margin: 14px auto 0; font-size: 14px; color: var(--acct-muted); }
+.acct-mode-switch button { padding: 0; border: 0; background: none; color: var(--acct-link); font: inherit; font-weight: 700; cursor: pointer; text-decoration: underline; text-underline-offset: 3px; }
 .acct-center-note { margin: 18px auto 0; max-width: 440px; font-size: 13px; color: var(--acct-muted); }
 .acct-center-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 26px; }
 .acct-points { list-style: none; margin: 64px 0 0; padding: 36px 0 0; border-top: 1px solid var(--acct-line); display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; text-align: left; }
