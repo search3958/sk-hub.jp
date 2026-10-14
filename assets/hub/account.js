@@ -138,8 +138,15 @@ export const MICROSOFT_LOGIN = false;
 // カスタムトークンでログインする（external: true）。チャネル・アプリを登録して Worker を公開してから true にする
 export const LINE_LOGIN = true;
 export const KAKAO_LOGIN = true;
-// 手元（http://localhost）で開いたときは、手元の Worker（sk-api で npm run dev）を使う
-export const API_ORIGIN = /^(localhost|127\.0\.0\.1)$/.test(location.hostname) ? "http://localhost:8788" : "https://api.sk-hub.jp";
+// 手元（http://localhost）で開いたページも本番の Worker を使う（api.sk-hub.jp は localhost から戻ることを許している）。
+// 手元の Worker（sk-api で npm run dev）を試すときだけ、localStorage の skhub_api に "http://localhost:8788" を入れる
+export const API_ORIGIN = (() => {
+  try {
+    const dev = /^(localhost|127\.0\.0\.1)$/.test(location.hostname) && localStorage.getItem("skhub_api");
+    if (dev && /^http:\/\/(localhost|127\.0\.0\.1):\d+$/.test(dev)) return dev;
+  } catch (e) { /* 読めなければ本番 */ }
+  return "https://api.sk-hub.jp";
+})();
 export const LOGIN_PROVIDERS = {
   google: { id: "google.com", name: "Google", security: "https://myaccount.google.com/security" },
   github: { id: "github.com", name: "GitHub", security: "https://github.com/settings/security" },
@@ -319,6 +326,13 @@ export const confirmWithGoogle = confirmIdentity; // 前の名前（互換）
 export async function deleteLogin(user) {
   // LINE・Kakao とのつながりを先に消す（Firebase のユーザーを消すと、api.sk-hub.jp で本人を確かめられなくなる）
   //   LINE・Kakao をつないでいなければ、api.sk-hub.jp が止まっていても削除できるようにする
+  //   Firebase はログインから 5 分を過ぎると削除を断るので、つながりを外す前に確かめる（外したあとで断られると、LINE・Kakao だけの人が入れなくなる）
+  const { authTime } = await user.getIdTokenResult();
+  if (Date.now() - new Date(authTime).getTime() > RECENT_LOGIN_MS) {
+    const e = new Error("requires-recent-login");
+    e.code = "auth/requires-recent-login";
+    throw e;
+  }
   if (availableLogins().some(isExternal)) {
     if (externalLogins.uid !== user.uid) await loadExternalLogins(user);
     const unlinkAll = api("/logins", { method: "DELETE", user });
