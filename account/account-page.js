@@ -200,7 +200,10 @@ function renderView(state) {
     $("[data-acct-register-title]").textContent = outdated ? t("規約が新しくなりました") : t("アカウントを作成");
     $("[data-acct-register-lead]").textContent = outdated
       ? t("SK Hub Systems アカウント規約が新しくなりました。引き続き使うには、内容を確認して同意してください。")
-      : t("このアカウントで SK Hub Systems アカウントを作成します。内容を確認して、同意してください。");
+      : signinMode === "login"
+        // 「ログイン」から入ったが、まだアカウントがない人
+        ? t("このアカウントでは、まだ SK Hub Systems アカウントが作られていません。作成するには、内容を確認して同意してください。")
+        : t("このアカウントで SK Hub Systems アカウントを作成します。内容を確認して、同意してください。");
     $("[data-acct-register]").textContent = outdated ? t("同意して続ける") : t("アカウントを作成");
     $("[data-acct-agree]").checked = false;
     // 年齢の確認は、アカウントを作るときだけ
@@ -855,21 +858,45 @@ async function renderConsole(user) {
 // ログインのボタン（data-acct-signin="google" | "github" | "microsoft"）。使える方法（/assets/hub/account.js の availableLogins）だけ出す
 const logins = availableLogins();
 root.querySelectorAll("[data-acct-signin]").forEach((btn) => { btn.hidden = !logins.includes(btn.dataset.acctSignin || "google"); });
-// 説明の文も、使える方法に合わせる（例:「Google か GitHub」）
-{
-  // パスキーは「〜のアカウント」ではないので、説明の文には入れない
-  const names = logins.filter((k) => k !== "passkey").map((k) => LOGIN_PROVIDERS[k].name);
-  if (names.length === 1) {
-    $("[data-acct-signin-lead]").textContent = t("SK のサービスを、ひとつの Google アカウントで。パスワードを新しく作る必要はありません。");
-    $("[data-acct-signin-note]").textContent = t("SK Hub Systems アカウントのログインは、Google アカウントだけに対応しています。はじめての方も、このボタンからアカウントを作成できます。");
-    $("[data-acct-security-lead]").textContent = t("このアカウントには Google アカウントでログインします。SK がパスワードを発行・保存することはありません。");
-  } else {
-    const list = names.length === 2 ? t("{a} か {b}", { a: names[0], b: names[1] }) : t("{a} か {b}", { a: names.slice(0, -1).join(", "), b: names[names.length - 1] });
-    $("[data-acct-signin-lead]").textContent = t("SK のサービスを、ひとつのアカウントで。いつもの {names} のアカウントで入れて、パスワードを新しく作る必要はありません。", { names: list });
-    $("[data-acct-signin-note]").textContent = t("{names} のアカウントでログインします。はじめての方も、このボタンからアカウントを作成できます。", { names: list });
-    $("[data-acct-security-lead]").textContent = t("このアカウントには、{names} のアカウントでログインします。SK がパスワードを発行・保存することはありません。2 段階認証などは、それぞれのアカウントで設定します。", { names: list });
+// ---------- ログインと新規登録 ----------
+// 画面は分けるが、どちらから入っても同じ流れ（はじめての人は「アカウントを作成」、前からある人はそのまま使える）。
+// 新規登録ではパスキー（アカウントを作ったあとに登録するもの）と準備中のボタンを出さない。?signup で新規登録から開く
+const signedOutView = $('[data-acct-view="signed-out"]');
+let signinMode = new URLSearchParams(location.search).has("signup") ? "signup" : "login";
+// 説明の文は、使える方法に合わせる（例:「Google か GitHub」）。パスキーは「〜のアカウント」ではないので入れない
+const accountNames = logins.filter((k) => k !== "passkey").map((k) => LOGIN_PROVIDERS[k].name);
+const accountList = accountNames.length <= 1 ? (accountNames[0] || "Google")
+  : t("{a} か {b}", { a: accountNames.slice(0, -1).join(", "), b: accountNames[accountNames.length - 1] });
+
+function setSigninMode(mode, updateUrl) {
+  signinMode = mode === "signup" ? "signup" : "login";
+  signedOutView.dataset.acctMode = signinMode;
+  signedOutView.querySelectorAll(".acct-mode-tab").forEach((tab) => tab.setAttribute("aria-selected", String(tab.dataset.acctModeTab === signinMode)));
+  const signup = signinMode === "signup";
+  $("[data-acct-signin-lead]").textContent = signup
+    ? t("いつもの {names} のアカウントで、SK Hub Systems アカウントを作れます。パスワードを新しく作る必要はありません。", { names: accountList })
+    : t("SK のサービスを、ひとつのアカウントで。前に使った方法でログインしてください。");
+  $("[data-acct-signin-note]").textContent = signup
+    ? t("選んだアカウントでログインしたあと、規約を確認して同意すると、アカウントができます。パスキーは、アカウントを作ったあとに登録できます。")
+    : t("{names} のアカウントか、登録したパスキーでログインします。", { names: accountList });
+  $("[data-acct-link]").hidden = true;
+  message("");
+  if (updateUrl) {
+    const url = new URL(location.href);
+    if (signup) url.searchParams.set("signup", "1");
+    else url.searchParams.delete("signup");
+    history.replaceState(history.state, "", url.pathname + url.search + url.hash);
   }
 }
+signedOutView.querySelectorAll("[data-acct-mode-tab]").forEach((btn) => btn.addEventListener("click", () => {
+  if (busy) return;
+  setSigninMode(btn.dataset.acctModeTab, true);
+  signedOutView.querySelector(`.acct-mode-tab[data-acct-mode-tab="${signinMode}"]`)?.focus();
+}));
+setSigninMode(signinMode, false);
+$("[data-acct-security-lead]").textContent = accountNames.length <= 1
+  ? t("このアカウントには Google アカウントでログインします。SK がパスワードを発行・保存することはありません。")
+  : t("このアカウントには、{names} のアカウントでログインします。SK がパスワードを発行・保存することはありません。2 段階認証などは、それぞれのアカウントで設定します。", { names: accountList });
 root.querySelectorAll("[data-acct-signin]").forEach((btn) => btn.addEventListener("click", async () => {
   if (busy) return;
   setBusy(true, btn);

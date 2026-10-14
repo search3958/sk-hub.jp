@@ -832,6 +832,16 @@ img.yf-tile.yf-tile {
 .acct-center-title { font-size: clamp(32px, 5vw, 48px); font-weight: 700; letter-spacing: -.02em; line-height: 1.15; }
 .acct-center-lead { margin: 14px auto 0; max-width: 520px; font-size: 17px; line-height: 1.6; color: var(--acct-muted); }
 .acct-center .acct-google { margin-top: 32px; }
+.acct-center-eyebrow { margin: 20px 0 0; font-size: 15px; font-weight: 700; color: var(--acct-muted); }
+.acct-center-eyebrow + .acct-center-title { margin-top: 6px; }
+/* ログイン前の「ログイン」「新規登録」の切り替え（data-acct-mode）。data-acct-for はどちらか一方だけで出す */
+.acct-center[data-acct-mode="login"] [data-acct-for="signup"], .acct-center[data-acct-mode="signup"] [data-acct-for="login"] { display: none !important; }
+.acct-mode { display: inline-flex; gap: 4px; margin-top: 22px; padding: 4px; border-radius: 999px; background: var(--surface); box-shadow: inset 0 0 0 1px var(--acct-line); }
+.acct-mode-tab { min-height: 36px; padding: 0 22px; border: 0; border-radius: 999px; background: none; color: inherit; font: inherit; font-size: 14px; font-weight: 700; opacity: .6; cursor: pointer; }
+.acct-mode-tab:hover { opacity: .85; }
+.acct-mode-tab[aria-selected="true"] { background: var(--acct-ink); color: var(--acct-bg); opacity: 1; }
+.acct-mode-switch { margin: 14px auto 0; font-size: 14px; color: var(--acct-muted); }
+.acct-mode-switch button { padding: 0; border: 0; background: none; color: var(--acct-link); font: inherit; font-weight: 700; cursor: pointer; text-decoration: underline; text-underline-offset: 3px; }
 .acct-center-note { margin: 18px auto 0; max-width: 440px; font-size: 13px; color: var(--acct-muted); }
 .acct-center-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 26px; }
 .acct-points { list-style: none; margin: 64px 0 0; padding: 36px 0 0; border-top: 1px solid var(--acct-line); display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; text-align: left; }

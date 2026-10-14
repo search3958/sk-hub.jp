@@ -14,39 +14,45 @@
           <span class="acct-spinner" aria-hidden="true"></span>読み込み中…
         </div>
 
-        <!-- ログイン前 -->
-        <div class="acct-center" data-acct-view="signed-out" hidden>
+        <!-- ログイン前。「ログイン」と「新規登録」に分ける（data-acct-mode。?signup で新規登録から開く）。
+             どちらから入っても、そのあとは同じ（はじめての人はアカウントの作成＝規約への同意、前からある人はそのまま使える） -->
+        <div class="acct-center" data-acct-view="signed-out" data-acct-mode="login" hidden>
           <img class="acct-center-logo" src="/y-filter/shared/sk-icon.svg" alt="" width="72" height="72">
-          <h1 class="acct-center-title">SK Hub Systems アカウント</h1>
+          <p class="acct-center-eyebrow">SK Hub Systems アカウント</p>
+          <h1 class="acct-center-title"><span data-acct-for="login">ログイン</span><span data-acct-for="signup">アカウントを作成</span></h1>
+          <div class="acct-mode" role="tablist" aria-label="ログインか新規登録か">
+            <button class="acct-mode-tab" type="button" role="tab" data-acct-mode-tab="login" aria-selected="true">ログイン</button>
+            <button class="acct-mode-tab" type="button" role="tab" data-acct-mode-tab="signup" aria-selected="false">新規登録</button>
+          </div>
           <p class="acct-center-lead" data-acct-signin-lead>SK のサービスを、ひとつのアカウントで。いつもの Google や GitHub のアカウントで入れて、パスワードを新しく作る必要はありません。</p>
           <div class="acct-signins">
           <button class="acct-google" type="button" data-acct-signin="google">
             <svg viewBox="0 0 48 48" aria-hidden="true"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.4-.4-3.5z"/><path fill="#FF3D00" d="m6.3 14.7 6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-8l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C37 39.2 44 34 44 24c0-1.3-.1-2.4-.4-3.5z"/></svg>
-            Google でログイン
+            <span data-acct-for="login">Google でログイン</span><span data-acct-for="signup">Google で登録</span>
           </button>
           <!-- GitHub・Microsoft・LINE・Kakao・パスキー（/assets/hub/account.js の GITHUB_LOGIN・MICROSOFT_LOGIN・LINE_LOGIN・KAKAO_LOGIN・PASSKEY_LOGIN が true のときだけ出す） -->
           <button class="acct-google acct-github" type="button" data-acct-signin="github" hidden>
             <svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
-            GitHub でログイン
+            <span data-acct-for="login">GitHub でログイン</span><span data-acct-for="signup">GitHub で登録</span>
           </button>
           <button class="acct-google acct-microsoft" type="button" data-acct-signin="microsoft" hidden>
             <svg viewBox="0 0 23 23" aria-hidden="true"><path fill="#f25022" d="M1 1h10v10H1z"/><path fill="#7fba00" d="M12 1h10v10H12z"/><path fill="#00a4ef" d="M1 12h10v10H1z"/><path fill="#ffb900" d="M12 12h10v10H12z"/></svg>
-            Microsoft でログイン
+            <span data-acct-for="login">Microsoft でログイン</span><span data-acct-for="signup">Microsoft で登録</span>
           </button>
           <button class="acct-google acct-line" type="button" data-acct-signin="line" hidden>
             <svg viewBox="0 0 24 24" aria-hidden="true"><rect width="24" height="24" rx="5.5" fill="#06c755"/><path fill="#fff" d="M12 4.6c-4.4 0-8 2.9-8 6.5 0 3.2 2.9 5.9 6.7 6.4.3.1.6.2.7.4.1.2.1.5 0 .7l-.1.7c0 .2-.2.8.7.4.9-.4 4.8-2.8 6.5-4.8 1.2-1.3 1.5-2.6 1.5-3.8 0-3.6-3.6-6.5-8-6.5z"/><path fill="#06c755" d="M7.3 9.3h-.6c-.1 0-.2.1-.2.2v3.5c0 .1.1.2.2.2h2.2c.1 0 .2-.1.2-.2v-.5c0-.1-.1-.2-.2-.2H7.5V9.5c0-.1-.1-.2-.2-.2zm2.6 0h-.5c-.1 0-.2.1-.2.2v3.5c0 .1.1.2.2.2h.5c.1 0 .2-.1.2-.2V9.5c0-.1-.1-.2-.2-.2zm3.8 0h-.5c-.1 0-.2.1-.2.2v2l-1.6-2.1-.1-.1h-.6c-.1 0-.2.1-.2.2v3.5c0 .1.1.2.2.2h.5c.1 0 .2-.1.2-.2v-2l1.6 2.1.1.1h.6c.1 0 .2-.1.2-.2V9.5c0-.1-.1-.2-.2-.2zm3.3.7v-.5c0-.1-.1-.2-.2-.2h-2.2c-.1 0-.2.1-.2.2v3.5c0 .1.1.2.2.2h2.2c.1 0 .2-.1.2-.2v-.5c0-.1-.1-.2-.2-.2h-1.5v-.6h1.5c.1 0 .2-.1.2-.2v-.5c0-.1-.1-.2-.2-.2h-1.5v-.6h1.5c.1 0 .2-.1.2-.2z"/></svg>
-            LINE でログイン
+            <span data-acct-for="login">LINE でログイン</span><span data-acct-for="signup">LINE で登録</span>
           </button>
           <button class="acct-google acct-kakao" type="button" data-acct-signin="kakao" hidden>
             <svg viewBox="0 0 24 24" aria-hidden="true"><rect width="24" height="24" rx="5.5" fill="#fee500"/><path fill="#191919" d="M12 5.2c-4.3 0-7.8 2.7-7.8 6.1 0 2.2 1.5 4.1 3.7 5.2l-.9 3.3c-.1.3.3.5.5.3l3.9-2.6c.2 0 .4.1.6.1 4.3 0 7.8-2.7 7.8-6.1S16.3 5.2 12 5.2z"/></svg>
-            Kakao でログイン
+            <span data-acct-for="login">Kakao でログイン</span><span data-acct-for="signup">Kakao で登録</span>
           </button>
-          <button class="acct-google acct-passkey" type="button" data-acct-signin="passkey" hidden>
+          <button class="acct-google acct-passkey" type="button" data-acct-signin="passkey" data-acct-for="login" hidden>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="7" r="4"/><path d="M2 21v-1a6 6 0 0 1 9.5-4.9"/><circle cx="18" cy="13" r="2.5"/><path d="M18 15.5V21m0-2h2m-2-1.5h1.5"/></svg>
             パスキーでログイン
           </button>
           <!-- これから追加する予定（押せない。0F8（Search3958）との連携が決まったら、api.sk-hub.jp の Worker に乗せる） -->
-          <button class="acct-google acct-soon acct-0f8" type="button" disabled aria-disabled="true">
+          <button class="acct-google acct-soon acct-0f8" type="button" data-acct-for="login" disabled aria-disabled="true">
             <svg viewBox="0 0 24 24" aria-hidden="true"><rect width="24" height="24" rx="5.5" fill="#111827"/><text x="12" y="15.6" text-anchor="middle" font-family="system-ui,sans-serif" font-size="9.5" font-weight="800" fill="#fff">0F8</text></svg>
             0F8 でログイン
             <span class="acct-soon-tag">準備中</span>
@@ -59,7 +65,10 @@
           </div>
           <p class="acct-msg" data-acct-msg role="alert"></p>
           <p class="acct-center-note" data-acct-signin-note>Google か GitHub のアカウントでログインします。はじめての方も、このボタンからアカウントを作成できます。</p>
-          <ul class="acct-points">
+          <!-- もう一方への切り替え -->
+          <p class="acct-mode-switch" data-acct-for="login">はじめての方は <button type="button" data-acct-mode-tab="signup">新規登録</button></p>
+          <p class="acct-mode-switch" data-acct-for="signup">アカウントをお持ちの方は <button type="button" data-acct-mode-tab="login">ログイン</button></p>
+          <ul class="acct-points" data-acct-for="signup">
             <li><span class="tile-ico ti-blue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg></span><strong>ひとつのアカウントで</strong><small>管理コンソールも、これからのサービスも同じアカウントで使えます。</small></li>
             <li><span class="tile-ico ti-green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></span><strong>保存するのは最小限</strong><small>ログインに必要な情報と、規約に同意した日だけ。閲覧履歴は集めません。</small></li>
             <li><span class="tile-ico ti-amber"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M8 6V4h8v2M6 6l1 15h10l1-15"/></svg></span><strong>いつでも削除できる</strong><small>このページから、アカウントとサービスのデータをまとめて削除できます。</small></li>
