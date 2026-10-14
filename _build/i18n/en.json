@@ -3123,5 +3123,18 @@
   "ご不便をおかけしてすみません。終わるまで、しばらくお待ちください。": "Sorry for the inconvenience. Please wait a little while until it's finished.",
   "再開の予定": "Expected back",
   "終わると、このページは自動で開き直します。": "This page will reopen automatically when it's over.",
-  "使ったブラウザのタイムゾーン（おおまかな地域）とサポートID（お問い合わせ・不正な利用への対応に使います）": "The time zone (approximate region) and support ID of the browsers you use (used to respond to inquiries and abuse)"
+  "使ったブラウザのタイムゾーン（おおまかな地域）とサポートID（お問い合わせ・不正な利用への対応に使います）": "The time zone (approximate region) and support ID of the browsers you use (used to respond to inquiries and abuse)",
+  "Google・GitHub・LINE・Kakao のアカウントのパスワード": "Passwords for your Google, GitHub, LINE, and Kakao accounts",
+  "Kakao でログイン": "Sign in with Kakao",
+  "なし（{name} でログイン）": "None (signed in with {name})",
+  "ログインが切れました。ページを開き直してから、もう一度お試しください。": "Your sign-in has expired. Reload the page and try again.",
+  "ログインに使うアカウント（Google・GitHub）の識別子・名前・メールアドレス・アイコン、LINE・Kakao の識別子・名前・アイコン（ログインに使います。LINE・Kakao からメールアドレスは受け取りません）": "The identifier, name, email address, and icon of the account you sign in with (Google, GitHub), and the identifier, name, and icon of your LINE or Kakao account (used for signing in; we do not receive email addresses from LINE or Kakao)",
+  "本人の確認ができました。もう一度「削除する」を押すと、アカウントを削除します。": "Your identity has been confirmed. Press \"Delete\" again to delete your account.",
+  "管理グループ・接続している端末・リクエストも一緒に削除され、元に戻せません。続けると、確認のためにもう一度ログインの画面が開きます。": "Your management groups, connected devices, and requests will also be deleted, and this cannot be undone. If you continue, the sign-in screen will open again to confirm it's you.",
+  "ログインをやめました。": "Sign-in was cancelled.",
+  "時間がたちすぎました。もう一度お試しください。": "Too much time has passed. Please try again.",
+  "{name} で本人を確かめられませんでした。時間をおいて、もう一度お試しください。": "We couldn't verify you with {name}. Please wait a moment and try again.",
+  "その {name} アカウントは、ほかの SK Hub Systems アカウントにつながっています。": "That {name} account is already linked to another SK Hub Systems account.",
+  "このアカウントには、すでに別の {name} アカウントがつながっています。外してから、もう一度つないでください。": "A different {name} account is already linked to this account. Unlink it first, then link again.",
+  "このアカウントにつながっている {name} アカウントで確認してください。": "Please confirm with the {name} account linked to this account."
 }

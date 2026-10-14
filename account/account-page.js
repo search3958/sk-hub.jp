@@ -3,7 +3,8 @@
 // サービスのページから ?next=/y-filter/ のように来たときは、使えるようになったら戻す。
 import {
   LOGIN_PROVIDERS, PROFILE_COLORS, PROFILE_NAME_MAX, SERVICES, SYNC_AT_KEY, agreeLatestTerms, availableLogins, confirmIdentity,
-  connectService, disconnectService, isConnected, db, deleteLogin, linkLogin, loginsOf, markNoticesSeen, profileOf, register, rememberAccount,
+  connectService, disconnectService, externalResult, isConnected, db, deleteLogin, linkLogin, loadExternalLogins, loginsOf, markNoticesSeen,
+  profileOf, register, rememberAccount,
   safeNext, saveLanguage, saveProfile, signIn, signInAndLinkPending, signOutAccount, syncSettings, unlinkLogin, watchAccount
 } from "/assets/hub/account.js";
 import {
@@ -35,6 +36,9 @@ const errText = (err) => {
   if (code === "auth/provider-already-linked") return t("その方法は、もうつながっています。");
   if (code === "auth/requires-recent-login") return t("安全のため、もう一度ログインしてからお試しください。");
   if (code === "sk/last-login") return t("ログインの方法は、少なくとも 1 つ残す必要があります。");
+  if (code === "sk/signed-out") return t("ログインが切れました。ページを開き直してから、もう一度お試しください。");
+  if (code === "sk/unknown-provider") return t("このログインの方法は、まだ使えません。");
+  if (code === "TypeError" || err instanceof TypeError) return t("通信できませんでした。インターネットの接続を確認してください。");
   return t("うまくいきませんでした（{code}）", { code: code || err?.message || err });
 };
 const toDate = (v) => (v && typeof v.toDate === "function" ? v.toDate() : v ? new Date(v) : null);
@@ -138,7 +142,43 @@ function userChip(user) {
 
 // ---------- 画面 ----------
 
+// LINE・Kakao の画面から戻ってきたとき（/assets/hub/account.js の externalResult）の知らせ。画面を出したあとに 1 回だけ出す
+let returned = null;
+const RETURN_ERRORS = {
+  cancelled: "ログインをやめました。",
+  expired: "時間がたちすぎました。もう一度お試しください。",
+  failed: "{name} で本人を確かめられませんでした。時間をおいて、もう一度お試しください。",
+  "in-use": "その {name} アカウントは、ほかの SK Hub Systems アカウントにつながっています。",
+  "already-linked": "このアカウントには、すでに別の {name} アカウントがつながっています。外してから、もう一度つないでください。",
+  mismatch: "このアカウントにつながっている {name} アカウントで確認してください。"
+};
+externalResult.then((res) => {
+  if (!res) return;
+  returned = res;
+  // つなぐ・本人の確認から戻ったときは、その項目を開く（render より先に # を決める）
+  if (res.mode === "link" || res.error === "in-use" || res.error === "already-linked") history.replaceState(null, "", "#security");
+  if (res.mode === "reauth" || res.error === "mismatch") history.replaceState(null, "", "#privacy");
+});
+function showReturned(status) {
+  const res = returned;
+  if (!res) return;
+  returned = null;
+  const name = LOGIN_PROVIDERS[res.provider]?.name || "LINE・Kakao";
+  if (res.error) { message(t(RETURN_ERRORS[res.error] || RETURN_ERRORS.failed, { name })); return; }
+  if (res.mode === "link") message(t("{name} をつなぎました。次から {name} でもログインできます。", { name }));
+  // 本人の確認ができたら、削除の確認をもう一度出す（このあと 4 分のあいだに「削除する」を押せば、もう確認しない）
+  if (res.mode === "reauth" && status === "ready") {
+    document.querySelector("[data-acct-delete-reauthed]").hidden = false;
+    $("[data-acct-delete]").click();
+  }
+}
+
 function render(state) {
+  renderView(state);
+  showReturned(state.status);
+}
+
+function renderView(state) {
   current = state;
   const { status, user, account } = state;
   if (status === "signed-out") { showView("signed-out"); return; }
@@ -178,8 +218,9 @@ function render(state) {
   }
   showView("ready");
   renderProfile(user, account);
+  // LINE・Kakao だけの人はメールアドレスがない
   $("[data-acct-email]").textContent = user.email || "";
-  $("[data-acct-email-tile]").textContent = user.email || "-";
+  $("[data-acct-email-tile]").textContent = user.email || t("なし（{name} でログイン）", { name: loginsOf(user).map((k) => LOGIN_PROVIDERS[k].name).join("・") || "-" });
   $("[data-acct-uid]").textContent = user.uid;
   $("[data-acct-created]").textContent = formatDate(toDate(account.createdAt) || toDate(user.metadata?.creationTime));
   $("[data-acct-terms]").textContent = t("{version} 版に {date} に同意", { version: account.termsVersion, date: formatDate(toDate(account.termsAgreedAt)) });
@@ -190,6 +231,12 @@ function render(state) {
   renderOverview(user, account);
   renderPrivacyTiles();
   renderLogins(user);
+  // LINE・Kakao は api.sk-hub.jp に問い合わせてから、もう一度並べる
+  loadExternalLogins(user).then(() => {
+    if (current.user !== user) return;
+    renderLogins(user);
+    $("[data-acct-email-tile]").textContent = user.email || t("なし（{name} でログイン）", { name: loginsOf(user).map((k) => LOGIN_PROVIDERS[k].name).join("・") || "-" });
+  });
   // 開発者なら受信箱・記事エディターの項目を出す（config/developers は登録された本人だけが読める）
   getDoc(doc(db, "config", "developers"))
     .then(() => {
@@ -921,6 +968,8 @@ $("[data-acct-export]").addEventListener("click", async (e) => {
 
 // ---------- 削除 ----------
 const dialog = document.querySelector("[data-acct-delete-dialog]");
+// 「本人の確認ができました」は、LINE・Kakao の画面から戻ってきて出したときだけ
+dialog.addEventListener("close", () => { dialog.querySelector("[data-acct-delete-reauthed]").hidden = true; });
 const deleteAgree = dialog.querySelector("[data-acct-delete-agree]");
 const deleteConfirm = dialog.querySelector("[data-acct-delete-confirm]");
 deleteAgree.addEventListener("change", () => { deleteConfirm.disabled = !deleteAgree.checked; });
@@ -942,7 +991,8 @@ dialog.addEventListener("close", async () => {
   label.textContent = t("削除しています…");
   try {
     // 途中で止まらないように、データを消す前に本人を確認する（つないでいるログインの方法で）
-    await confirmIdentity(user);
+    // LINE・Kakao だけの人は、LINE・Kakao の画面に移動して、このページに戻ってくる（showReturned がもう一度この確認を出す）
+    await confirmIdentity(user, location.origin + location.pathname);
     await deleteServiceData(user.uid);
     await deleteDoc(doc(db, "accounts", user.uid));
     await deleteLogin(user);

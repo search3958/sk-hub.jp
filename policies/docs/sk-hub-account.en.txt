@@ -8,13 +8,13 @@ Article 1 Purpose and Scope
 
 Article 2 About the Account
 1. The Account lets users use services provided by the Developer with a single account.
-2. A Google account or a GitHub account ("Sign-in Account") is used to sign in to the Account. Users may connect more than one Sign-in Account to a single Account. The Developer does not issue or store passwords.
+2. A Google account, a GitHub account, a LINE account, or a Kakao account ("Sign-in Account") is used to sign in to the Account. Users may connect more than one Sign-in Account to a single Account. The Developer does not issue or store passwords.
 3. The Account is created when the user signs in with a Sign-in Account at https://sk-hub.jp/account/, agrees to these Terms, the SK Terms of Service, and the SK Privacy Policy, and chooses "Create account."
 4. The services available with the Account are shown at https://sk-hub.jp/account/. Services may be added, changed, or ended.
 
 Article 3 Information Handled
 1. The following information is handled for the Account:
-(a) Sign-in information: the Sign-in Account identifier (UID), name, email address, profile picture URL, and sign-in date and time (managed by Firebase Authentication)
+(a) Sign-in information: the Sign-in Account identifier (UID), name, email address, profile picture URL, and sign-in date and time (managed by Firebase Authentication). For LINE and Kakao accounts, the Developer receives the identifier, name, and profile picture URL (but not the email address), and stores the link between the identifier and the Account, the name, the date and time it was linked, and the date and time of the last sign-in
 (b) Account information: the account creation date, the version of these Terms agreed to, the date and time of agreement, and the services connected and when they were connected
 (c) Profile information: the display name, icon type (Sign-in Account picture or initial), and color, if set by the user
 (d) Synced settings: the display language, MALU settings, and QR Drop settings (so the same settings can be used across devices signed in to the Account; search history and transferred files are not included)
@@ -25,13 +25,13 @@ Article 3 Information Handled
 (i) Timetable sharing: when the Developer shares an SK's Toolbox timetable, the email addresses entered by the Developer as recipients and the shared timetable (used so that a person signed in to the Account can view timetables shared with their own email address; recipients cannot see each other) In addition, when you join a timetable share with an invite code, or when you open a timetable shared with you, your name, icon, email address, the time you joined, and the invite code used (used by the Developer who shares the timetable to see and remove members; other members cannot see them)
 (j) Usage records: the time zone of the browsers where the user signed in to and used the Account (to know the approximate region), the support ID of those browsers (SK Privacy Policy Article 3; up to the five most recent), and the date and time of last use
 2. When services are used with the Account, their data is stored linked to the Account. Details are set out in each service's Service Terms.
-3. The Developer does not obtain Sign-in Account passwords, the contents of Google services such as Gmail or Google Drive, the contents of GitHub such as repositories, browsing history, or search terms. However, the MALU data in paragraph 1 (f), the Nagi data in (g), and the SK's Toolbox data in (h) are stored in the Account only when the user chooses it, and only the account holder can read it. Because the SK's Toolbox data in (h) is encrypted on the user's device with a sync passphrase chosen by the user before it is stored, not even the Developer can read its contents.
+3. The Developer does not obtain Sign-in Account passwords, the contents of Google services such as Gmail or Google Drive, the contents of GitHub such as repositories, LINE or KakaoTalk chats and friend lists, browsing history, or search terms. However, the MALU data in paragraph 1 (f), the Nagi data in (g), and the SK's Toolbox data in (h) are stored in the Account only when the user chooses it, and only the account holder can read it. Because the SK's Toolbox data in (h) is encrypted on the user's device with a sync passphrase chosen by the user before it is stored, not even the Developer can read its contents.
 4. To show in the site header that the user is signed in, the display name, profile picture URL (or initial and color), and number of unread notices are stored in the browser used to sign in. This information is not sent to the server and is deleted on sign-out or account deletion.
 5. If the user chooses to receive a reply to an inquiry through the Account's notices, the Account identifier (UID) is stored together with the inquiry.
 6. This information is used only to provide the Account and each service, verify identity, respond to inquiries, and respond to abuse. It is never used for advertising, sale, provision to third parties, or behavior analysis.
 
 Article 4 Storage Location and Management
-1. The information in the preceding Article is stored in Firebase (Firebase Authentication and Cloud Firestore) by Google LLC, operated by the Developer. Cloud Firestore data is stored in the Tokyo region. Sign-in information is managed on Google's infrastructure and may be processed outside Japan.
+1. The information in the preceding Article is stored in Firebase (Firebase Authentication and Cloud Firestore) by Google LLC, operated by the Developer. Cloud Firestore data is stored in the Tokyo region. Sign-in information is managed on Google's infrastructure and may be processed outside Japan. The link between LINE or Kakao accounts and the Account (Article 3, Paragraph 1 (a)) is stored in Cloudflare Workers and D1 (Asia-Pacific region) by Cloudflare, Inc., operated by the Developer, and may be processed outside Japan.
 2. All communications are encrypted with HTTPS.
 3. Only the account holder can read and change the account information. However, the notices in Article 3, Paragraph 1 (e) are sent to the Account by the Developer, and the Developer may check the information in the next paragraph.
 4. To respond to inquiries, outages, abuse, and requests based on law, the Developer may check the following information of the Account on the Developer's admin console. Each check is recorded in the admin console's activity log for one year.
@@ -64,9 +64,9 @@ Article 7 Prohibited Conduct
 2. In the event of a violation of the preceding paragraph, the Developer may suspend or delete the relevant Account without prior notice.
 
 Article 8 Changes, Suspension, and Termination
-1. The Account is provided free of charge and operated within Firebase's free tier.
+1. The Account is provided free of charge and operated within the free tiers of Firebase and Cloudflare.
 2. The Developer may change, suspend, or end the Account for maintenance, outages, security reasons, operational decisions, and the like. If it is ended, the Developer will give notice in advance whenever possible and delete the stored information.
-3. Sign-in may be unavailable due to outages or specification changes in Google's or GitHub's services.
+3. Sign-in may be unavailable due to outages or specification changes in Google's, GitHub's, LINE's, or Kakao's services.
 
 Article 9 Disclaimer of Warranties and Limitation of Liability
 1. The Account is provided as is and is not guaranteed to always be available.
@@ -90,3 +90,4 @@ Supplementary Provisions
 8. On October 9, 2026, Article 3 was revised to add joining SK's Toolbox timetable sharing with an invite code.
 9. On October 11, 2026, Articles 2, 3, 6, 7, and 8 were revised to add signing in with a GitHub account.
 10. On October 13, 2026, Articles 3 and 4 were revised to add usage records and the information the Developer checks on the admin console.
+11. On October 14, 2026, Articles 2, 3, 4, and 8 were revised to add signing in with LINE and Kakao accounts.
