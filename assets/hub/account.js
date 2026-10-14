@@ -198,7 +198,15 @@ async function api(path, { method = "GET", body, user } = {}) {
   const headers = {};
   if (body) headers["Content-Type"] = "application/json";
   if (user) headers.Authorization = `Bearer ${await user.getIdToken()}`;
-  const res = await fetch(API_ORIGIN + path, { method, headers, body: body ? JSON.stringify(body) : undefined });
+  let res;
+  try {
+    res = await fetch(API_ORIGIN + path, { method, headers, body: body ? JSON.stringify(body) : undefined });
+  } catch (err) {
+    // ネットにはつながっているのに api.sk-hub.jp だけに届かない（フィルタリング・広告ブロックなど）こともあるので、分けて知らせる
+    const e = new Error(navigator.onLine === false ? "offline" : "api-unreachable");
+    e.code = navigator.onLine === false ? "auth/network-request-failed" : "sk/api-unreachable";
+    throw e;
+  }
   const data = await res.json().catch(() => ({}));
   if (!res.ok) {
     const e = new Error(data.error || `api-${res.status}`);

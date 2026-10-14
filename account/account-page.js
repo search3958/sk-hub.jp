@@ -36,6 +36,7 @@ const errText = (err) => {
   if (code === "auth/provider-already-linked") return t("その方法は、もうつながっています。");
   if (code === "auth/requires-recent-login") return t("安全のため、もう一度ログインしてからお試しください。");
   if (code === "sk/last-login") return t("ログインの方法は、少なくとも 1 つ残す必要があります。");
+  if (code === "sk/api-unreachable") return t("SK Hub のログインのサーバー（api.sk-hub.jp）に接続できませんでした。フィルタリングや広告ブロックのアプリ・設定が止めていないか確かめてください。");
   if (code === "sk/signed-out") return t("ログインが切れました。ページを開き直してから、もう一度お試しください。");
   if (code === "sk/unknown-provider") return t("このログインの方法は、まだ使えません。");
   if (code === "sk/cancelled") return t("ログインをやめました。");
